@@ -1,0 +1,26 @@
+.header {
+  width: 100%;
+  background: none;
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  z-index: 1000;
+}
+
+.header div {
+  position: absolute;
+  left: 50px;
+  flex: .4;
+  text-align: left;
+}
+
+.header ul {
+  position: absolute;
+  right: 50px;
+  padding: 0 0 0 0;
+}
+
+.header ul li {
+  display: inline;
+  margin: 0 10px 0 10px;
+}

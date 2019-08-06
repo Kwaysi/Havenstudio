@@ -1,13 +1,123 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all linear 0.20s;
+  font-family: sans-serif;
+  -webkit-transition: all linear 0.20s;
+  -ms-transition: all linear 0.20s;
+  -moz-transition: all linear 0.20s;
+  -o-transition: all linear 0.20s;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url('./assets/fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'PoppinsBold';
+  src: url('./assets/fonts/Poppins-Bold.ttf');
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Poppins';
+}
+
+h1, label {
+  margin: 10px 0 10px 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.home {
+  background: url('./components/images/hero.jpg');
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+}
+
+.filter {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-center {
+  align-self: center;
+  justify-self: center;
+}
+
+.sub {
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.sub-list {
+  width: 90%;
+  padding-left: 0;
+  list-style: none;
+}
+
+.sub-list li {
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  width: 90%;
+  max-width: 600px;
+  text-align: left;
+  display: inline-block;
+}
+
+.sub-list li:hover {
+  background: lightgrey;
+  cursor: pointer;
+}
+
+.plan {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block
+}
+
+.plan-container {
+  flex-direction: row;
+  width: 90%;
+  max-width: 700px;
 }
