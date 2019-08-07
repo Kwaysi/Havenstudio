@@ -26,7 +26,7 @@ class Subscribe extends Component {
   componentWillMount() {
     const { isLoggedIn, user } = this.props;
     if (isLoggedIn) {
-      if (user.subscription != null){
+      if (user && user.subscription != null){
         this.props.history.push('/book');
       } else {
         this.props.history.push('/login');
@@ -146,12 +146,13 @@ class Subscribe extends Component {
 
 const mapStateToProps = (state) => {
   const { packages } = state.Packages;
-  const { isLoggedIn } = state.Auth;
+  const { isLoggedIn, user } = state.Auth;
 
   console.log(packages);
   return {
     isLoggedIn,
-    packages
+    packages,
+    user
   };
 };
 
