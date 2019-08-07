@@ -20,9 +20,8 @@ export default (state = INITIAL, action) => {
         ...state,
         user: payload.user,
         token: payload.token,
-        user: payload.user,
         userId: payload.userId,
-        isAuth: true 
+        isLoggedIn: true
       }
     default:
       return state
