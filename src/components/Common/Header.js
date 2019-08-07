@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt, faUser, faThLarge } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import './css/Header.css';
 import { logout } from '../../actions/Auth'
@@ -22,8 +22,9 @@ class Header extends Component {
     const userMenu = (
       <>
         <div className="user">
-          <p><li><FontAwesomeIcon icon={faUser} />{user && user.name}</li></p>
+          <p><FontAwesomeIcon icon={faUser} />{user && user.name}</p>
           <ul>
+            <a href="/dashboard"><li><FontAwesomeIcon icon={faThLarge} />Dashboard</li></a>
             <a href="/" onClick={() => this.logout()}><li><FontAwesomeIcon icon={faSignOutAlt} />Logout</li></a>
           </ul>
         </div>

@@ -24,8 +24,13 @@ class Subscribe extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.isLoggedIn) {
-      this.props.history.push('/login');
+    const { isLoggedIn, user } = this.props;
+    if (isLoggedIn) {
+      if (user.subscription != null){
+        this.props.history.push('/book');
+      } else {
+        this.props.history.push('/login');
+      }
     }
   }
 
@@ -51,13 +56,12 @@ class Subscribe extends Component {
     });
   }
 
-  setPackage(title, price) {
-    this.setState({
-      plan: { title }
-    });
-    const { pack, type, plan } = this.state;
-    this.props.setPackage(pack.title, type.title, plan.title);
-    console.log(pack.title, type.title, plan.title)
+  setPackage(planDetails) {
+    console.log(planDetails);
+    const { pack, type } = this.state;
+    console.log(pack.title, type.title, planDetails);
+
+    this.props.setPackage(pack.title, type.title, planDetails);
     this.props.history.push('/book');
   }
 
@@ -90,13 +94,14 @@ class Subscribe extends Component {
               {
                 type.index.plans.map(
                   elem => {
+                    console.log(elem);
                     return (
                       <div className="plan">
                         <h2>{elem.title}</h2>
                         <p>{elem.hours}</p>
                         <p>{elem.days}</p>
                         <p>{elem.price}</p>
-                        <Button onclick={() => this.setPackage(elem.title, elem.price)}>Choose</Button>
+                        <Button onclick={() => this.setPackage(elem)}>Choose</Button>
                       </div>
                     )
                   }
