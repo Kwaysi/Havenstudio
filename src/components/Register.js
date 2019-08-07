@@ -4,6 +4,9 @@ import Header from './Common/Header';
 import Button from './Common/Button';
 
 class Register extends Component {
+  componentWillMount() {
+    
+  }
   render() {
     return (
       <>

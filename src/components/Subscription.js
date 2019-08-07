@@ -1,71 +1,126 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+// Components
 import Header from './Common/Header';
 import Button from './Common/Button';
+
+// Actions
+import { getPackages, setPackage } from '../actions/Package';
 
 class Subscribe extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+        step: 1,
+        type: {},
+        pack: {},
+        plan: {}
+    }
     this.renderStep = this.renderStep.bind(this);
+    this.setPack = this.setPack.bind(this);
+    this.setPackage = this.setPackage.bind(this);
+    this.setType = this.setType.bind(this);
   }
 
-  setStep() {
+  componentWillMount() {
+    if (!this.props.isLoggedIn) {
+      this.props.history.push('/register');
+    } 
+  }
 
+  componentDidMount() {
+    this.props.getPackages();
+  }
+
+  setPack(title, index) {
+    this.setState({
+      pack: {
+        title, index
+      },
+      step: 2
+    });
+  }
+
+  setType(title, index) {
+    this.setState({
+      type: {
+        title, index
+      },
+      step: 3
+    });
+  }
+
+  setPackage(title) {
+    this.setState({
+      plan: {title}
+    });
+
+    const {pack, type, plan} = this.state;
+    this.props.setPackage(pack.title, type.title, plan.title);
+    this.props.history.push('/book');
   }
 
   renderStep() {
-    let step = 3;
-    switch (step) {
-      case 2:
-        return (
-          <ul className="sub-list">
-            <li>Individual / Couple</li><br />
-            <li>Group session</li><br />
-            <li>Class</li><br />
-          </ul>
-        );
-      case 3:
-        return (
-          <div className="plan-container">
-            <div className="plan">
-              <h2>Daily</h2>
-              <p>Hours</p>
-              <p>Sessions</p>
-              <p>Price</p>
-              <Button>Choose</Button>
-            </div>
-            <div className="plan">
-              <h2>Daily</h2>
-              <p>Hours</p>
-              <p>Sessions</p>
-              <p>Price</p>
-              <Button>Choose</Button>
-            </div>
-            <div className="plan">
-              <h2>Daily</h2>
-              <p>Hours</p>
-              <p>Sessions</p>
-              <p>Price</p>
-              <Button>Choose</Button>
-            </div>
-          </div>
-        );
-      default:
-        return (
-          <>
-            <div className="sub">
-              <h1>Standard</h1>
-              <p>Conduct regular design reviews or even a design guild to help designers embedded in product teams to remain connected to their peers</p>
-              <Button>Choose</Button>
-            </div>
+    const  { packages } = this.props;
+    const { step, type, pack } = this.state;
 
-            <div className="sub">
-              <h1>Premium</h1>
-              <p>Conduct regular design reviews or even a design guild to help designers embedded in product teams to remain connected to their peers</p>
-              <Button>Choose</Button>
+    if (packages != null) {
+      switch (step) {
+        case 2:
+          return (
+            <ul className="sub-list">
+              {
+                pack.index.types.map(
+                  elem => {
+                    console.log(elem);
+                    return (
+                      <>
+                      <li onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
+                      </>
+                    );
+                  }
+                )
+              }
+            </ul>
+          );
+        case 3:{
+          return (
+            <div className="plan-container">
+              {
+                type.index.plans.map(
+                  elem => {
+                    return (
+                      <div className="plan">
+                        <h2>{elem.title}</h2>
+                        <p>{elem.hours}</p>
+                        <p>{elem.days}</p>
+                        <p>{elem.price}</p>
+                        <Button onclick={ () => this.setPackage(elem.title) }>Choose</Button>
+                      </div>
+                    )
+                  }
+                )
+              }
             </div>
-          </>
-        );
+          );
+        }
+        default: {
+          return packages.map(
+            elem => {
+              return (
+                <div className="sub">
+                  <h1>{elem.title}</h1>
+                  <p>{elem.description}</p>
+                  <Button onclick={() => this.setPack(elem.title, elem)}>Choose</Button>
+                </div>
+              );
+            }
+          );
+        }
+      }
+    }else {
+      return 'loading';
     }
   }
 
@@ -84,9 +139,12 @@ class Subscribe extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { packages } = state.Packages;
+  console.log(packages);
   return {
-
+    isLoggedIn: true,
+    packages
   };
 };
 
-export default connect(mapStateToProps, {})(Subscribe);
+export default connect(mapStateToProps, { getPackages, setPackage})(Subscribe);
