@@ -55,9 +55,9 @@ class Subscribe extends Component {
     this.setState({
       plan: {title}
     });
-
     const {pack, type, plan} = this.state;
     this.props.setPackage(pack.title, type.title, plan.title);
+    console.log(pack.title, type.title, plan.title)
     this.props.history.push('/book');
   }
 
@@ -125,6 +125,7 @@ class Subscribe extends Component {
   }
 
   render() {
+    console.log(this.props.packages)
     const show = this.renderStep();
     return (
       <>

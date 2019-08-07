@@ -1,29 +1,25 @@
-import { EMAILCHANGED, PASSWORDCHANGED, PHONECHANGED } from "./type";
+import { REGISTER, LOGINSUCCESSFUL } from "./type";
 import Axios from "axios";
 
-export const emailChanged = (email) => {
-  return {
-    type: EMAILCHANGED,
-    payload: email
-  }
-}
 
-export const passChanged = (pass) => {
-  return {
-    type: PASSWORDCHANGED,
-    payload: pass
+export const registerSuccess = (user, userId) => {
+  return{
+    type: REGISTER,
+    payload: {
+      user, userId
+    }
   }
-}
-
-export const phoneChanged = (phone) => {
-  return {
-    type: PHONECHANGED,
-    payload: phone
+};
+export const loginSuccess = (user, userId) => {
+  return{
+    type: LOGINSUCCESSFUL,
+    payload: {
+      user, userId
+    }
   }
-}
-
+};
 export const conn = Axios.create({
-  baseURL: 'http://localhost:2002/api'
+  baseURL: 'http://192.168.8.102:8080/api'
 });
 
 export const logIn = (data) => {
@@ -33,6 +29,11 @@ export const logIn = (data) => {
     .then (
       res => {
         console.log(res.data);
+        const { user, token } = res.data;
+            const userId = user.id;
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", userId);
+      dispatch(loginSuccess(user, token, userId))
       }
     )
     .catch(
@@ -40,5 +41,22 @@ export const logIn = (data) => {
         console.log(err);
       }
     );
+  }
+};
+export const register = (authData) => {
+  console.log(authData)
+  return (dispatch) => {
+    conn.post("/register", authData)
+    .then(res => {
+      console.log(res.data)
+      const { user, token } = res.data;
+            const userId = user.id;
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", user);
+      dispatch(registerSuccess(user, token))
+    })
+    .catch(err => {
+      console.log(err.response)
+    })
   }
 }

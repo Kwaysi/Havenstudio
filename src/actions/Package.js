@@ -13,17 +13,17 @@ export const getPackages = ()  => {
     .catch (
       error => {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          console.log(error.response);
+          console.log(error.response);
+          console.log(error.response);
         } else if (error.request) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          console.log(error.response);
+          console.log(error.response);
+          console.log(error.response);
         } else  {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          console.log(error.response);
+          console.log(error.response);
+          console.log(error.response);
         }
       }
     )

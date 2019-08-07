@@ -3,7 +3,7 @@
   background: none;
   display: flex;
   padding: 10px;
-  position: absolute;
+  /* position: fixed; */
   z-index: 1000;
 }
 
