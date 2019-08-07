@@ -3,7 +3,6 @@
   background: white;
   display: flex;
   padding: 10px;
-  position: fixed;
   z-index: 1000;
   height: 60px;
   justify-content: center;
@@ -70,7 +69,7 @@
   right: 50px;
 }
 
-.menu li{
+.menu li {
   display: inline;
   margin: 10px;
 }
