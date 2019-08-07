@@ -121,3 +121,24 @@ a:hover {
   width: 90%;
   max-width: 700px;
 }
+.nav{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 15px;
+};
+.men{
+  display: flex !important;
+  flex-direction: row;
+  width: 190px;
+  height: 60px;
+  background-color: blue;
+
+}
+.log{
+  display: hide;
+}
+.show{
+  display: block;
+}

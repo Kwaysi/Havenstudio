@@ -54,6 +54,7 @@ class Register extends Component {
 
   render() {
     const {errors} = this.state; 
+    console.log(this.props.user)
     return (
       <>
         <Header />
@@ -74,6 +75,8 @@ class Register extends Component {
 }
 
  const mapStateToProps = (state) =>({
-    user: state.Auth.user
+    user: state.Auth.user,
+    token: state.Auth.token,
+    userId: state.Auth.userId
 });
 export default connect (mapStateToProps, {register})(Register);

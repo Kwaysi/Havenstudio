@@ -52,11 +52,12 @@ export const register = (authData) => {
   return (dispatch) => {
     conn.post("/register", authData)
     .then(res => {
+      console.log(res.data)
       const { user, token } = res.data;
             const userId = user.id;
             localStorage.setItem("token", token);
             localStorage.setItem("userId", userId);
-      dispatch(registerSuccess(user, token))
+      dispatch(registerSuccess(user, token, userId))
     })
     .catch(err => {
       console.log(err.response)

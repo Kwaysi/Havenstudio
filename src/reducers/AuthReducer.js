@@ -1,7 +1,7 @@
 import { EMAILCHANGED, PASSWORDCHANGED, PHONECHANGED, REGISTER } from "../actions/type";
 
 export default (state = {}, action) => {
-  const { type, payload } = action;
+  const { type, payload, user, token, userId } = action;
   switch (type) {
     case EMAILCHANGED:
       return { ...state, email: payload };
@@ -12,7 +12,9 @@ export default (state = {}, action) => {
       case REGISTER:
         return{
           ...state,
-          user : payload
+          user : user,
+          token: token,
+          userId: userId
         }
     default:
       return state
