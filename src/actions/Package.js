@@ -1,17 +1,17 @@
 import { conn } from "./Auth";
-import { GETPACKAGES } from "./type";
+import { GETPACKAGES, SETSELECTEDPACKAGE } from "./type";
 
 export const getPackages = ()  => {
   return (dispatch) => {
     conn.get('/package')
       .then (
         res => {
-          console.log(res.data.data);
+          console.log(res.data);
           dispatch({type: GETPACKAGES, payload: res.data.data});
         }
       )
     .catch (
-      err => {
+      error => {
         if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);
@@ -27,5 +27,14 @@ export const getPackages = ()  => {
         }
       }
     )
+  }
+}
+
+export const setPackage = (pack, type, plan) => {
+  return {
+    type: SETSELECTEDPACKAGE,
+    payload: {
+      pack, type, plan
+    }
   }
 }

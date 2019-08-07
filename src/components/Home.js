@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
 // Components
 import Button from './Common/Button';
-import Input from './Common/Input';
-import Checkbox from './Common/Checkbox';
 import Header from './Common/Header';
 import './images/hero.jpg';
 
 // Actions
-import getPackages from '../actions/Package';
+import { getPackages } from '../actions/Package';
 
 class Home extends Component {
-  componentWillMount() {
-    this.props.getPackages();
-  }
-
   render () {
     return (
       <div className="home">
@@ -35,7 +29,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = () => {
-
+  return {};
 }
 
-export default connect(mapStateToProps, {getPackages})(Home);
+export default connect(mapStateToProps, { getPackages })(Home);
