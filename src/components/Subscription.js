@@ -141,9 +141,11 @@ class Subscribe extends Component {
 
 const mapStateToProps = (state) => {
   const { packages } = state.Packages;
+  const { isLoggedIn } = state.Auth;
+  
   console.log(packages);
   return {
-    isLoggedIn: true,
+    isLoggedIn,
     packages
   };
 };

@@ -10,10 +10,10 @@ import './images/hero.jpg';
 import { getPackages } from '../actions/Package';
 
 class Home extends Component {
-  render () {
+  render() {
     return (
       <div className="home">
-        <Header/>
+        <Header />
         <div className="filter">
           <div className="main" >
             <div>

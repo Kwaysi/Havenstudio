@@ -2,35 +2,36 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all linear 0.20s;
+  transition: all linear 0.2s;
   font-family: sans-serif;
-  -webkit-transition: all linear 0.20s;
-  -ms-transition: all linear 0.20s;
-  -moz-transition: all linear 0.20s;
-  -o-transition: all linear 0.20s;
+  -webkit-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-Regular.ttf');
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'PoppinsSemiBold';
-  src: url('./assets/fonts/Poppins-SemiBold.ttf');
+  font-family: "PoppinsSemiBold";
+  src: url("./assets/fonts/Poppins-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: 'PoppinsBold';
-  src: url('./assets/fonts/Poppins-Bold.ttf');
+  font-family: "PoppinsBold";
+  src: url("./assets/fonts/Poppins-Bold.ttf");
 }
 
 body {
   font-size: 16px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
-h1, label {
+h1,
+label {
   margin: 10px 0 10px 0;
 }
 
@@ -44,7 +45,7 @@ a:hover {
 }
 
 .home {
-  background: url('./components/images/hero.jpg');
+  background: url("./components/images/hero.jpg");
   background-size: cover;
   background-position: center center;
   width: 100%;
@@ -59,7 +60,7 @@ a:hover {
   left: 0px;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, .4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,11 +72,13 @@ a:hover {
 
 .main-content {
   width: 100%;
-  height: 100vh;
+  /* height: 130vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 60px;
 }
 
 .content-center {
@@ -117,7 +120,7 @@ a:hover {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  display: inline-block
+  display: inline-block;
 }
 
 .plan-container {
@@ -125,6 +128,7 @@ a:hover {
   width: 90%;
   max-width: 700px;
 }
+
 .box{
   width: 60%;
   display: flex;
@@ -137,4 +141,29 @@ a:hover {
   padding: 15px;
   box-shadow: 2px 2px 5px 2px  rgb(149, 151, 155);
   margin: 10px;
+}
+
+.plan-element {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.error {
+  display: block;
+  color: #e57373;
+  font-size: 16px;
+  text-align: center;
+  margin: 10px;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+.react-datepicker__input-container {
+  width: 100% !important;
+  text-align: left;
 }

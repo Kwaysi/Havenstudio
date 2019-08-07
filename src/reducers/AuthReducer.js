@@ -1,6 +1,10 @@
 import { REGISTER, LOGINSUCCESSFUL } from "../actions/type";
 
-export default (state = {}, action) => {
+const INITIAL = {
+  isLoggedIn: false
+}
+
+export default (state = INITIAL, action) => {
   const { type, payload } = action;
   switch (type) {
     case REGISTER:
