@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { emailChanged, passChanged, logIn } from '../actions/Auth'
+import {Redirect} from "react-router-dom"
+import { logIn } from '../actions/Auth'
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
@@ -9,28 +9,37 @@ import Button from './Common/Button';
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.state= {
+      email: "",
+      password: ""
+    }
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPassChange = this.onPassChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   onEmailChange(e) {
-    this.props.emailChanged(e.target.value);
-  }
+    this.setState({
+      email: e.target.value});
+  };
 
   onPassChange(e) {
-    this.props.passChanged(e.target.value);
-  }
+    this.setState({ 
+      password: e.target.value});
+  };
 
   handleSubmit (e) {
-    const {email, password} = this.props;
     e.preventDefault();
+    const {email, password} = this.state;
     this.props.logIn({email, password});
   }
 
   render() {
-    const {email, password} = this.props;
+    const {email, password} = this.state;
+    const {isAuth} = this.props;
     return (
+      <>
+      {isAuth ? <Redirect to="/dashboard"/> :
       <>
         <Header />
         <div className="main-content">
@@ -39,17 +48,17 @@ class Login extends Component {
           <Input label="Password:" placeHolder="Your password" handleChange={this.onPassChange} value={password} />
           <Button onclick={this.handleSubmit}>Login</Button>
         </div>
-      </>
+        </>
+        }
+        </>
     );
   }
 }
 
-function mapStateToProps (state) {
-  const {email, password} = state.Auth;
-  return {
-    email,
-    password
-  };
-}
+const mapStateToProps = (state) => ({
+  isAuth: state.Auth.isAuth,
+  token: state.Auth.token != null,
+  user: state.Auth.user
+})
 
-export default connect(mapStateToProps, { passChanged, emailChanged, logIn })(Login);
+export default connect(mapStateToProps, { logIn })(Login);
