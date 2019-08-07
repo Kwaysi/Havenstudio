@@ -92,7 +92,7 @@ class Booking extends Component {
       </>
     );
 
-    const showUSerDetails =  <h1>Welcome back {this.props.user.name}</h1>;
+    const showUSerDetails = <h1>Welcome back {this.props.user.name}</h1>;
 
     return this.props.isLoggedIn ? showUSerDetails : collectUserDetails;
   }
@@ -185,8 +185,8 @@ class Booking extends Component {
             <h1>Package details</h1>
             <div className="plan-element">
               <label htmlFor="package">Package:</label>
-              {this.props.isLoggedIn ?
-                <h2>{this.props.user.package}</h2>
+              {this.props.isLoggedIn && this.props.user.subscription ?
+                <h2>{this.props.user.subscription.package}</h2>
                 :
                 <Select name="package" children={['Standard Package', 'Premium Package']} onchange={this.inputChange} />
               }
@@ -194,8 +194,8 @@ class Booking extends Component {
 
             <div className="plan-element">
               <label htmlFor="type">Type:</label>
-              {this.props.isLoggedIn ?
-                <h2>{this.props.user.type}</h2>
+              {this.props.isLoggedIn && this.props.user.subscription ?
+                <h2>{this.props.user.subscription.type}</h2>
                 :
                 <Select name="type" children={['Individual & Couple', 'Group', 'Entire Day']} onchange={this.inputChange} />
               }
@@ -203,8 +203,8 @@ class Booking extends Component {
 
             <div className="plan-element">
               <label htmlFor="plan">Plan:</label>
-              {this.props.isLoggedIn ?
-                <h2>{this.props.user.plan}</h2>
+              {this.props.isLoggedIn && this.props.user.subscription ?
+                <h2>{this.props.user.subscription.plan}</h2>
                 :
                 <h2>Daily</h2>
               }
@@ -240,7 +240,7 @@ class Booking extends Component {
 
 const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.Auth;
-  const {selectedPackage } = state.Packages
+  const { selectedPackage } = state.Packages
   return {
     isLoggedIn,
     user,

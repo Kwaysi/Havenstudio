@@ -1,8 +1,7 @@
 // Auth Types
-export const REGISTER = "Register Success";
-export const LOGINSUCCESSFUL = "Login sucessful"
-
+export const LOGIN = "Login sucessful"
+export const LOGOUT = "Logout sucessful"
 
 // Packge Types 
-export const GETPACKAGES =  'getPackages';
+export const GETPACKAGES = 'getPackages';
 export const SETSELECTEDPACKAGE = 'set selected package';

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
-import {NavLink} from "react-router-dom";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 // components
 import Header from "./Common/Header";
 import Button from "./Common/Button";
-import {getPackages, setPackage} from "../actions/Package";
-import {register, logIn} from "../actions/Auth";
+import { getPackages, setPackage } from "../actions/Package";
+import { register, logIn } from "../actions/Auth";
 
 class Dashboard extends Component {
   render() {
@@ -32,7 +32,7 @@ class Dashboard extends Component {
           </div>
         </div>
         <NavLink to="/book"><Button>Book next Session</Button></NavLink>
-       <NavLink to="/subscribe"> <Button>Start a Subscription</Button></NavLink>
+        <NavLink to="/subscribe"> <Button>Start a Subscription</Button></NavLink>
         <div><h4>Previous Bookings</h4></div>
       </>
     );
@@ -40,9 +40,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    packages: state.Packages.packages,
-    user: state.Auth.user,
-    userId: state.Auth.userId
+  packages: state.Packages.packages,
+  user: state.Auth.user,
+  userId: state.Auth.userId
 });
 
-export default connect(mapStateToProps, { getPackages, setPackage, register, logIn})(Dashboard);
+export default connect(mapStateToProps, { getPackages, setPackage, register, logIn })(Dashboard);

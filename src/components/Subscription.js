@@ -12,10 +12,10 @@ class Subscribe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        step: 1,
-        type: {},
-        pack: {},
-        plan: {}
+      step: 1,
+      type: {},
+      pack: {},
+      plan: {}
     }
     this.renderStep = this.renderStep.bind(this);
     this.setPack = this.setPack.bind(this);
@@ -25,8 +25,8 @@ class Subscribe extends Component {
 
   componentWillMount() {
     if (!this.props.isLoggedIn) {
-      this.props.history.push('/register');
-    } 
+      this.props.history.push('/login');
+    }
   }
 
   componentDidMount() {
@@ -51,18 +51,18 @@ class Subscribe extends Component {
     });
   }
 
-  setPackage(title) {
+  setPackage(title, price) {
     this.setState({
-      plan: {title}
+      plan: { title }
     });
-    const {pack, type, plan} = this.state;
+    const { pack, type, plan } = this.state;
     this.props.setPackage(pack.title, type.title, plan.title);
     console.log(pack.title, type.title, plan.title)
     this.props.history.push('/book');
   }
 
   renderStep() {
-    const  { packages } = this.props;
+    const { packages } = this.props;
     const { step, type, pack } = this.state;
 
     if (packages != null) {
@@ -76,7 +76,7 @@ class Subscribe extends Component {
                     console.log(elem);
                     return (
                       <>
-                      <li onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
+                        <li onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
                       </>
                     );
                   }
@@ -84,7 +84,7 @@ class Subscribe extends Component {
               }
             </ul>
           );
-        case 3:{
+        case 3: {
           return (
             <div className="plan-container">
               {
@@ -96,7 +96,7 @@ class Subscribe extends Component {
                         <p>{elem.hours}</p>
                         <p>{elem.days}</p>
                         <p>{elem.price}</p>
-                        <Button onclick={ () => this.setPackage(elem.title) }>Choose</Button>
+                        <Button onclick={() => this.setPackage(elem.title, elem.price)}>Choose</Button>
                       </div>
                     )
                   }
@@ -119,7 +119,7 @@ class Subscribe extends Component {
           );
         }
       }
-    }else {
+    } else {
       return 'loading';
     }
   }
@@ -142,7 +142,7 @@ class Subscribe extends Component {
 const mapStateToProps = (state) => {
   const { packages } = state.Packages;
   const { isLoggedIn } = state.Auth;
-  
+
   console.log(packages);
   return {
     isLoggedIn,
@@ -150,4 +150,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getPackages, setPackage})(Subscribe);
+export default connect(mapStateToProps, { getPackages, setPackage })(Subscribe);
