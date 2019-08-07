@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './css/Header.css';
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <nav className="header">
         <div>
-          <a href="/home">Haven</a>
+          <a href="/">Haven</a>
         </div>
         <ul>
           <li><a href="/login">Login</a></li>

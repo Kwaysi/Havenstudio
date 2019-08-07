@@ -53,17 +53,17 @@ class Subscribe extends Component {
       default:
         return (
           <>
-          <div className="sub">
-            <h1>Standard</h1>
-            <p>Conduct regular design reviews or even a design guild to help designers embedded in product teams to remain connected to their peers</p>
-            <Button>Choose</Button>
-          </div>
+            <div className="sub">
+              <h1>Standard</h1>
+              <p>Conduct regular design reviews or even a design guild to help designers embedded in product teams to remain connected to their peers</p>
+              <Button>Choose</Button>
+            </div>
 
-          <div className="sub">
-            <h1>Premium</h1>
-            <p>Conduct regular design reviews or even a design guild to help designers embedded in product teams to remain connected to their peers</p>
-            <Button>Choose</Button>
-          </div>
+            <div className="sub">
+              <h1>Premium</h1>
+              <p>Conduct regular design reviews or even a design guild to help designers embedded in product teams to remain connected to their peers</p>
+              <Button>Choose</Button>
+            </div>
           </>
         );
     }
@@ -89,4 +89,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { })(Subscribe);
+export default connect(mapStateToProps, {})(Subscribe);

@@ -10,7 +10,7 @@
 .header div {
   position: absolute;
   left: 50px;
-  flex: .4;
+  flex: 0.4;
   text-align: left;
 }
 

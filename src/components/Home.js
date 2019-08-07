@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import Button from './Common/Button';
-import Input from './Common/Input';
-import Checkbox from './Common/Checkbox';
+// import Input from './Common/Input';
+// import Checkbox from './Common/Checkbox';
 import Header from './Common/Header';
 import './images/hero.jpg';
 
 class Home extends Component {
-  render () {
+  render() {
     return (
       <div className="home">
-        <Header/>
+        <Header />
         <div className="filter">
           <div className="main" >
             <div>
