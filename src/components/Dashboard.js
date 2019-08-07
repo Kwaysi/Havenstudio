@@ -8,6 +8,12 @@ import { getPackages, setPackage } from "../actions/Package";
 import { register, logIn } from "../actions/Auth";
 
 class Dashboard extends Component {
+  componentWillMount() {
+    if (!this.props.isLoggedIn) {
+      this.props.history.push('/login');
+    }
+  }
+  
   render() {
     console.log(this.props.userId)
     return (
@@ -39,10 +45,16 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  packages: state.Packages.packages,
-  user: state.Auth.user,
-  userId: state.Auth.userId
-});
+const mapStateToProps = (state) => {
+  const { isLoggedIn, user, userId } = state.Auth;
+  const { packages } = state.Packages;
+
+  return {
+    packages,
+    user,
+    userId,
+    isLoggedIn
+  }
+};
 
 export default connect(mapStateToProps, { getPackages, setPackage, register, logIn })(Dashboard);
