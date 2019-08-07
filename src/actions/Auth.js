@@ -1,4 +1,4 @@
-import { EMAILCHANGED, PASSWORDCHANGED, PHONECHANGED } from "./type";
+import { EMAILCHANGED, PASSWORDCHANGED, PHONECHANGED, REGISTER } from "./type";
 import Axios from "axios";
 
 export const emailChanged = (email) => {
@@ -21,7 +21,12 @@ export const phoneChanged = (phone) => {
     payload: phone
   }
 }
-
+export const registerSuccess = (user) => {
+  return{
+    type: REGISTER,
+    payload: user
+  }
+}
 export const conn = Axios.create({
   baseURL: 'http://localhost:2002/api'
 });
@@ -40,5 +45,21 @@ export const logIn = (data) => {
         console.log(err);
       }
     );
+  }
+};
+export const register = (authData) => {
+  console.log(authData)
+  return (dispatch) => {
+    conn.post("/register", authData)
+    .then(res => {
+      const { user, token } = res.data;
+            const userId = user.id;
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", userId);
+      dispatch(registerSuccess(user, token))
+    })
+    .catch(err => {
+      console.log(err.response)
+    })
   }
 }
