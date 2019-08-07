@@ -186,7 +186,7 @@ class Booking extends Component {
             <div className="plan-element">
               <label htmlFor="package">Package:</label>
               {this.props.isLoggedIn && this.props.user.subscription ?
-                <h2>{this.props.user.subscription.package}</h2>
+                <h2>{this.props.user && this.props.user.subscription.package.title}</h2>
                 :
                 <Select name="package" children={['Standard Package', 'Premium Package']} onchange={this.inputChange} />
               }
@@ -195,7 +195,7 @@ class Booking extends Component {
             <div className="plan-element">
               <label htmlFor="type">Type:</label>
               {this.props.isLoggedIn && this.props.user.subscription ?
-                <h2>{this.props.user.subscription.type}</h2>
+                <h2>{this.props.user && this.props.user.subscription.type.title}</h2>
                 :
                 <Select name="type" children={['Individual & Couple', 'Group', 'Entire Day']} onchange={this.inputChange} />
               }
@@ -204,7 +204,7 @@ class Booking extends Component {
             <div className="plan-element">
               <label htmlFor="plan">Plan:</label>
               {this.props.isLoggedIn && this.props.user.subscription ?
-                <h2>{this.props.user.subscription.plan}</h2>
+                <h2>{this.props.user && this.props.user.subscription.plan.title}</h2>
                 :
                 <h2>Daily</h2>
               }
@@ -222,8 +222,8 @@ class Booking extends Component {
 
             <div className="plan-element">
               <label htmlFor="total">Total:</label>
-              {this.props.isLoggedIn ?
-                <h2>{this.props.user.total}</h2>
+              {this.props.isLoggedIn && this.props.user.subscription ?
+                <h2>{this.props.user && this.props.user.subscription.plan.price}</h2>
                 :
                 <h2>5,000</h2>
               }

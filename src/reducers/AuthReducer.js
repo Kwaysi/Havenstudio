@@ -9,7 +9,6 @@ const INITIAL = {
   token,
   isLoggedIn: checkToken,
   user: JSON.parse(localStorage.getItem('user')),
-  userId: localStorage.getItem('userId')
 }
 
 export default (state = INITIAL, action) => {
@@ -26,7 +25,6 @@ export default (state = INITIAL, action) => {
     case LOGOUT:
       localStorage.removeItem('token')
       localStorage.removeItem('user')
-      localStorage.removeItem('userId')
       return {
         ...state,
         isLoggedIn: false
