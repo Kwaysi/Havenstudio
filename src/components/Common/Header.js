@@ -18,7 +18,7 @@ class Header extends Component {
         <div className="user">
           <p>name</p>
           <ul>
-            <a href="/login"><li><FontAwesomeIcon icon={faSignOutAlt} /> Logout</li></a>
+            <a href="/login"><li><FontAwesomeIcon icon={faSignOutAlt} />Logout</li></a>
           </ul>
         </div>
       </>
@@ -32,7 +32,7 @@ class Header extends Component {
     return (
         <nav className="header">
           <div className="logo">
-            <a href="/home">Haven</a>
+            <a href="/">Haven</a>
           </div>
           {show}
         </nav>

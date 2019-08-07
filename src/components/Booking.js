@@ -92,11 +92,9 @@ class Booking extends Component {
       </>
     );
 
-    const showUSerDetails = (
-      <h1>Welcome back {this.props.user.name}</h1>
-    );
+    const showUSerDetails =  <h1>Welcome back {this.props.user.name}</h1>;
 
-    return this.props.isLogggedIn ? showUSerDetails : collectUserDetails;
+    return this.props.isLoggedIn ? showUSerDetails : collectUserDetails;
   }
 
   close() {
@@ -106,7 +104,7 @@ class Booking extends Component {
   }
 
   submit() {
-    if (!this.props.isLogggedIn) {
+    if (!this.props.isLoggedIn) {
       const data = {
         name: this.state.name,
         email: this.state.email,
@@ -187,7 +185,7 @@ class Booking extends Component {
             <h1>Package details</h1>
             <div className="plan-element">
               <label htmlFor="package">Package:</label>
-              {this.props.isLogggedIn ?
+              {this.props.isLoggedIn ?
                 <h2>{this.props.user.package}</h2>
                 :
                 <Select name="package" children={['Standard Package', 'Premium Package']} onchange={this.inputChange} />
@@ -196,7 +194,7 @@ class Booking extends Component {
 
             <div className="plan-element">
               <label htmlFor="type">Type:</label>
-              {this.props.isLogggedIn ?
+              {this.props.isLoggedIn ?
                 <h2>{this.props.user.type}</h2>
                 :
                 <Select name="type" children={['Individual & Couple', 'Group', 'Entire Day']} onchange={this.inputChange} />
@@ -205,7 +203,7 @@ class Booking extends Component {
 
             <div className="plan-element">
               <label htmlFor="plan">Plan:</label>
-              {this.props.isLogggedIn ?
+              {this.props.isLoggedIn ?
                 <h2>{this.props.user.plan}</h2>
                 :
                 <h2>Daily</h2>
@@ -224,7 +222,7 @@ class Booking extends Component {
 
             <div className="plan-element">
               <label htmlFor="total">Total:</label>
-              {this.props.isLogggedIn ?
+              {this.props.isLoggedIn ?
                 <h2>{this.props.user.total}</h2>
                 :
                 <h2>5,000</h2>
@@ -241,17 +239,12 @@ class Booking extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { isLoggedIn, user } = state.Auth;
+  const {selectedPackage } = state.Packages
   return {
-    isLogggedIn: false,
-    user: {
-      name: 'David',
-      email: 'david@gmail.com',
-      phone: '08057514983',
-      package: 'Premium Package',
-      type: 'Individual / Couple',
-      plan: 'Weekly',
-      total: '10,000',
-    }
+    isLoggedIn,
+    user,
+    selectedPackage
   };
 };
 
