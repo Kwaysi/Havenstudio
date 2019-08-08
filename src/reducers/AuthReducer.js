@@ -19,7 +19,6 @@ export default (state = INITIAL, action) => {
         ...state,
         user: payload.user,
         token: payload.token,
-        userId: payload.userId,
         isLoggedIn: true
       }
     case LOGOUT:

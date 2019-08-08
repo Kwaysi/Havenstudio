@@ -13,9 +13,8 @@ class Dashboard extends Component {
       this.props.history.push('/login');
     }
   }
-  
+
   render() {
-    console.log(this.props.userId)
     return (
       <>
         <Header />

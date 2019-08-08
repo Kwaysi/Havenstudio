@@ -1,16 +1,16 @@
 import { LOGIN, LOGOUT } from "./type";
 import Axios from "axios";
 
-export const loginSuccess = (user, userId) => {
+export const loginSuccess = (user, token) => {
   return {
     type: LOGIN,
     payload: {
-      user, userId
+      user, token
     }
   }
 };
 export const conn = Axios.create({
-  baseURL: 'http://192.168.8.102:8080/api'
+  baseURL: 'http://192.168.8.101:8080/api'
 });
 
 export const logIn = (data) => {
@@ -21,10 +21,9 @@ export const logIn = (data) => {
         res => {
           console.log(res.data);
           const { user, token } = res.data;
-          const userId = user.id;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-          dispatch(loginSuccess(user, token, userId))
+          dispatch(loginSuccess(user, token))
         }
       )
       .catch(
