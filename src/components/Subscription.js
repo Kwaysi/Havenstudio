@@ -151,7 +151,8 @@ const mapStateToProps = (state) => {
   console.log(packages);
   return {
     isLoggedIn,
-    packages, user
+    packages, 
+    user
   };
 };
 
