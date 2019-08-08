@@ -42,7 +42,7 @@ class Dashboard extends Component {
     let next = isNext ? moment(mostRecent).format('Do MMMM \'YY') : 'none';
     
     console.log(next);
-
+    
     return (
       <>
         <Header />

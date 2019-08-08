@@ -26,10 +26,10 @@ class Subscribe extends Component {
   componentWillMount() {
     const { isLoggedIn, user } = this.props;
     if (isLoggedIn) {
-      if (user && user.subscription != null){
+      if (user.subscription !== null && user.subscription.status !== 'Expired') {
         this.props.history.push('/book');
       }
-    }else {
+    } else {
       this.props.history.push('/login');
     }
   }
@@ -76,11 +76,11 @@ class Subscribe extends Component {
             <ul className="sub-list">
               {
                 pack.index.types.map(
-                  elem => {
+                  (elem, index) => {
                     console.log(elem);
                     return (
                       <>
-                        <li onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
+                        <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
                       </>
                     );
                   }
@@ -93,10 +93,10 @@ class Subscribe extends Component {
             <div className="plan-container">
               {
                 type.index.plans.map(
-                  elem => {
+                  (elem, index) => {
                     console.log(elem);
                     return (
-                      <div className="plan">
+                      <div className="plan" key={index}>
                         <h2>{elem.title}</h2>
                         <p>{elem.hours}</p>
                         <p>{elem.days}</p>
@@ -112,9 +112,9 @@ class Subscribe extends Component {
         }
         default: {
           return packages.map(
-            elem => {
+            (elem, index) => {
               return (
-                <div className="sub">
+                <div className="sub" key={index}>
                   <h1>{elem.title}</h1>
                   <p>{elem.description}</p>
                   <Button onclick={() => this.setPack(elem.title, elem)}>Choose</Button>
@@ -151,7 +151,7 @@ const mapStateToProps = (state) => {
   console.log(packages);
   return {
     isLoggedIn,
-    packages,
+    packages, 
     user
   };
 };

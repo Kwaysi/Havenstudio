@@ -13,6 +13,7 @@ class Header extends Component {
     const { user } = this.props;
     console.log(this.props.isLoggedIn);
     const nav = (
+      
       <ul className="menu">
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>
