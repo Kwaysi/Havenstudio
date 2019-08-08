@@ -28,9 +28,9 @@ class Subscribe extends Component {
     if (isLoggedIn) {
       if (user && user.subscription != null){
         this.props.history.push('/book');
-      } else {
-        this.props.history.push('/login');
       }
+    }else {
+      this.props.history.push('/login');
     }
   }
 
