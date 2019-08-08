@@ -1,5 +1,9 @@
 // Auth Types
-export const EMAILCHANGED = 'Email Changed';
-export const PASSWORDCHANGED = 'Password Changed';
-export const PHONECHANGED = 'Phone Changed';
-export const REGISTER = "Register Success"
+export const LOGIN = "Login sucessful"
+export const LOGOUT = "Logout sucessful"
+export const LOGINFAILED = "Login failed"
+export const SIGNUPFAILED = "Signup failed"
+
+// Packge Types 
+export const GETPACKAGES = 'getPackages';
+export const SETSELECTEDPACKAGE = 'set selected package';

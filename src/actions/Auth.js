@@ -1,66 +1,72 @@
-import { EMAILCHANGED, PASSWORDCHANGED, PHONECHANGED, REGISTER } from "./type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED } from "./type";
 import Axios from "axios";
 
-export const emailChanged = (email) => {
+export const loginSuccess = (user, token) => {
   return {
-    type: EMAILCHANGED,
-    payload: email
+    type: LOGIN,
+    payload: {
+      user, token
+    }
   }
-}
-
-export const passChanged = (pass) => {
-  return {
-    type: PASSWORDCHANGED,
-    payload: pass
-  }
-}
-
-export const phoneChanged = (phone) => {
-  return {
-    type: PHONECHANGED,
-    payload: phone
-  }
-}
-export const registerSuccess = (user) => {
-  return{
-    type: REGISTER,
-    payload: user
-  }
-}
+};
 export const conn = Axios.create({
-  baseURL: 'http://localhost:2002/api'
+  baseURL: 'http://192.168.8.101:8080/api'
 });
+export const logInFailed = (msg) => {
+  return {
+    type: LOGINFAILED,
+    payload: msg.msg
+  }
+};
+export const signupFailed = (msg) => {
+  return {
+    type: SIGNUPFAILED,
+    payload: msg.msg
+  }
+};
 
 export const logIn = (data) => {
   console.log(data);
   return (dispatch) => {
     conn.post('/login', data)
-    .then (
-      res => {
-        console.log(res.data);
-      }
-    )
-    .catch(
-      err => {
-        console.log(err);
-      }
-    );
+      .then(
+        res => {
+          console.log(res.data);
+          const { user, token } = res.data;
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(user));
+          dispatch(loginSuccess(user, token))
+        }
+      )
+      .catch(
+        err => {
+          dispatch(logInFailed(err.response.data))
+          console.log(err.response);
+        }
+      );
   }
 };
+
 export const register = (authData) => {
   console.log(authData)
   return (dispatch) => {
     conn.post("/register", authData)
-    .then(res => {
-      console.log(res.data)
-      const { user, token } = res.data;
-            const userId = user.id;
-            localStorage.setItem("token", token);
-            localStorage.setItem("userId", userId);
-      dispatch(registerSuccess(user, token, userId))
-    })
-    .catch(err => {
-      console.log(err.response)
-    })
+      .then(res => {
+        console.log(res.data)
+        const { user, token } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(loginSuccess(user, token))
+      })
+      .catch(err => {
+        dispatch(signupFailed(err.response.data))
+        console.log(err.response)
+      })
+  }
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT
   }
 }

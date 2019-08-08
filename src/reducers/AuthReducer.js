@@ -1,21 +1,43 @@
-import { EMAILCHANGED, PASSWORDCHANGED, PHONECHANGED, REGISTER } from "../actions/type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED} from "../actions/type";
 
-export default (state = {}, action) => {
-  const { type, payload, user, token, userId } = action;
+const token = localStorage.getItem('token');
+const checkToken = token != null ? true : false;
+
+console.log(checkToken);
+
+const INITIAL = {
+  token,
+  isLoggedIn: checkToken,
+  user: JSON.parse(localStorage.getItem('user')),
+}
+
+export default (state = INITIAL, action) => {
+  const { type, payload } = action;
   switch (type) {
-    case EMAILCHANGED:
-      return { ...state, email: payload };
-    case PASSWORDCHANGED:
-      return { ...state, password: payload };
-    case PHONECHANGED:
-      return { ...state, phone: payload };
-      case REGISTER:
-        return{
-          ...state,
-          user : user,
-          token: token,
-          userId: userId
-        }
+    case LOGIN:
+      return {
+        ...state,
+        user: payload.user,
+        token: payload.token,
+        isLoggedIn: true
+      }
+      case LOGINFAILED:
+          return{
+            ...state,
+            msg: payload
+          }
+      case SIGNUPFAILED:
+          return{
+            ...state,
+            msg: payload
+          }
+    case LOGOUT:
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      return {
+        ...state,
+        isLoggedIn: false
+      }
     default:
       return state
   }

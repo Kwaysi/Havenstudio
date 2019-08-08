@@ -1,56 +1,59 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+// components
+import Header from "./Common/Header";
+import Button from "./Common/Button";
+import { getPackages, setPackage } from "../actions/Package";
+import { register, logIn } from "../actions/Auth";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropdownOpen: false
-    };
-    this.toggle = this.toggle.bind(this);
+  componentWillMount() {
+    if (!this.props.isLoggedIn) {
+      this.props.history.push('/login');
+    }
   }
 
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }))
-  };
   render() {
     return (
       <>
-        <div className="nav">
-          <div><h5>HAVEN</h5></div>
-          <div className="dropdown">
-            <div className="menu">
-              <i class="fa fa-user" ></i>
-              <h5>User</h5>
-              <div><i className="fa fa-chevron-down" ></i></div>
-            </div>
-            <div className="log">
-              <h5>Logout</h5>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div>
+        <Header />
+        <div className="box">
+          <div className="cards">
             <h6>Current Package</h6>
             <p>none</p>
           </div>
-          <div>
+          <div className="cards">
             <h6>Days remaining</h6>
             <p>none</p>
           </div>
-          <div>
+          <div className="cards">
             <h6>Next Session</h6>
             <p>none</p>
           </div>
-          <div>
+          <div className="cards">
             <h6>Current Package</h6>
             <p>none</p>
           </div>
         </div>
+        <NavLink to="/book"><Button>Book next Session</Button></NavLink>
+        <NavLink to="/subscribe"> <Button>Start a Subscription</Button></NavLink>
+        <div><h4>Previous Bookings</h4></div>
       </>
     );
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  const { isLoggedIn, user, userId } = state.Auth;
+  const { packages } = state.Packages;
+
+  return {
+    packages,
+    user,
+    userId,
+    isLoggedIn
+  }
+};
+
+export default connect(mapStateToProps, { getPackages, setPackage, register, logIn })(Dashboard);

@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+// Components
 import Button from './Common/Button';
-import Input from './Common/Input';
-import Checkbox from './Common/Checkbox';
 import Header from './Common/Header';
 import './images/hero.jpg';
 
+// Actions
+import { getPackages } from '../actions/Package';
+
 class Home extends Component {
-  render () {
+  render() {
     return (
       <div className="home">
-        <Header/>
+        <Header />
         <div className="filter">
           <div className="main" >
             <div>
@@ -24,4 +28,8 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = () => {
+  return {};
+}
+
+export default connect(mapStateToProps, { getPackages })(Home);

@@ -1,55 +1,98 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { emailChanged, passChanged, logIn } from '../actions/Auth'
+import { Redirect } from "react-router-dom"
+import { logIn } from '../actions/Auth'
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
+import { reg, validateForm } from "./Common/Validation";
+import Alert from "./Common/Alert";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onPassChange = this.onPassChange.bind(this);
+    this.state = {
+      email: "",
+      password: "",
+      errors: {
+        email: "",
+        password: ""
+      }
+    }
+    this.handChange = this.handChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.err = this.err.bind(this);
   }
 
-  onEmailChange(e) {
-    this.props.emailChanged(e.target.value);
-  }
+ 
+  handChange = (e) => {
+      const {value, name} = e.target;
+      const errors = this.state.errors;
+      this.setState({
+        [name] : value
+      })
+      switch (name) {
+        case "email":
+          errors.email = reg.test(value) ? "" : "Invalid Email address";
+          break;
+        case "password":
+          errors.password = value.length < 6 ? "Password must be 6 characters long" : "";
+          break;
+        default:
+      }
+      this.setState({ errors, [name]: value }, () => {
+        console.log(errors)
+      })
+  }; 
 
-  onPassChange(e) {
-    this.props.passChanged(e.target.value);
-  }
-
-  handleSubmit (e) {
-    const {email, password} = this.props;
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.logIn({email, password});
+    if(validateForm(this.state)){
+    const { email, password } = this.state;
+    this.props.logIn({ email, password });
+  }else{
+    this.setState({
+      errorMsg: "All Fields are required"
+    })
+    console.log("yesss")
   }
-
+  };
+  err = () => {
+    this.setState({
+      errorMsg: null
+    })
+  };
   render() {
-    const {email, password} = this.props;
+    const { email, password, errors, errorMsg } = this.state;
+    const { isLoggedIn, msg } = this.props;
+    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err}/> : null;
+    console.log(messages)
     return (
       <>
-        <Header />
-        <div className="main-content">
-          <h1>Login</h1>
-          <Input label="E-mail:" placeHolder="Your email" handleChange={this.onEmailChange} value={email} />
-          <Input label="Password:" placeHolder="Your password" handleChange={this.onPassChange} value={password} />
-          <Button onclick={this.handleSubmit}>Login</Button>
-        </div>
+        {isLoggedIn ? <Redirect to="/dashboard" /> :
+          <>
+            <Header />
+            <div className="main-content">
+              <h1>Login</h1>
+              {messages}
+              <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
+              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.email}</div>
+              <Input label="Password:" placeHolder="Your password" name="password" type="password" handleChange={this.handChange} value={password} />
+              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
+              <Button onclick={this.handleSubmit}>Login</Button>
+            </div>
+          </>
+        }
       </>
     );
   }
 }
 
-function mapStateToProps (state) {
-  const {email, password} = state.Auth;
+const mapStateToProps = (state) => {
+  const { isLoggedIn, token, user, msg } = state.Auth;
   return {
-    email,
-    password
+    isLoggedIn, token, user, msg
   };
 }
 
-export default connect(mapStateToProps, { passChanged, emailChanged, logIn })(Login);
+export default connect(mapStateToProps, { logIn })(Login);

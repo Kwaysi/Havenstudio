@@ -1,26 +1,83 @@
 .header {
   width: 100%;
-  background: none;
+  background: white;
   display: flex;
   padding: 10px;
-  position: absolute;
   z-index: 1000;
-}
-
-.header div {
-  position: absolute;
-  left: 50px;
-  flex: .4;
-  text-align: left;
+  height: 60px;
+  justify-content: center;
 }
 
 .header ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  flex: 0.4;
+  text-align: left;
+}
+
+.user {
+  position: absolute;
+  top: 0;
+  height: 60px;
+  right: 50px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.user p {
+  width: 100%;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+
+.user:hover > ul {
+  display: block;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: white;
+  box-shadow: 2px 2px 1px 2px rgba(0, 0, 0, .3);
+  z-index: 500;
+}
+
+.user ul {
+  display: none;
+}
+
+.user ul li {
+  padding: 10px;
+  width: 200px;
+  text-align: right;
+}
+
+.logo ul {
   position: absolute;
   right: 50px;
   padding: 0 0 0 0;
 }
 
-.header ul li {
+.logo ul li {
   display: inline;
   margin: 0 10px 0 10px;
+}
+
+.menu {
+  height: 60px;
+  align-items: center;
+  display: flex;
+  top: 0;
+  position: absolute;
+  right: 50px;
+}
+
+.menu li {
+  display: inline;
+  margin: 10px;
 }
