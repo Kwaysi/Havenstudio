@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
+import Alert from "./Common/Alert";
 import { register } from "../actions/Auth";
 import { reg, validateForm, isValid } from "./Common/Validation";
 class Register extends Component {
@@ -15,6 +16,7 @@ class Register extends Component {
       password: null,
       errors: {
         name: "",
+        phone:"",
         email: "",
         password: "",
       }
@@ -29,10 +31,15 @@ class Register extends Component {
       const { name, email, phone, password } = this.state;
       this.props.register({ name, email, phone, password })
     } else {
-      console.log("error occured")
+      this.setState({
+       errorMsg:'All fields are required' 
+      })
     }
   };
-
+  err = () => {
+  this.setState({
+  errorMsg: null
+})  };
   change = (e) => {
     let { name, value } = e.target;
     let errors = this.state.errors;
@@ -49,7 +56,7 @@ class Register extends Component {
         errors.phone = isValid(value) ? "" : "Invalid Phone number";
         break;
       case "password":
-        errors.password = value.length < 8 ? "Password must be 8 characters long" : "";
+        errors.password = value.length < 6 ? "Password must be 8 characters long" : "";
         break;
       default:
     }
@@ -59,13 +66,15 @@ class Register extends Component {
   };
 
   render() {
-    const { errors } = this.state;
-    console.log(this.props.user)
+    const { errors, errorMsg } = this.state;
+    const {msg} = this.props;
+    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err}/> : null
     return (
       <>
         <Header />
         <div className="main-content">
           <h1>Register</h1>
+          {messages}
           <Input label="Full Name:" name="name" handleChange={this.change} placeHolder="Your full name" />
           <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.name}</div>
           <Input label="E-mail" name="email" handleChange={this.change} placeHolder="Your email address" />
@@ -82,9 +91,11 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.Auth.user,
-  token: state.Auth.token,
-  userId: state.Auth.userId
-});
+const mapStateToProps = (state) => {
+  const {user, token, userId, msg} = state.Auth;
+  return {
+    user,
+  token,
+  userId, msg
+}};
 export default connect(mapStateToProps, { register })(Register);

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "../actions/type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED} from "../actions/type";
 
 const token = localStorage.getItem('token');
 const checkToken = token != null ? true : false;
@@ -23,6 +23,16 @@ export default (state = INITIAL, action) => {
         userId: payload.userId,
         isLoggedIn: true
       }
+      case LOGINFAILED:
+          return{
+            ...state,
+            msg: payload
+          }
+      case SIGNUPFAILED:
+          return{
+            ...state,
+            msg: payload
+          }
     case LOGOUT:
       localStorage.removeItem('token')
       localStorage.removeItem('user')
