@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
+
 import Alert from "./Common/Alert";
 import { register } from "../actions/Auth";
 import { reg, validateForm, isValid } from "./Common/Validation";
@@ -83,7 +84,6 @@ class Register extends Component {
           <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.phone}</div>
           <Input label="Password" type="password" name="password" handleChange={this.change} placeHolder="Your password" />
           <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
-
           <Button onclick={this.click}>Register</Button>
         </div>
       </>

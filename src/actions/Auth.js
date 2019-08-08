@@ -24,6 +24,7 @@ export const signupFailed = (msg) => {
     payload: msg.msg
   }
 };
+
 export const logIn = (data) => {
   console.log(data);
   return (dispatch) => {
