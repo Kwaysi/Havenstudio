@@ -151,6 +151,28 @@ a:hover {
   display: inline-block;
 }
 
+.inline {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid #6666;
+}
+
+.inline label, .inline h4 {
+  display: inline-block;
+  flex: .5
+}
+
+.inline label {
+  text-align: right;
+}
+
+.inline h4 {
+  text-align: left;
+  position: relative;
+  top: 10px;
+}
+
 .plan-container {
   background: #fff;
   flex-direction: row;
@@ -164,6 +186,7 @@ a:hover {
   justify-content: space-between;
   padding: 6px;
 }
+
 .muted {
   color: lightgrey;
   font-size: 14px;
@@ -177,10 +200,10 @@ a:hover {
   justify-content: space-between;
   margin: 10% auto;
 }
+
 .cards{
-  width: 45%;
+  width: 100%;
   padding: 15px;
-  margin: 10px;
 }
 
 .plan-element {

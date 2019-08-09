@@ -18,6 +18,7 @@ class Dashboard extends Component {
     if (booking && booking.length > 0) {
       return booking.map(
         elem => {
+          console.log(elem);
           return (
             <div>
               <h4>{elem.title}</h4>
@@ -39,7 +40,7 @@ class Dashboard extends Component {
       
       return (
         <>
-          <Overview title="Current Subscription" value={plan.title} pack={pack} type={type.title} />
+          <Overview title="Current Subscription" plan={plan.title} pack={pack} type={type.title} />
         </>
       );
     }
@@ -92,18 +93,18 @@ class Dashboard extends Component {
 export function Overview({title, plan, type, pack}) {
   return (
     <div className="cards">
-      <h6>{title}</h6>
-      <div class>
-        <label>Plan</label>
-        <h4>{plan}</h4>
+      <h3>{title}</h3>
+      <div className="inline">
+        <h4>Plan:</h4>
+        <label>{plan}</label>
       </div>
-      <div>
-        <label>Package Type</label>
-        <h4>{type}</h4>
+      <div className="inline">
+        <h4>Package Type:</h4>
+        <label>{type}</label>
       </div>
-      <div>
-        <label>Package</label>
-        <h4>{pack}</h4>
+      <div className="inline">
+        <h4>Package:</h4>
+        <label>{pack}</label>
       </div>
       <NavLink to="/book"><Button>Book next session</Button></NavLink>
     </div>
