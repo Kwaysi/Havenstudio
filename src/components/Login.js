@@ -26,7 +26,7 @@ class Login extends Component {
     this.err = this.err.bind(this);
   }
 
- 
+
   handChange = (e) => {
       const {value, name} = e.target;
       const errors = this.state.errors;

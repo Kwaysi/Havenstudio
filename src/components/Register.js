@@ -17,7 +17,7 @@ class Register extends Component {
       password: null,
       errors: {
         name: "",
-        phone:"",
+        phone: "",
         email: "",
         password: "",
       }
@@ -33,14 +33,15 @@ class Register extends Component {
       this.props.register({ name, email, phone, password })
     } else {
       this.setState({
-       errorMsg:'All fields are required' 
+        errorMsg: 'All fields are required'
       })
     }
   };
   err = () => {
-  this.setState({
-  errorMsg: null
-})  };
+    this.setState({
+      errorMsg: null
+    })
+  };
   change = (e) => {
     let { name, value } = e.target;
     let errors = this.state.errors;
@@ -95,10 +96,10 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {user, token, userId, msg, isLoggedIn} = state.Auth;
+  const {user, token, msg, isLoggedIn} = state.Auth;
   return {
     user,
   token,
-  userId, msg, isLoggedIn
+  msg, isLoggedIn
 }};
 export default connect(mapStateToProps, { register })(Register);
