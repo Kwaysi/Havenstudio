@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
-import {Redirect} from "react-router-dom";
+import {Redirect, NavLink} from "react-router-dom";
 import Alert from "./Common/Alert";
 import { register } from "../actions/Auth";
 import { reg, validateForm, isValid } from "./Common/Validation";
@@ -87,6 +87,8 @@ class Register extends Component {
           <Input label="Password" type="password" name="password" handleChange={this.change} placeHolder="Your password" />
           <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
           <Button onclick={this.click}>Register</Button>
+          <NavLink to="/login"><p  className="link">Already have an account ? Login</p></NavLink>
+          <p  className="link">Forgot password</p>
           </div>
         </div>
       </>

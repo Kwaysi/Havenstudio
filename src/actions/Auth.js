@@ -41,7 +41,7 @@ export const logIn = (data) => {
       .catch(
         err => {
           dispatch(logInFailed(err.response.data))
-          console.log(err.response);
+          console.log(err.response.data);
         }
       );
   }
