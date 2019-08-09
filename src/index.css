@@ -12,6 +12,7 @@
 
 body{
   background-color: #f2f2f2;
+  overflow-y: hidden;
 }
 
 @font-face {
@@ -189,7 +190,16 @@ a:hover {
   align-items: center;
   border-bottom: 1px solid black;
 }
-
+.no-color{
+  background-color: transparent !important;
+  position: absolute;
+  width: 100% !important;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+ border-radius: 10px;
+ margin: 0 auto;
+}
 .error {
   display: block;
   color: #e57373;

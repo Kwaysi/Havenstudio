@@ -7,6 +7,7 @@ import Header from './Common/Header';
 import Button from './Common/Button';
 import { reg, validateForm } from "./Common/Validation";
 import Alert from "./Common/Alert";
+import Footer from "./Common/Footer"
 
 class Login extends Component {
   constructor(props) {
@@ -95,6 +96,7 @@ class Login extends Component {
                   <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
                   <Button onclick={this.handleSubmit}>Login</Button>
                 </div>
+                <Footer/>
             </div>
           </>
         }

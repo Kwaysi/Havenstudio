@@ -1,0 +1,41 @@
+.icons{
+    width: 100vw ;
+    margin-top: 100px !important;
+    color: white;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+   background-color: black;
+   /* margin-bottom: -40px !important; */
+
+}
+.socials{
+    color: white;
+    width: 100%;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: 0 auto; */
+}
+.icon, p{
+    padding: 10px;
+}
+
+.copy{
+    font-size: 13px;
+}
+.right{
+    width: 20%;
+
+}
+@media screen and (max-width: 600px) {
+.socials{
+    width:100%;
+}
+.copy{
+    width: 100%;
+}
+.icon{
+    width:30%;
+}
+}
