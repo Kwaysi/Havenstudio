@@ -1,17 +1,29 @@
-import { LOGIN, LOGOUT } from "./type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED } from "./type";
 import Axios from "axios";
 
-export const loginSuccess = (user, userId) => {
+export const loginSuccess = (user, token) => {
   return {
     type: LOGIN,
     payload: {
-      user, userId
+      user, token
     }
   }
 };
 export const conn = Axios.create({
-  baseURL: 'http://192.168.8.101:8080/api'
+  baseURL: 'http://192.168.8.104:8080/api'
 });
+export const logInFailed = (msg) => {
+  return {
+    type: LOGINFAILED,
+    payload: msg.msg
+  }
+};
+export const signupFailed = (msg) => {
+  return {
+    type: SIGNUPFAILED,
+    payload: msg.msg
+  }
+};
 
 export const logIn = (data) => {
   console.log(data);
@@ -21,19 +33,20 @@ export const logIn = (data) => {
         res => {
           console.log(res.data);
           const { user, token } = res.data;
-          const userId = user.id;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-          dispatch(loginSuccess(user, token, userId))
+          dispatch(loginSuccess(user, token))
         }
       )
       .catch(
         err => {
-          console.log(err);
+          dispatch(logInFailed(err.response.data))
+          console.log(err.response);
         }
       );
   }
 };
+
 export const register = (authData) => {
   console.log(authData)
   return (dispatch) => {
@@ -46,10 +59,11 @@ export const register = (authData) => {
         dispatch(loginSuccess(user, token))
       })
       .catch(err => {
+        dispatch(signupFailed(err.response.data))
         console.log(err.response)
       })
   }
-}
+};
 
 export const logout = () => {
   return {

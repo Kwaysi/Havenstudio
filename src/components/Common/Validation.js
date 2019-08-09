@@ -46,3 +46,39 @@ export const validateForm = (data) => {
     return valid
 };
 
+export const payWithPaystack = (data) => {
+    var handler = window.PaystackPop.setup({
+        // This assumes you already created a constant named
+        // PAYSTACK_PUBLIC_KEY with your public key from the
+        // Paystack dashboard. You can as well just paste it
+        // instead of creating the constant
+        key: 'pk_test_ef06b80943d8f79d4e573be078b1f9cb0cb1d628',
+        email: data.email,
+        amount: data.price * 100,
+        metadata: {
+            name: data.name,
+            custom_fields: [
+                {
+                    display_name: "Paid on",
+                    variable_name: "paid_on",
+                    value: 'Website'
+                },
+                {
+                    display_name: "Paid via",
+                    variable_name: "paid_via",
+                    value: 'Inline Popup'
+                }
+            ]
+        },
+        callback: function (response) {
+            // post to server to verify transaction before giving value
+            // var verifying = $.get('/verify.php?reference=' + response.reference);
+            // verifying.done(function (data) { /* give value saved in data */ });
+            alert('success. transaction ref is ' + response.reference);
+        },
+        onClose: function () {
+            alert('Click "Pay now" to retry payment.');
+        }
+    });
+    handler.openIframe();
+}

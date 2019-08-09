@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faChevronRight,  } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Header from './Common/Header';
@@ -26,10 +28,10 @@ class Subscribe extends Component {
   componentWillMount() {
     const { isLoggedIn, user } = this.props;
     if (isLoggedIn) {
-      if (user && user.subscription != null){
+      if (user.subscription !== null && user.subscription.status !== 'Expired') {
         this.props.history.push('/book');
       }
-    }else {
+    } else {
       this.props.history.push('/login');
     }
   }
@@ -76,11 +78,11 @@ class Subscribe extends Component {
             <ul className="sub-list">
               {
                 pack.index.types.map(
-                  elem => {
+                  (elem, index) => {
                     console.log(elem);
                     return (
                       <>
-                        <li onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
+                        <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
                       </>
                     );
                   }
@@ -91,16 +93,26 @@ class Subscribe extends Component {
         case 3: {
           return (
             <div className="plan-container">
+              <p className="muted">{pack.title} / {type.title}</p>
               {
                 type.index.plans.map(
-                  elem => {
+                  (elem, index) => {
                     console.log(elem);
                     return (
-                      <div className="plan">
+                      <div className="plan" key={index}>
                         <h2>{elem.title}</h2>
+                        <div className="rows">
+                        <p>Hours</p>
                         <p>{elem.hours}</p>
+                        </div>
+                        <div className="rows">
+                        <p>Days:</p>
                         <p>{elem.days}</p>
+                        </div>
+                        <div className="rows">
+                        <p>Amount:</p>
                         <p>{elem.price}</p>
+                        </div>
                         <Button onclick={() => this.setPackage(elem)}>Choose</Button>
                       </div>
                     )
@@ -112,9 +124,9 @@ class Subscribe extends Component {
         }
         default: {
           return packages.map(
-            elem => {
+            (elem, index) => {
               return (
-                <div className="sub">
+                <div className="sub" key={index}>
                   <h1>{elem.title}</h1>
                   <p>{elem.description}</p>
                   <Button onclick={() => this.setPack(elem.title, elem)}>Choose</Button>
@@ -151,7 +163,7 @@ const mapStateToProps = (state) => {
   console.log(packages);
   return {
     isLoggedIn,
-    packages,
+    packages, 
     user
   };
 };
