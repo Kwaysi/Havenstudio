@@ -13,26 +13,26 @@ class Dashboard extends Component {
     }
   }
 
-  showBookings () {
-    const { booking } = this.props.user.subscription;
-    if (booking != null) {
-      return booking.map(
-        elem => {
-          return (
-            <div>
-              <h4>{elem.title}</h4>
-              <span>Date: {elem.date}</span> <span>Time: {elem.time}</span>
-            </div>
-          );
-        }
-      );
-    }
-    return "It's lonely here, start a subscription so it's more fun!";
-  }
+  // showBookings () {
+  //   const { booking } = this.props.user.subscription;
+  //   if (booking != null) {
+  //     return booking.map(
+  //       elem => {
+  //         return (
+  //           <div>
+  //             <h4>{elem.title}</h4>
+  //             <span>Date: {elem.date}</span> <span>Time: {elem.time}</span>
+  //           </div>
+  //         );
+  //       }
+  //     );
+  //   }
+  //   return "It's lonely here, start a subscription so it's more fun!";
+  // }
   
   render() {
     console.log(this.props.user);
-    const prevBooking = this.showBookings();
+    // const prevBooking = this.showBookings();
 
     const { plan, type, days, booking } = this.props.user.subscription;
     const pack = this.props.user.subscription.package.title;
@@ -60,7 +60,7 @@ class Dashboard extends Component {
         <NavLink to="/book"><Button>Book next Session</Button></NavLink>
         <NavLink to="/subscribe"><Button>Start a Subscription</Button></NavLink>
         <h4>Previous Bookings</h4>
-        {prevBooking}
+        {/* {prevBooking} */}
       </>
     );
   }

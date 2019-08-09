@@ -17,7 +17,9 @@ class Login extends Component {
       errors: {
         email: "",
         password: ""
-      }
+      },
+      errorMsg: "",
+      close: false
     }
     this.handChange = this.handChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +31,8 @@ class Login extends Component {
       const {value, name} = e.target;
       const errors = this.state.errors;
       this.setState({
-        [name] : value
+        [name] : value,
+        close: false
       })
       switch (name) {
         case "email":
@@ -41,32 +44,42 @@ class Login extends Component {
         default:
       }
       this.setState({ errors, [name]: value }, () => {
-        console.log(errors)
       })
   }; 
 
   handleSubmit(e) {
     e.preventDefault();
-    if(validateForm(this.state)){
     const { email, password } = this.state;
-    this.props.logIn({ email, password });
-  }else{
-    this.setState({
-      errorMsg: "All Fields are required"
-    })
-    console.log("yesss")
-  }
-  };
+    const { msg } = this.props
+      if (email && password) {
+        if (validateForm(this.state)) {
+          this.props.logIn({ email, password });
+        }
+            this.setState({errorMsg: msg,
+                          close: true
+        })
+         } else {
+            this.setState({
+              errorMsg: "All fields are required" ,
+                close: true
+              });
+            }
+          };
+
   err = () => {
     this.setState({
-      errorMsg: null
+      errorMsg: null,
+      msg: null,
+      close: false
     })
   };
+
+
+  
   render() {
-    const { email, password, errors, errorMsg } = this.state;
+    const { email, password, errors,mssg, errorMsg, close } = this.state;
     const { isLoggedIn, msg } = this.props;
-    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err}/> : null;
-    console.log(messages)
+    const messages = errorMsg && close ? <Alert msg={errorMsg } classStyle="red"  close={this.err}/> : null;
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> :
@@ -74,12 +87,14 @@ class Login extends Component {
             <Header />
             <div className="main-content">
               <h1>Login</h1>
-              {messages}
-              <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
-              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.email}</div>
-              <Input label="Password:" placeHolder="Your password" name="password" type="password" handleChange={this.handChange} value={password} />
-              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
-              <Button onclick={this.handleSubmit}>Login</Button>
+                <div className="white">
+                  {messages}
+                  <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
+                  <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.email}</div>
+                  <Input label="Password:" placeHolder="Your password" name="password" type="password" handleChange={this.handChange} value={password} />
+                  <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
+                  <Button onclick={this.handleSubmit}>Login</Button>
+                </div>
             </div>
           </>
         }
