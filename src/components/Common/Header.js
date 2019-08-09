@@ -5,15 +5,14 @@ import { connect } from 'react-redux';
 import './css/Header.css';
 import { logout } from '../../actions/Auth'
 class Header extends Component {
-
   logout() {
     this.props.logout();
   }
+
   showMenu() {
     const { user } = this.props;
     console.log(this.props.isLoggedIn);
     const nav = (
-      
       <ul className="menu">
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>

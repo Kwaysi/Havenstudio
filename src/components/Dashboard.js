@@ -14,7 +14,7 @@ class Dashboard extends Component {
   }
 
   showBookings () {
-    const { booking } = this.props.user.subscription;
+    const { booking } = this.props.user;
     if (booking != null) {
       return booking.map(
         elem => {
@@ -32,14 +32,28 @@ class Dashboard extends Component {
   
   render() {
     console.log(this.props.user);
+    const booking = this.props.user;
     const prevBooking = this.showBookings();
+    console.log(typeof booking);
 
-    const { plan, type, days, booking } = this.props.user.subscription;
+    const { plan, type, days } = this.props.user.subscription;
     const pack = this.props.user.subscription.package.title;
+
+    let rec;
     
-    const mostRecent = moment(booking[0].date);
-    const isNext = moment().isSameOrBefore(mostRecent);
-    let next = isNext ? moment(mostRecent).format('Do MMMM \'YY') : 'none';
+    const nextSession = () => {
+      Object.values(booking).forEach(
+        book => {
+          if (moment().isSameOrBefore(moment(book.date))) {
+            rec = moment(book.date).format('Do MMMM \'YY');
+          }
+          else rec = 'none';
+          return rec;
+        }
+      )
+    };
+
+    const next = nextSession();
     
     console.log(next);
     
@@ -78,13 +92,12 @@ export function Overview({title, value, type, pack}) {
 };
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn, user, userId } = state.Auth;
+  const { isLoggedIn, user } = state.Auth;
   const { packages } = state.Packages;
 
   return {
     packages,
     user,
-    userId,
     isLoggedIn
   }
 };
