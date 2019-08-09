@@ -30,19 +30,19 @@ export const isValid = (n) => {
     // remove all whitespace(s) before running test 
     return pattern.test(number.replace(/\s+/g, ''));
 
-};    
-   
-export const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+};
 
-export const  validateForm = ({errors, ...rest}) => {
-    let valid =true;
+export const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+export const validateForm = ({ errors, ...rest }) => {
+    let valid = true;
     // validate form errors
-Object.values(errors).forEach(val => {
+    Object.values(errors).forEach(val => {
         val.length > 0 && (valid = false);
     })
     Object.values(rest).forEach(val => {
-            val === null && (valid = false)
-        })
+        val === null && (valid = false)
+    })
     return valid
 };
 

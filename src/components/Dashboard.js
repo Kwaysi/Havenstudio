@@ -18,7 +18,6 @@ class Dashboard extends Component {
     if (booking && booking.length > 0) {
       return booking.map(
         elem => {
-          console.log(elem);
           return (
             <div>
               <h4>{elem.title}</h4>
