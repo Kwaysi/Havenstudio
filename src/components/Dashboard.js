@@ -15,7 +15,7 @@ class Dashboard extends Component {
 
   showBookings () {
     const { booking } = this.props.user;
-    if (booking != null) {
+    if (booking && booking.length > 0) {
       return booking.map(
         elem => {
           return (
@@ -29,64 +29,83 @@ class Dashboard extends Component {
     }
     return "It's lonely here, start a subscription so it's more fun!";
   }
-  
-  render() {
-    console.log(this.props.user);
-    const booking = this.props.user;
-    const prevBooking = this.showBookings();
-    console.log(typeof booking);
 
-    const { plan, type, days } = this.props.user.subscription;
-    const pack = this.props.user.subscription.package.title;
+  showSubscriptionDetails () {
+    const { subscription } = this.props.user;
 
-    let rec;
-    
-    const nextSession = () => {
+    if (subscription && subscription != null) {
+      const { plan, type, days } = subscription && subscription;
+      const pack = subscription.package.title;
+      
+      return (
+        <>
+          <Overview title="Current Subscription" value={plan.title} pack={pack} type={type.title} />
+        </>
+      );
+    }
+
+    return (
+      <>
+        <p>You don't have an active subscription, book a single session or start a subscription to proceed</p>
+        <NavLink to="/book"><Button>Book a single session</Button></NavLink>
+        <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
+      </>
+    );
+  }
+
+  nextSession() {
+    const { booking } = this.props.user;
+    var rec = 'none';
+    if(booking && booking != null) {
       Object.values(booking).forEach(
         book => {
           if (moment().isSameOrBefore(moment(book.date))) {
             rec = moment(book.date).format('Do MMMM \'YY');
           }
-          else rec = 'none';
-          return rec;
         }
       )
-    };
-
-    const next = nextSession();
-    
-    console.log(next);
+      return rec;
+    }
+  };
+  
+  render() {
+    const prevBooking = this.showBookings();
+    const sub = this.showSubscriptionDetails();
+    const next = this.nextSession();
     
     return (
       <>
         <Header />
-        <div className="box">
-          <Overview title="Current Subscription" value={plan.title} pack={pack} type={type.title} />
-          <div className="cards">
-            <h6>next Session</h6>
-            <p>{next}</p>
-          </div>
-          <div className="cards">
-            <h6>Sessions Left:</h6>
-            <p>{days}</p>
+        <div className="main-container">
+          <h1>Welcome back, {this.props.user.name} </h1>
+          <div className="white">
+            {sub}
+            <h1>Previous Bookings</h1>
+            {prevBooking}
           </div>
         </div>
-        <NavLink to="/book"><Button>Book next Session</Button></NavLink>
-        <NavLink to="/subscribe"><Button>Start a Subscription</Button></NavLink>
-        <h4>Previous Bookings</h4>
-        {/* {prevBooking} */}
       </>
     );
   }
 }
 
-export function Overview({title, value, type, pack}) {
+export function Overview({title, plan, type, pack}) {
   return (
     <div className="cards">
       <h6>{title}</h6>
-      <p>{value}</p>
-      <small>{type}</small>
-      <small>{pack}</small>
+      <div class>
+        <label>Plan</label>
+        <h4>{plan}</h4>
+      </div>
+      <div>
+        <label>Package Type</label>
+        <h4>{type}</h4>
+      </div>
+      <div>
+        <label>Package</label>
+        <h4>{pack}</h4>
+      </div>
+      <NavLink to="/book"><Button>Book next session</Button></NavLink>
     </div>
   );
 };
