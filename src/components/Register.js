@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
-
+import {Redirect} from "react-router-dom";
 import Alert from "./Common/Alert";
 import { register } from "../actions/Auth";
 import { reg, validateForm, isValid } from "./Common/Validation";
@@ -25,7 +25,7 @@ class Register extends Component {
     this.handleChange = this.change.bind(this);
     this.click = this.click.bind(this);
   };
-
+ 
   click = (e) => {
     e.preventDefault();
     if (validateForm(this.state)) {
@@ -63,19 +63,21 @@ class Register extends Component {
       default:
     }
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors)
     })
   };
 
   render() {
     const { errors, errorMsg } = this.state;
-    const { msg } = this.props;
-    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err} /> : null
+    const {msg, isLoggedIn} = this.props;
+    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err}/> : null;
     return (
       <>
+      {isLoggedIn ? <Redirect to="/dashboard"/> : ""}
         <Header />
         <div className="main-content">
+
           <h1>Register</h1>
+          <div className="white">
           {messages}
           <Input label="Full Name:" name="name" handleChange={this.change} placeHolder="Your full name" />
           <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.name}</div>
@@ -86,6 +88,7 @@ class Register extends Component {
           <Input label="Password" type="password" name="password" handleChange={this.change} placeHolder="Your password" />
           <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
           <Button onclick={this.click}>Register</Button>
+          </div>
         </div>
       </>
     );
@@ -93,11 +96,10 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user, token, msg } = state.Auth;
+  const {user, token, msg, isLoggedIn} = state.Auth;
   return {
     user,
-    token,
-    msg
-  }
-};
+  token,
+  msg, isLoggedIn
+}};
 export default connect(mapStateToProps, { register })(Register);
