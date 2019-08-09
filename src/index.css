@@ -9,7 +9,6 @@
   -moz-transition: all linear 0.2s;
   -o-transition: all linear 0.2s;
 }
-
 body{
   background-color: #f2f2f2;
 }
@@ -75,7 +74,11 @@ a:hover {
 .main {
   z-index: 1000;
 }
-
+.link{
+  color: #666;
+   font-size: 13px;
+   padding: 8px;
+}
 .main-content {
   width: 100%;
   /* height: 130vh; */
@@ -87,7 +90,6 @@ a:hover {
   top: 60px;
   padding: 20px;
 }
-
 .white{
   background-color: white;
   width: 90%;
@@ -143,6 +145,19 @@ a:hover {
   cursor: pointer;
 }
 
+.booking {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.booking-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .plan {
   border: 1px solid black;
   border-radius: 10px;
@@ -181,7 +196,14 @@ a:hover {
   margin: 20px 0;
   padding: 20px;
 }
-.rows{
+
+.plan-body {
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.rows {
   display: flex;
   justify-content: space-between;
   padding: 6px;
@@ -193,14 +215,13 @@ a:hover {
   margin: 10px 0;
 }
 
-.box{
+.box {
   width: 60%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 10% auto;
 }
-
 .cards{
   width: 100%;
   padding: 15px;
@@ -211,7 +232,7 @@ a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #bdbdbd;
 }
 
 .error {
@@ -229,4 +250,26 @@ a:hover {
 .react-datepicker__input-container {
   width: 100% !important;
   text-align: left;
+}
+
+@media screen and (min-width: 900px) {
+  .booking {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row !important;
+  }
+
+  .plan-body {
+    flex: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .booking-information {
+    flex: 50%;
+  }
+  .select-group {
+    width: 70% !important;
+  }
 }
