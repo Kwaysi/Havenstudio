@@ -37,15 +37,17 @@ class Register extends Component {
       })
     }
   };
+
   err = () => {
     this.setState({
       errorMsg: null
     })
   };
+
   change = (e) => {
     let { name, value } = e.target;
     let errors = this.state.errors;
-    this.setState({ [name]: value })
+    this.setState({ [name]: value, close: true });
 
     switch (name) {
       case "name":
