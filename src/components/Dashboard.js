@@ -74,7 +74,7 @@ class Dashboard extends Component {
         <NavLink to="/book"><Button>Book next Session</Button></NavLink>
         <NavLink to="/subscribe"><Button>Start a Subscription</Button></NavLink>
         <h4>Previous Bookings</h4>
-        {prevBooking}
+        {/* {prevBooking} */}
       </>
     );
   }
