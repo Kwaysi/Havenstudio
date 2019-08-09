@@ -2,13 +2,13 @@
   width: 90%;
   max-width: 600px;
   text-align: center;
-  margin: 10px auto 10px auto; 
+  margin: 10px auto 10px auto;
 }
 
 .form-element input {
   width: 100%;
   border-radius: 20px;
-  border: 1px solid black;
+  border: 1px solid #bdbdbd;
   padding: 8px;
   font-size: 16px;
   color: black;
@@ -16,5 +16,5 @@
 }
 
 .form-element label {
-  font-size: 16px
+  font-size: 16px;
 }

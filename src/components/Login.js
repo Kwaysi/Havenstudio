@@ -26,50 +26,45 @@ class Login extends Component {
     this.err = this.err.bind(this);
   }
   
-  componentWillReceiveProps(prevProps, nextProps ){
-    const {msg} = this.props;
-    if(prevProps.msg !== msg){
-      this.setState({
-    errorMsg: msg,
-    close: true
-  })}
-  console.log(this.state.errorMsg)
-}
- 
   handChange = (e) => {
-      const {value, name} = e.target;
-      const errors = this.state.errors;
-      this.setState({
-        [name] : value,
-        close: false
-      })
-      switch (name) {
-        case "email":
-          errors.email = reg.test(value) ? "" : "Invalid Email address";
-          break;
-        case "password":
-          errors.password = value.length < 6 ? "Password must be 6 characters long" : "";
-          break;
-        default:
-      }
-      this.setState({ errors, [name]: value }, () => {
-      })
-  }; 
+    const { value, name } = e.target;
+    const errors = this.state.errors;
+    this.setState({
+      [name]: value,
+      close: false
+    })
+    switch (name) {
+      case "email":
+        errors.email = reg.test(value) ? "" : "Invalid Email address";
+        break;
+      case "password":
+        errors.password = value.length < 6 ? "Password must be 6 characters long" : "";
+        break;
+      default:
+    }
+    this.setState({ errors, [name]: value }, () => {
+    })
+  };
 
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-      if (email && password) {
-        if (validateForm(this.state) ) {
-          this.props.logIn({ email, password });
-        }
-         } else {
-            this.setState({
-              errorMsg: "All fields are required" ,
-                close: true
-              });
-            }
-          };
+    const { msg } = this.props
+    if (email && password) {
+      if (validateForm(this.state)) {
+        this.props.logIn({ email, password });
+      }
+      this.setState({
+        errorMsg: msg,
+        close: true
+      })
+    } else {
+      this.setState({
+        errorMsg: "All fields are required",
+        close: true
+      });
+    }
+  };
 
   err = () => {
     this.setState({
@@ -80,11 +75,11 @@ class Login extends Component {
   };
 
 
-  
+
   render() {
-    const { email, password, errors,mssg, errorMsg, close } = this.state;
+    const { email, password, errors, errorMsg, close } = this.state;
     const { isLoggedIn } = this.props;
-    const messages = errorMsg && close ? <Alert msg={errorMsg } classStyle="red"  close={this.err}/> : null;
+    const messages = errorMsg && close ? <Alert msg={errorMsg} classStyle="red" close={this.err} /> : null;
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> :
