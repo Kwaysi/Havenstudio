@@ -17,7 +17,7 @@ class Register extends Component {
       password: null,
       errors: {
         name: "",
-        phone:"",
+        phone: "",
         email: "",
         password: "",
       }
@@ -33,14 +33,15 @@ class Register extends Component {
       this.props.register({ name, email, phone, password })
     } else {
       this.setState({
-       errorMsg:'All fields are required' 
+        errorMsg: 'All fields are required'
       })
     }
   };
   err = () => {
-  this.setState({
-  errorMsg: null
-})  };
+    this.setState({
+      errorMsg: null
+    })
+  };
   change = (e) => {
     let { name, value } = e.target;
     let errors = this.state.errors;
@@ -68,8 +69,8 @@ class Register extends Component {
 
   render() {
     const { errors, errorMsg } = this.state;
-    const {msg} = this.props;
-    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err}/> : null
+    const { msg } = this.props;
+    const messages = errorMsg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err} /> : null
     return (
       <>
         <Header />
@@ -92,10 +93,11 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {user, token, userId, msg} = state.Auth;
+  const { user, token, msg } = state.Auth;
   return {
     user,
-  token,
-  userId, msg
-}};
+    token,
+    msg
+  }
+};
 export default connect(mapStateToProps, { register })(Register);
