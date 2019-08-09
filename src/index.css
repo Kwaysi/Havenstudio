@@ -10,6 +10,10 @@
   -o-transition: all linear 0.2s;
 }
 
+body{
+  background-color: #f2f2f2;
+}
+
 @font-face {
   font-family: "Poppins";
   src: url("./assets/fonts/Poppins-Regular.ttf");
@@ -30,7 +34,9 @@ body {
   font-family: "Poppins";
 }
 
-h1,
+h1 {
+  margin: 20px;
+}
 label {
   margin: 10px 0 10px 0;
 }
@@ -79,6 +85,16 @@ a:hover {
   align-items: center;
   position: absolute;
   top: 60px;
+  padding: 20px;
+}
+
+.white{
+  background-color: white;
+  width: 90%;
+  margin: auto auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
 }
 
 .content-center {
@@ -89,16 +105,18 @@ a:hover {
 .sub {
   width: 90%;
   max-width: 600px;
-  border: 1px solid black;
   padding: 10px;
   border-radius: 20px;
   margin: 10px;
+
+  background-color: white;
 }
 
 .sub-list {
   width: 90%;
   padding-left: 0;
   list-style: none;
+  margin: 20px 0;
 }
 
 .sub-list li {
@@ -107,9 +125,19 @@ a:hover {
   width: 90%;
   max-width: 600px;
   text-align: left;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0 auto;
 }
 
+.sub-list li:nth-child(odd) {
+  background-color: #fff;
+}
+
+.sub-list li:nth-child(even) {
+  background-color: #fcfcfc;
+}
 .sub-list li:hover {
   background: lightgrey;
   cursor: pointer;
@@ -124,9 +152,22 @@ a:hover {
 }
 
 .plan-container {
+  background: #fff;
   flex-direction: row;
   width: 90%;
   max-width: 700px;
+  margin: 20px 0;
+  padding: 20px;
+}
+.rows{
+  display: flex;
+  justify-content: space-between;
+  padding: 6px;
+}
+.muted {
+  color: lightgrey;
+  font-size: 14px;
+  margin: 10px 0;
 }
 
 .box{
@@ -139,7 +180,6 @@ a:hover {
 .cards{
   width: 45%;
   padding: 15px;
-  box-shadow: 2px 2px 5px 2px  rgb(149, 151, 155);
   margin: 10px;
 }
 
