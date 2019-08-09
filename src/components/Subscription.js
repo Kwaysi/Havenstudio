@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faChevronRight,  } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Header from './Common/Header';
@@ -80,7 +82,7 @@ class Subscribe extends Component {
                     console.log(elem);
                     return (
                       <>
-                        <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title}</li><br />
+                        <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
                       </>
                     );
                   }
@@ -91,6 +93,7 @@ class Subscribe extends Component {
         case 3: {
           return (
             <div className="plan-container">
+              <p className="muted">{pack.title} / {type.title}</p>
               {
                 type.index.plans.map(
                   (elem, index) => {
@@ -98,9 +101,18 @@ class Subscribe extends Component {
                     return (
                       <div className="plan" key={index}>
                         <h2>{elem.title}</h2>
+                        <div className="rows">
+                        <p>Hours</p>
                         <p>{elem.hours}</p>
+                        </div>
+                        <div className="rows">
+                        <p>Days:</p>
                         <p>{elem.days}</p>
+                        </div>
+                        <div className="rows">
+                        <p>Amount:</p>
                         <p>{elem.price}</p>
+                        </div>
                         <Button onclick={() => this.setPackage(elem)}>Choose</Button>
                       </div>
                     )
