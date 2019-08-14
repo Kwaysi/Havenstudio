@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faClock, faHistory } from '@fortawesome/free-solid-svg-icons'
 // components
 import Header from "./Common/Header";
 import Button from "./Common/Button";
@@ -13,15 +15,24 @@ class Dashboard extends Component {
     }
   }
 
+  componentDidMount() {
+
+  }
+
   showBookings () {
     const { booking } = this.props.user;
+    console.log(booking);
     if (booking && booking.length > 0) {
       return booking.map(
         elem => {
           return (
-            <div>
-              <h4>{elem.title}</h4>
-              <span>Date: {elem.date}</span> <span>Time: {elem.time}</span>
+            <div className="prev-bookings">
+              {/* <h4>{elem.name}</h4> */}
+              <FontAwesomeIcon icon={faHistory} size="2x" className="falg" />
+              <div>
+                <h4>Individual/Couple</h4>
+                <span><FontAwesomeIcon icon={faCalendar} />{moment(elem.date).format('Do MMMM \'YY')}</span> <span><FontAwesomeIcon icon={faClock} />{elem.timeframe}</span>
+              </div>
             </div>
           );
         }
@@ -32,6 +43,7 @@ class Dashboard extends Component {
 
   showSubscriptionDetails () {
     const { subscription } = this.props.user;
+    const next = this.nextSession();
 
     if (subscription && subscription != null) {
       const { plan, type, days } = subscription && subscription;
@@ -39,7 +51,7 @@ class Dashboard extends Component {
       
       return (
         <>
-          <Overview title="Current Subscription" value={plan.title} pack={pack} type={type.title} />
+          <Overview plan={plan.title} pack={pack} type={type.title} next={next} />
         </>
       );
     }
@@ -67,11 +79,10 @@ class Dashboard extends Component {
       return rec;
     }
   };
-  
+
   render() {
     const prevBooking = this.showBookings();
     const sub = this.showSubscriptionDetails();
-    const next = this.nextSession();
     
     return (
       <>
@@ -89,21 +100,25 @@ class Dashboard extends Component {
   }
 }
 
-export function Overview({title, plan, type, pack}) {
+export function Overview({plan, type, pack, next}) {
   return (
     <div className="cards">
-      <h6>{title}</h6>
-      <div>
-        <label>Plan</label>
-        <h4>{plan}</h4>
+      <h3>Current Subscription</h3>
+      <div className="inline">
+        <h4>Plan:</h4>
+        <label>{plan}</label>
       </div>
-      <div>
-        <label>Package</label>
-        <h4>{type}</h4>
+      <div className="inline">
+        <h4>Package Type:</h4>
+        <label>{type}</label>
       </div>
-      <div>
-        <label>Plan</label>
-        <h4>{pack}</h4>
+      <div className="inline">
+        <h4>Package:</h4>
+        <label>{pack}</label>
+      </div>
+      <div className="inline">
+        <h4>Next session:</h4>
+        <label>{next}</label>
       </div>
       <NavLink to="/book"><Button>Book next session</Button></NavLink>
     </div>
