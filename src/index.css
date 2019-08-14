@@ -11,7 +11,7 @@
 }
 body{
   background-color: #f2f2f2;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 @font-face {

@@ -94,7 +94,7 @@ class Dashboard extends Component {
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
-            <Footer/>
+          <Footer/>
         </div>
       </>
     );
