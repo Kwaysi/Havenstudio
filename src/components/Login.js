@@ -7,6 +7,7 @@ import Header from './Common/Header';
 import Button from './Common/Button';
 import { reg, validateForm } from "./Common/Validation";
 import Alert from "./Common/Alert";
+import Footer from "./Common/Footer"
 import Spinner from "./Common/Spinner";
 
 class Login extends Component {

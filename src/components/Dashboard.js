@@ -7,6 +7,7 @@ import { faCalendar, faClock, faHistory } from '@fortawesome/free-solid-svg-icon
 import Header from "./Common/Header";
 import Button from "./Common/Button";
 import moment from 'moment';
+import Footer from "./Common/Footer";
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -94,6 +95,7 @@ class Dashboard extends Component {
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
+            <Footer/>
         </div>
       </>
     );

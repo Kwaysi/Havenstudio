@@ -6,6 +6,7 @@ import Button from './Common/Button';
 import { Redirect } from "react-router-dom";
 import Alert from "./Common/Alert";
 import { register } from "../actions/Auth";
+import Footer from "./Common/Footer"
 import { reg, validateForm, isValid } from "./Common/Validation";
 import Spinner from "./Common/Spinner";
 
@@ -33,7 +34,8 @@ class Register extends Component {
     if (validateForm(this.state)) {
       const { name, email, phone, password } = this.state;
       this.props.register({ name, email, phone, password })
-    } else {
+    } 
+    else {
       this.setState({
         errorMsg: 'All fields are required'
       })
@@ -96,6 +98,7 @@ class Register extends Component {
             </div>
           }
         </div>
+        <Footer/>
       </>
     );
   }
