@@ -11,7 +11,7 @@
 }
 body {
   background-color: #f2f2f2;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 @font-face {
@@ -283,7 +283,7 @@ a:hover {
 
 .prev-bookings {
   display: flex;
-  width: 90%;
+  width: 100%;
   text-align: left;
   border-bottom: 1px solid #6666;
   padding: 10px;
@@ -296,5 +296,5 @@ a:hover {
 
 .falg {
   position: relative;
-  top: 20px;
+  top: 15px;
 }

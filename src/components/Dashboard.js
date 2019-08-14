@@ -28,10 +28,9 @@ class Dashboard extends Component {
         elem => {
           return (
             <div className="prev-bookings">
-              {/* <h4>{elem.name}</h4> */}
               <FontAwesomeIcon icon={faHistory} size="2x" className="falg" />
               <div>
-                <h4>Individual/Couple</h4>
+                <h4>{elem.planName.title}</h4>
                 <span><FontAwesomeIcon icon={faCalendar} />{moment(elem.date).format('Do MMMM \'YY')}</span> <span><FontAwesomeIcon icon={faClock} />{elem.timeframe}</span>
               </div>
             </div>
@@ -95,7 +94,7 @@ class Dashboard extends Component {
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
-          <Footer />
+          <Footer/>
         </div>
       </>
     );
