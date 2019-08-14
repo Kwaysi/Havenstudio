@@ -5,6 +5,7 @@ import { logIn } from '../actions/Auth'
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
+import Footer from './Common/Footer';
 import { reg, validateForm } from "./Common/Validation";
 import Alert from "./Common/Alert";
 import Spinner from "./Common/Spinner";
@@ -98,6 +99,7 @@ class Login extends Component {
               </div>
               }
             </div>
+            <Footer/>
           </>
         }
       </>
