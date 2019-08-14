@@ -6,8 +6,19 @@
   margin-bottom: 15px;
   width: 90%;
   position: relative;
-  top: 16px;
-  display: inline-block;
+  top: 0px;
+  margin: 0 auto;
+}
+
+.green {
+  padding: 20px;
+  background-color: green;
+  color: white;
+  margin-bottom: 15px;
+  width: 90%;
+  position: relative;
+  top: 0px;
+  margin: 0 auto;
 }
 
 /* The close button */
