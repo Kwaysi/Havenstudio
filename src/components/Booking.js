@@ -24,12 +24,11 @@ class Booking extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      email: null,
-      phone: null,
+      name: "",
+      email: "",
+      phone: "",
       date: new Date(),
-      time: null,
-      terms: false,
+      time: "",
       errors: {
         name: "",
         email: "",
@@ -40,10 +39,10 @@ class Booking extends Component {
       types: packages[0].types,
       plan_title: packages[0].types[0].plan,
       price: packages[0].types[0].price,
-      package: packages[0].id,
-      plan: packages[0].types[0].plan_id,
-      type: packages[0].types[0].id
-
+      package: packages[0].title,
+      plan: packages[0].types[0].plan,
+      type: packages[0].types[0].title,
+      typeid: packages[0].types[0].id
     }
     this.handleChange = this.handleChange.bind(this);
     this.packageChange = this.packageChange.bind(this);
@@ -109,12 +108,13 @@ class Booking extends Component {
   packageChange(e) {
     const { value } = e.target;
     this.setState({
-      package: value,
+      package: packages[value - 1].title,
       types: packages[value - 1].types,
       plan_title: packages[value - 1].types[0].plan,
       price: packages[value - 1].types[0].price,
-      plan: packages[value - 1].types[0].plan_id,
-      type: packages[value - 1].types[0].id
+      plan: packages[value - 1].types[0].plan,
+      type: packages[value - 1].types[0].title,
+      typeid: packages[value - 1].types[0].id
     })
   }
 
@@ -124,8 +124,9 @@ class Booking extends Component {
     this.setState({
       plan_title: types[value - 1].plan,
       price: types[value - 1].price,
-      plan: types[value - 1].plan_id,
-      type: types[value - 1].id
+      plan: types[value - 1].plan,
+      type: types[value - 1].title,
+      typeid: types[value - 1].id
     })
   }
 
@@ -133,11 +134,11 @@ class Booking extends Component {
     const collectUserDetails = (
       <>
         <h1>Personal Information</h1>
-        <Input label="Full Name:" placeHolder="Your full name" name="name" handleChange={this.inputChange} />
+        <Input label="Full Name:" placeHolder="Your full name" name="name" handleChange={this.inputChange} value={this.state.name} />
         <div className="error">{this.state.errors.name}</div>
-        <Input label="E-mail:" placeHolder="your email" name="email" handleChange={this.inputChange} />
+        <Input label="E-mail:" placeHolder="your email" name="email" handleChange={this.inputChange} value={this.state.email} />
         <div className="error">{this.state.errors.email}</div>
-        <Input label="Phone number:" placeHolder="your phone number" name="phone" handleChange={this.inputChange} />
+        <Input label="Phone number:" placeHolder="your phone number" name="phone" handleChange={this.inputChange} value={this.state.phone} />
         <div className="error">{this.state.errors.phone}</div>
       </>
     );
@@ -161,7 +162,7 @@ class Booking extends Component {
         phone: this.state.phone,
         date: moment(this.state.date).format('YYYY-MM-DD'),
         package: this.state.package,
-        time: this.state.time,
+        timeframe: this.state.time,
         type: this.state.type,
         plan: this.state.plan,
         price: this.state.price,
@@ -169,8 +170,10 @@ class Booking extends Component {
       }
       if (validateForm(data)) {
         this.errorClose();
-        console.log(data);
+        // console.log(data);
         // payWithPaystack(data);
+        this.props.booking(data);
+
       } else {
         this.setState({
           errorMsg: 'Please ensure that all fields are filled Correctly and a time selected'
@@ -183,10 +186,10 @@ class Booking extends Component {
         user: user.id,
         timeframe: time,
         date: moment(date).format('YYYY-MM-DD'),
-        package: user.subscription ? user.subscription.package.id : selectedPackage.plan.package,
-        type: user.subscription ? user.subscription.type.id : selectedPackage.plan.type,
-        plan: user.subscription ? user.subscription.plan.id : selectedPackage.plan.id,
-        price: user.subscription ? user.subscription.plan.price : selectedPackage.plan.price,
+        package: user.subscription ? user.subscription.package.id : (selectedPackage !== undefined ? selectedPackage.plan.package : this.state.package),
+        type: user.subscription ? user.subscription.type.id : (selectedPackage !== undefined ? selectedPackage.plan.type : this.state.type),
+        plan: user.subscription ? user.subscription.plan.id : (selectedPackage !== undefined ? selectedPackage.plan.id : this.state.plan),
+        price: user.subscription ? user.subscription.plan.price : (selectedPackage !== undefined ? selectedPackage.plan.price : this.state.price),
         errors: this.state.errors
       }
       if (validateForm(data)) {
@@ -204,7 +207,7 @@ class Booking extends Component {
 
   render() {
     const details = this.isLogggedIn();
-    const { date, time, errors, errorMsg, plan, price, types, plan_title, type } = this.state;
+    const { date, time, errors, errorMsg, plan, price, types, plan_title, typeid } = this.state;
     const { user, selectedPackage, isSubmitting, msg } = this.props;
     return (
       <>
@@ -261,7 +264,7 @@ class Booking extends Component {
                   {(user && user.subscription) || selectedPackage ?
                     <h2>{(user.subscription && user.subscription.type.title) || selectedPackage.type}</h2>
                     :
-                    <Select name="type" children={types} onchange={this.typeChange} selectedId={type} />
+                    <Select name="type" children={types} onchange={this.typeChange} selectedId={typeid} />
                   }
                 </div>
 
@@ -296,6 +299,7 @@ class Booking extends Component {
 
             </div>
         }
+        <Footer/>
       </>
     );
   }

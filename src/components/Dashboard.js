@@ -3,11 +3,15 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faClock, faHistory } from '@fortawesome/free-solid-svg-icons'
+import moment from 'moment';
+
 // components
 import Header from "./Common/Header";
 import Button from "./Common/Button";
-import moment from 'moment';
 import Footer from "./Common/Footer";
+
+// Actions
+import { updateUser } from '../actions/Auth';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -17,7 +21,8 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-
+    const {isLoggedIn, token} = this.props;
+    if (isLoggedIn) this.props.updateUser(token);
   }
 
   showBookings() {
@@ -52,6 +57,19 @@ class Dashboard extends Component {
       return (
         <>
           <Overview plan={plan.title} pack={pack} type={type.title} next={next} />
+        </>
+      );
+    } else if (next !== 'none') {
+      return (
+        <>
+        <p>You don't have an active subscription, book a single session or start a subscription to proceed</p>
+        <br/>
+        <div>
+          <h4>Next session:</h4>
+          <label>{next}</label>
+        </div>
+        <br/>
+        <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
         </>
       );
     }
@@ -127,14 +145,15 @@ export function Overview({ plan, type, pack, next }) {
 };
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn, user } = state.Auth;
+  const { isLoggedIn, user, token } = state.Auth;
   const { packages } = state.Packages;
 
   return {
-    packages,
     user,
+    token,
+    packages,
     isLoggedIn
   }
 };
 
-export default connect(mapStateToProps, {})(Dashboard);
+export default connect(mapStateToProps, { updateUser })(Dashboard);

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED, START } from "./type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED, START, UPDATEUSER } from "./type";
 import Axios from "axios";
 
 export const start = () => {
@@ -28,6 +28,7 @@ export const logInFailed = (msg) => {
     payload: msg.msg
   }
 };
+
 export const signupFailed = (msg) => {
   return {
     type: SIGNUPFAILED,
@@ -76,6 +77,32 @@ export const register = (authData) => {
       })
   }
 };
+
+export const updateUser = (prevToken) => {
+  conn.defaults.headers.common['Authorization'] = `Bearer ${prevToken}`;
+	return (dispatch) => {
+		conn.get('/user')
+			.then(
+				res => {
+          const { user } = res.data;
+          localStorage.setItem("user", JSON.stringify(user));
+          dispatch({type: UPDATEUSER, payload: user})
+				}
+			)
+			.catch(
+				error => {
+          if (error.response) {
+            console.log(error.response);
+            dispatch(logout);
+          } else if (error.request) {
+            console.log(error.response);
+          } else {
+            console.log(error.response);
+          }
+        }
+			)
+	}
+}
 
 export const logout = () => {
   return {

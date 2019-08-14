@@ -1,9 +1,7 @@
-import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED, START } from "../actions/type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED, START, UPDATEUSER } from "../actions/type";
 
 const token = localStorage.getItem('token');
 const checkToken = token != null ? true : false;
-
-console.log(checkToken);
 
 const INITIAL = {
   token,
@@ -34,14 +32,16 @@ export default (state = INITIAL, action) => {
         ...state,
         msg: payload,
         isLoading: false
-
       }
     case SIGNUPFAILED:
       return {
         ...state,
         msg: payload,
         isLoading: false
-
+      }
+    case UPDATEUSER: 
+      return {
+        ...state, user: payload
       }
     case LOGOUT:
       localStorage.removeItem('token')
