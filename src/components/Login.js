@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from "react-router-dom"
+import { Redirect, NavLink } from "react-router-dom"
 import { logIn } from '../actions/Auth'
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
 import { reg, validateForm } from "./Common/Validation";
 import Alert from "./Common/Alert";
+import Footer from "./Common/Footer"
 import Spinner from "./Common/Spinner";
 
 class Login extends Component {
@@ -26,8 +27,7 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.err = this.err.bind(this);
   }
-
-
+  
   handChange = (e) => {
     const { value, name } = e.target;
     const errors = this.state.errors;

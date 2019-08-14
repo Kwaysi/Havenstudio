@@ -6,7 +6,9 @@ import { faChevronRight, } from '@fortawesome/free-solid-svg-icons';
 // Components
 import Header from './Common/Header';
 import Button from './Common/Button';
+import Footer from "./Common/Footer"
 import Spinner from './Common/Spinner';
+
 // Actions
 import { getPackages, setPackage } from '../actions/Package';
 
@@ -150,6 +152,7 @@ class Subscribe extends Component {
         <div className="main-content">
           <h1>Choose a package that suits you.</h1>
           {show}
+          <Footer/>
         </div>
       </>
     );

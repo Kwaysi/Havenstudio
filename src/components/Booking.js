@@ -19,6 +19,7 @@ import {
   isValid, reg, validateForm,
   // payWithPaystack 
 } from './Common/Validation';
+import Footer from "./Common/Footer"
 
 class Booking extends Component {
   constructor(props) {
@@ -282,7 +283,8 @@ class Booking extends Component {
               </div>
 
             </div>
-          </div>
+            <Footer/>
+          </>
         }
       </>
     );
