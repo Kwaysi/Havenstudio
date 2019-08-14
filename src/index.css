@@ -273,3 +273,21 @@ a:hover {
     width: 70% !important;
   }
 }
+
+.prev-bookings {
+  display: flex;
+  width: 90%;
+  text-align: left;
+  border-bottom: 1px solid #6666;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.prev-bookings div h4 {
+  margin: 10px;
+}
+
+.falg {
+  position: relative;
+  top: 20px;
+}

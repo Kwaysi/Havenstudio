@@ -10,7 +10,7 @@ export const loginSuccess = (user, token) => {
   }
 };
 export const conn = Axios.create({
-  baseURL: 'http://192.168.8.104:8080/api'
+  baseURL: 'http://192.168.8.101:8080/api'
 });
 export const logInFailed = (msg) => {
   return {

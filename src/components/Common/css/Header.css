@@ -81,3 +81,8 @@
   display: inline;
   margin: 10px;
 }
+
+.svg-inline--fa {
+  margin: 0 10px;
+  color: darkgrey;
+}
