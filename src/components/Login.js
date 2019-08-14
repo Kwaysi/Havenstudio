@@ -7,6 +7,7 @@ import Header from './Common/Header';
 import Button from './Common/Button';
 import { reg, validateForm } from "./Common/Validation";
 import Alert from "./Common/Alert";
+import Spinner from "./Common/Spinner";
 
 class Login extends Component {
   constructor(props) {
@@ -79,8 +80,8 @@ class Login extends Component {
 
   render() {
     const { email, password, errors, errorMsg, close } = this.state;
-    const { isLoggedIn } = this.props;
-    const messages = errorMsg && close ? <Alert msg={errorMsg} classStyle="red" close={this.err} /> : null;
+    const { isLoggedIn, isLoading, msg } = this.props;
+    const messages = (errorMsg || msg) && close ? <Alert msg={errorMsg || msg} classStyle="red" close={this.err} /> : null;
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> :
@@ -88,7 +89,7 @@ class Login extends Component {
             <Header />
             <div className="main-content">
               <h1>Login</h1>
-              <div className="white">
+              {isLoading ? <Spinner /> : <div className="white">
                 {messages}
                 <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
                 <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.email}</div>
@@ -96,6 +97,7 @@ class Login extends Component {
                 <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
                 <Button onclick={this.handleSubmit}>Login</Button>
               </div>
+              }
             </div>
           </>
         }
@@ -105,9 +107,9 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn, token, user, msg } = state.Auth;
+  const { isLoggedIn, token, user, msg, isLoading } = state.Auth;
   return {
-    isLoggedIn, token, user, msg
+    isLoggedIn, token, user, msg, isLoading
   };
 }
 

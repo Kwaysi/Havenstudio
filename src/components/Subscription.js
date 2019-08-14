@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faChevronRight,  } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Header from './Common/Header';
 import Button from './Common/Button';
-
+import Spinner from './Common/Spinner';
 // Actions
 import { getPackages, setPackage } from '../actions/Package';
 
@@ -102,16 +102,16 @@ class Subscribe extends Component {
                       <div className="plan" key={index}>
                         <h2>{elem.title}</h2>
                         <div className="rows">
-                        <p>Hours</p>
-                        <p>{elem.hours}</p>
+                          <p>Hours</p>
+                          <p>{elem.hours}</p>
                         </div>
                         <div className="rows">
-                        <p>Days:</p>
-                        <p>{elem.days}</p>
+                          <p>Days:</p>
+                          <p>{elem.days}</p>
                         </div>
                         <div className="rows">
-                        <p>Amount:</p>
-                        <p>{elem.price}</p>
+                          <p>Amount:</p>
+                          <p>{elem.price}</p>
                         </div>
                         <Button onclick={() => this.setPackage(elem)}>Choose</Button>
                       </div>
@@ -137,7 +137,7 @@ class Subscribe extends Component {
         }
       }
     } else {
-      return 'loading';
+      return <Spinner />;
     }
   }
 
@@ -163,7 +163,7 @@ const mapStateToProps = (state) => {
   console.log(packages);
   return {
     isLoggedIn,
-    packages, 
+    packages,
     user
   };
 };

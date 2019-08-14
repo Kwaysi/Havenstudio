@@ -1,5 +1,14 @@
-import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED } from "./type";
+import { LOGIN, LOGOUT, LOGINFAILED, SIGNUPFAILED, START } from "./type";
 import Axios from "axios";
+
+export const start = () => {
+  return {
+    type: START,
+    payload: {
+      isLoading: true
+    }
+  }
+};
 
 export const loginSuccess = (user, token) => {
   return {
@@ -10,8 +19,10 @@ export const loginSuccess = (user, token) => {
   }
 };
 export const conn = Axios.create({
-  baseURL: 'http://192.168.8.104:8080/api'
+  // baseURL: 'http://havenstudioapi.do/api'
+  baseURL: 'http://192.168.8.101:8080/api'
 });
+
 export const logInFailed = (msg) => {
   return {
     type: LOGINFAILED,
@@ -28,6 +39,7 @@ export const signupFailed = (msg) => {
 export const logIn = (data) => {
   console.log(data);
   return (dispatch) => {
+    dispatch(start())
     conn.post('/login', data)
       .then(
         res => {
@@ -50,6 +62,7 @@ export const logIn = (data) => {
 export const register = (authData) => {
   console.log(authData)
   return (dispatch) => {
+    dispatch(start())
     conn.post("/register", authData)
       .then(res => {
         console.log(res.data)

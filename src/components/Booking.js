@@ -4,9 +4,8 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import { Redirect } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import packages from '../objects/packages.json';
-
+import { booking } from '../actions/Booking';
 //Components
 import Input from './Common/Input';
 import Header from './Common/Header';
@@ -14,6 +13,8 @@ import Checkbox from './Common/Checkbox';
 import Select from './Common/Select';
 import Button from './Common/Button';
 import Alert from './Common/Alert';
+import Spinner from './Common/Spinner';
+
 import {
   isValid, reg, validateForm,
   // payWithPaystack 
@@ -165,10 +166,8 @@ class Booking extends Component {
       const { user, selectedPackage } = this.props;
       const { time, date } = this.state;
       const data = {
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        time,
+        user: user.id,
+        timeframe: time,
         date: moment(date).format('YYYY-MM-DD'),
         package: user.subscription ? user.subscription.package.id : selectedPackage.plan.package,
         type: user.subscription ? user.subscription.type.id : selectedPackage.plan.type,
@@ -178,7 +177,8 @@ class Booking extends Component {
       }
       if (validateForm(data)) {
         this.errorClose();
-        console.log(data)
+        // console.log(data)
+        this.props.booking(data);
         // payWithPaystack(data);
       } else {
         this.setState({
@@ -191,7 +191,7 @@ class Booking extends Component {
   render() {
     const details = this.isLogggedIn();
     const { date, time, errors, errorMsg, plan, price, types, plan_title, type } = this.state;
-    const { user, selectedPackage, isLoggedIn } = this.props;
+    const { user, selectedPackage, isLoggedIn, isLoading, msg } = this.props;
     return (
       <>
         {isLoggedIn && (!user.subscription && !selectedPackage) ? <Redirect to='/subscribe' /> :
@@ -199,11 +199,12 @@ class Booking extends Component {
             <Header />
             <div className="main-content">
 
-              {this.state.errorMsg ?
-                <Alert classStyle="red" msg={errorMsg} close={() => this.errorClose()} />
+              {errorMsg || msg ?
+                <Alert classStyle="red" msg={errorMsg || msg} close={() => this.errorClose()} />
                 : ''
               }
               <div className="white booking">
+
                 <div className="booking-information">
                   <div>
                     {details}
@@ -293,12 +294,14 @@ class Booking extends Component {
 
 const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.Auth;
-  const { selectedPackage } = state.Packages
+  const { selectedPackage } = state.Packages;
+  const { msg } = state.Booking;
   return {
     isLoggedIn,
     user,
-    selectedPackage
+    selectedPackage,
+    msg
   };
 };
 
-export default connect(mapStateToProps, {})(Booking);
+export default connect(mapStateToProps, { booking })(Booking);
