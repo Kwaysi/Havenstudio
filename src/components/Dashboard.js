@@ -27,7 +27,6 @@ class Dashboard extends Component {
 
   showBookings() {
     const { booking } = this.props.user;
-    console.log(booking);
     if (booking && booking.length > 0) {
       return booking.map(
         elem => {
