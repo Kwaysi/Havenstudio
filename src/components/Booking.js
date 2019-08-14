@@ -209,19 +209,18 @@ class Booking extends Component {
     return (
       <>
         <Header />
+        
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
             {errorMsg || msg ?
               <Alert classStyle="red" msg={errorMsg || msg} close={() => this.errorClose()} />
-              : ''
-            }
+            : ""}
             <div className="white booking">
-
               <div className="booking-information">
                 <div>
                   {details}
                 </div>
-
+                <span className="terms">Note: A session last 2 hours per day.</span>
                 <div>
                   <h1>Booking Information</h1>
                   <div className="form-element">
@@ -248,7 +247,7 @@ class Booking extends Component {
               <div className="plan-body">
                 <h1>Package details</h1>
                 <div className="plan-element">
-                  <label htmlFor="package">Package:</label>
+                  <label htmlFor="package">Choose a Package:</label>
                   {(user && user.subscription) || selectedPackage ?
                     <h2>{(user.subscription && user.subscription.package.title) || selectedPackage.pack}</h2>
                     :
@@ -257,7 +256,7 @@ class Booking extends Component {
                 </div>
 
                 <div className="plan-element">
-                  <label htmlFor="type">Type:</label>
+                  <label htmlFor="type">Choose a Package Type:</label>
                   {(user && user.subscription) || selectedPackage ?
                     <h2>{(user.subscription && user.subscription.type.title) || selectedPackage.type}</h2>
                     :

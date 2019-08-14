@@ -32,7 +32,6 @@
 @media screen and (max-width: 600px) {
 .icons{
     bottom: 0px;
-    margin-bottom: -20px;
     flex-wrap: wrap;
 }.socials{
     width:100%;
