@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Button from './Common/Button';
 import Header from './Common/Header';
 import './images/hero.jpg';
+import Footer from "./Common/Footer"
 
 // Actions
 import { getPackages } from '../actions/Package';
@@ -23,6 +24,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
+          <Footer background="no-color"/> 
       </div>
     );
   }

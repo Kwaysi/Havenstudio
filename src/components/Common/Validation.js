@@ -41,7 +41,7 @@ export const validateForm = (data) => {
         val.length > 0 && (valid = false);
     })
     Object.values(data).forEach(val => {
-        val === null && (valid = false)
+        (val === "" || val === null) && (valid = false)
     })
     return valid
 };
