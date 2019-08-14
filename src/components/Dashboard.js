@@ -61,7 +61,7 @@ class Dashboard extends Component {
     } else if (next !== 'none') {
       return (
         <>
-        <p>You don't have an active subscription, book a single session or start a subscription to proceed</p>
+        <p>You don't have an active subscription, start a subscription to proceed</p>
         <br/>
         <div>
           <h4>Next session:</h4>
