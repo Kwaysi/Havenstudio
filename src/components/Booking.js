@@ -2,10 +2,10 @@ import moment from "moment";
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import { Redirect } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import packages from '../objects/packages.json';
 import { booking } from '../actions/Booking';
+
 //Components
 import Input from './Common/Input';
 import Header from './Common/Header';
@@ -192,99 +192,96 @@ class Booking extends Component {
   render() {
     const details = this.isLogggedIn();
     const { date, time, errors, errorMsg, plan, price, types, plan_title, type } = this.state;
-    const { user, selectedPackage, isLoggedIn, isLoading, msg } = this.props;
+    const { user, selectedPackage, isSubmitting, msg } = this.props;
     return (
       <>
-        {isLoggedIn && (!user.subscription && !selectedPackage) ? <Redirect to='/subscribe' /> :
-          <>
-            <Header />
-            <div className="main-content">
+        <Header />
+        {isSubmitting ? <Spinner /> :
+          <div className="main-content">
+            {errorMsg || msg ?
+              <Alert classStyle="red" msg={errorMsg || msg} close={() => this.errorClose()} />
+              : ''
+            }
+            <div className="white booking">
 
-              {errorMsg || msg ?
-                <Alert classStyle="red" msg={errorMsg || msg} close={() => this.errorClose()} />
-                : ''
-              }
-              <div className="white booking">
-
-                <div className="booking-information">
-                  <div>
-                    {details}
-                  </div>
-
-                  <div>
-                    <h1>Booking Information</h1>
-                    <div className="form-element">
-                      <label htmlFor="date">When would you like to come in?</label>
-                      <DatePicker
-                        selected={date}
-                        onChange={this.handleChange}
-                        dateFormat="MMMM d, yyyy" />
-                      <div className="error">{errors.date}</div>
-
-                      <label htmlFor="time">What time?</label>
-                      <div>
-                        <Checkbox classStyle={time === "8:00am" ? 'label-active' : 'label'} label="8:00am" name="time" id='8:00am' onclick={() => this.timeChange('8:00am')} />
-                        <Checkbox classStyle={time === "10:15am" ? 'label-active' : 'label'} label="10:15am" name="time" id='10:15am' onclick={() => this.timeChange('10:15am')} />
-                        <Checkbox classStyle={time === "12:30pm" ? 'label-active' : 'label'} label="12:30pm" name="time" id='12:30pm' onclick={() => this.timeChange('12:30pm')} />
-                        <Checkbox classStyle={time === "2:45pm" ? 'label-active' : 'label'} label="2:45pm" name="time" id='2:45pm' onclick={() => this.timeChange('2:45pm')} />
-                        <Checkbox classStyle={time === "5:00pm" ? 'label-active' : 'label'} label="5:00pm" name="time" id='5:00pm' onclick={() => this.timeChange('5:00pm')} />
-                      </div>
-                    </div>
-                  </div>
-
+              <div className="booking-information">
+                <div>
+                  {details}
                 </div>
 
-                <div className="plan-body">
-                  <h1>Package details</h1>
-                  <div className="plan-element">
-                    <label htmlFor="package">Package:</label>
-                    {(user && user.subscription) || selectedPackage ?
-                      <h2>{(user.subscription && user.subscription.package.title) || selectedPackage.pack}</h2>
-                      :
-                      <Select name="package" children={packages} onchange={this.packageChange} />
-                    }
-                  </div>
+                <div>
+                  <h1>Booking Information</h1>
+                  <div className="form-element">
+                    <label htmlFor="date">When would you like to come in?</label>
+                    <DatePicker
+                      selected={date}
+                      onChange={this.handleChange}
+                      dateFormat="MMMM d, yyyy" />
+                    <div className="error">{errors.date}</div>
 
-                  <div className="plan-element">
-                    <label htmlFor="type">Type:</label>
-                    {(user && user.subscription) || selectedPackage ?
-                      <h2>{(user.subscription && user.subscription.type.title) || selectedPackage.type}</h2>
-                      :
-                      <Select name="type" children={types} onchange={this.typeChange} selectedId={type} />
-                    }
+                    <label htmlFor="time">What time?</label>
+                    <div>
+                      <Checkbox classStyle={time === "8:00am" ? 'label-active' : 'label'} label="8:00am" name="time" id='8:00am' onclick={() => this.timeChange('8:00am')} />
+                      <Checkbox classStyle={time === "10:15am" ? 'label-active' : 'label'} label="10:15am" name="time" id='10:15am' onclick={() => this.timeChange('10:15am')} />
+                      <Checkbox classStyle={time === "12:30pm" ? 'label-active' : 'label'} label="12:30pm" name="time" id='12:30pm' onclick={() => this.timeChange('12:30pm')} />
+                      <Checkbox classStyle={time === "2:45pm" ? 'label-active' : 'label'} label="2:45pm" name="time" id='2:45pm' onclick={() => this.timeChange('2:45pm')} />
+                      <Checkbox classStyle={time === "5:00pm" ? 'label-active' : 'label'} label="5:00pm" name="time" id='5:00pm' onclick={() => this.timeChange('5:00pm')} />
+                    </div>
                   </div>
-
-                  <div className="plan-element">
-                    <label htmlFor="plan">Plan:</label>
-                    {(user && user.subscription) || selectedPackage ?
-                      <h2>{(user.subscription && user.subscription.plan.title) || selectedPackage.plan.title}</h2>
-                      :
-                      <h2>{plan_title}</h2>
-                    }
-                  </div>
-
-                  <div className="plan-element">
-                    <label htmlFor="time">Time:</label>
-                    <h2>{!time ? 0 : time}</h2>
-                  </div>
-
-                  <div className="plan-element">
-                    <label htmlFor="date">Date:</label>
-                    <h2>{!date ? 0 : moment(date).format('LL')}</h2>
-                  </div>
-
-                  <div className="plan-element">
-                    <label htmlFor="total">Total:</label>
-                    {(user && user.subscription) || selectedPackage ?
-                      <h2>{(user.subscription && user.subscription.plan.price) || selectedPackage.plan.price}</h2>
-                      :
-                      <h2>{!plan.price ? price : plan.price}</h2>
-                    }
-                  </div>
-                  <Button onclick={() => this.submit()}>Book session & make payment</Button>
                 </div>
 
               </div>
+
+              <div className="plan-body">
+                <h1>Package details</h1>
+                <div className="plan-element">
+                  <label htmlFor="package">Package:</label>
+                  {(user && user.subscription) || selectedPackage ?
+                    <h2>{(user.subscription && user.subscription.package.title) || selectedPackage.pack}</h2>
+                    :
+                    <Select name="package" children={packages} onchange={this.packageChange} />
+                  }
+                </div>
+
+                <div className="plan-element">
+                  <label htmlFor="type">Type:</label>
+                  {(user && user.subscription) || selectedPackage ?
+                    <h2>{(user.subscription && user.subscription.type.title) || selectedPackage.type}</h2>
+                    :
+                    <Select name="type" children={types} onchange={this.typeChange} selectedId={type} />
+                  }
+                </div>
+
+                <div className="plan-element">
+                  <label htmlFor="plan">Plan:</label>
+                  {(user && user.subscription) || selectedPackage ?
+                    <h2>{(user.subscription && user.subscription.plan.title) || selectedPackage.plan.title}</h2>
+                    :
+                    <h2>{plan_title}</h2>
+                  }
+                </div>
+
+                <div className="plan-element">
+                  <label htmlFor="time">Time:</label>
+                  <h2>{!time ? 0 : time}</h2>
+                </div>
+
+                <div className="plan-element">
+                  <label htmlFor="date">Date:</label>
+                  <h2>{!date ? 0 : moment(date).format('LL')}</h2>
+                </div>
+
+                <div className="plan-element">
+                  <label htmlFor="total">Total:</label>
+                  {(user && user.subscription) || selectedPackage ?
+                    <h2>{(user.subscription && user.subscription.plan.price) || selectedPackage.plan.price}</h2>
+                    :
+                    <h2>{!plan.price ? price : plan.price}</h2>
+                  }
+                </div>
+                <Button onclick={() => this.submit()}>Book session & make payment</Button>
+              </div>
+
             </div>
             <Footer/>
           </>
@@ -297,12 +294,13 @@ class Booking extends Component {
 const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.Auth;
   const { selectedPackage } = state.Packages;
-  const { msg } = state.Booking;
+  const { msg, isSubmitting } = state.Booking;
   return {
     isLoggedIn,
     user,
     selectedPackage,
-    msg
+    msg,
+    isSubmitting
   };
 };
 

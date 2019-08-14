@@ -9,7 +9,7 @@
   -moz-transition: all linear 0.2s;
   -o-transition: all linear 0.2s;
 }
-body{
+body {
   background-color: #f2f2f2;
   overflow-x: hidden;
 }
@@ -91,7 +91,7 @@ a:hover {
   top: 60px;
   padding: 20px;
 }
-.white{
+.white {
   background-color: white;
   width: 90%;
   margin: auto auto;
@@ -278,9 +278,6 @@ a:hover {
 
   .booking-information {
     flex: 50%;
-  }
-  .select-group {
-    width: 70% !important;
   }
 }
 

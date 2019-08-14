@@ -6,7 +6,7 @@ export const start = () => {
     return {
         type: START,
         payload: {
-            isLoading: true
+            isSubmitting: true
         }
     }
 };

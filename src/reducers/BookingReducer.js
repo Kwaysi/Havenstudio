@@ -1,7 +1,7 @@
 import { START, POSTBOOKING, BOOKINGFAILED } from "../actions/type";
 
 const INITIAL = {
-    isLoading: false
+    isSubmitting: false
 }
 
 export default (state = INITIAL, action) => {
@@ -10,19 +10,19 @@ export default (state = INITIAL, action) => {
         case START:
             return {
                 ...state,
-                isLoading: payload.isLoading
+                isSubmitting: payload.isSubmitting
             }
         case POSTBOOKING:
             return {
                 ...state,
-                isLoading: false,
+                isSubmitting: false,
                 // msg: payload.msg
             }
         case BOOKINGFAILED:
             return {
                 ...state,
                 msg: payload.msg,
-                isLoading: false
+                isSubmitting: false
             }
         default:
             return state
