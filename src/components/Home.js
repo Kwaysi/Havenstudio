@@ -9,8 +9,14 @@ import Footer from "./Common/Footer"
 
 // Actions
 import { getPackages } from '../actions/Package';
+import { updateUser } from '../actions/Auth';
 
 class Home extends Component {
+  componentDidMount() {
+    const {isLoggedIn, token} = this.props;
+    if (isLoggedIn) this.props.updateUser(token);
+  }
+
   render() {
     return (
       <div className="home">
@@ -30,8 +36,16 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+  const { isLoggedIn, token } = state.Auth;
+
+  if (isLoggedIn) {
+    return {
+      token,
+      isLoggedIn
+    };
+  }
   return {};
 }
 
-export default connect(mapStateToProps, { getPackages })(Home);
+export default connect(mapStateToProps, { getPackages, updateUser })(Home);

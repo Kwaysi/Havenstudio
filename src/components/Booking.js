@@ -283,9 +283,9 @@ class Booking extends Component {
               </div>
 
             </div>
-            <Footer/>
-          </>
+          </div>
         }
+        <Footer/>
       </>
     );
   }
