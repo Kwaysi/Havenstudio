@@ -34,7 +34,8 @@ class Booking extends Component {
         name: "",
         email: "",
         phone: "",
-        date: ""
+        date: "",
+        terms: ""
       },
       types: packages[0].types,
       plan_title: packages[0].types[0].plan,
@@ -47,6 +48,7 @@ class Booking extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.packageChange = this.packageChange.bind(this);
     this.typeChange = this.typeChange.bind(this);
+    this.check = this.check.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.timeChange = this.timeChange.bind(this);
     this.errorClose = this.errorClose.bind(this);
@@ -58,6 +60,9 @@ class Booking extends Component {
       case 'date':
         errors.date = date < new Date() ? 'Invalid Date' : ""
         break;
+        case 'terms':
+          errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
+          break;
       default:
     }
     this.setState({
@@ -65,7 +70,12 @@ class Booking extends Component {
       date
     })
   }
-
+  check(){
+    this.setState({
+      terms: true
+    })
+    console.log(this.state.terms)
+  }
   timeChange(value) {
     this.setState({
       time: value
@@ -85,6 +95,9 @@ class Booking extends Component {
       case 'phone':
         errors.phone = value !== '' && isValid(value) ? "" : 'Phone is not valid!';
         break;
+        case 'terms':
+          errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
+          break;
       default:
     }
     this.setState({
@@ -270,24 +283,22 @@ class Booking extends Component {
                   <h2>{!time ? 0 : time}</h2>
                 </div>
 
-                <div className="plan-element">
-                  <label htmlFor="date">Date:</label>
-                  <h2>{!date ? 0 : moment(date).format('LL')}</h2>
+                  <div className="plan-element">
+                    <label htmlFor="total">Total:</label>
+                    {(user && user.subscription) || selectedPackage ?
+                      <h2>{(user.subscription && user.subscription.plan.price) || selectedPackage.plan.price}</h2>
+                      :
+                      <h2>{!plan.price ? price : plan.price}</h2>
+                    }
+                  </div>
+                  <div className="terms">
+                    <input type="checkbox" onChange={this.check} name="terms" value="true"></input><span className="lab"><i>I agree to terms & conditions.</i></span>
+                  </div>
+                  <Button onclick={() => this.submit()}>Book session & make payment</Button>
                 </div>
-
-                <div className="plan-element">
-                  <label htmlFor="total">Total:</label>
-                  {(user && user.subscription) || selectedPackage ?
-                    <h2>{(user.subscription && user.subscription.plan.price) || selectedPackage.plan.price}</h2>
-                    :
-                    <h2>{!plan.price ? price : plan.price}</h2>
-                  }
-                </div>
-                <Button onclick={() => this.submit()}>Book session & make payment</Button>
               </div>
 
             </div>
-          </div>
         }
         <Footer/>
       </>
