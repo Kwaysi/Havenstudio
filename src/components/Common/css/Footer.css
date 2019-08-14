@@ -8,6 +8,7 @@
     position: absolute;
     top: 120;
     bottom: 0px;
+    padding: 7px;
     margin-bottom: -40px;
 }
 .socials{
@@ -47,5 +48,6 @@
 }
 .right{
     width: 80%;
+    margin: 0 auto;
 }
 }
