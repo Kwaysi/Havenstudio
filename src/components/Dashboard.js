@@ -20,7 +20,7 @@ class Dashboard extends Component {
 
   }
 
-  showBookings () {
+  showBookings() {
     const { booking } = this.props.user;
     console.log(booking);
     if (booking && booking.length > 0) {
@@ -41,14 +41,14 @@ class Dashboard extends Component {
     return "It's lonely here, start a subscription so it's more fun!";
   }
 
-  showSubscriptionDetails () {
+  showSubscriptionDetails() {
     const { subscription } = this.props.user;
     const next = this.nextSession();
 
     if (subscription && subscription != null) {
-      const { plan, type, days } = subscription && subscription;
+      const { plan, type } = subscription && subscription;
       const pack = subscription.package.title;
-      
+
       return (
         <>
           <Overview plan={plan.title} pack={pack} type={type.title} next={next} />
@@ -68,7 +68,7 @@ class Dashboard extends Component {
   nextSession() {
     const { booking } = this.props.user;
     var rec = 'none';
-    if(booking && booking != null) {
+    if (booking && booking != null) {
       Object.values(booking).forEach(
         book => {
           if (moment().isSameOrBefore(moment(book.date))) {
@@ -83,7 +83,7 @@ class Dashboard extends Component {
   render() {
     const prevBooking = this.showBookings();
     const sub = this.showSubscriptionDetails();
-    
+
     return (
       <>
         <Header />
@@ -101,7 +101,7 @@ class Dashboard extends Component {
   }
 }
 
-export function Overview({plan, type, pack, next}) {
+export function Overview({ plan, type, pack, next }) {
   return (
     <div className="cards">
       <h3>Current Subscription</h3>
@@ -137,4 +137,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { })(Dashboard);
+export default connect(mapStateToProps, {})(Dashboard);

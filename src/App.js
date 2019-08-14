@@ -7,7 +7,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Booking from './components/Booking';
 import Subscribe from './components/Subscription';
-import Footer from "./components/Common/Footer"
+
 // Static Assets
 import './App.css';
 import './assets/fonts/Poppins-Bold.ttf';
@@ -29,7 +29,6 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route render={() => <h2>Not Found</h2>} />
           </Switch>
-          {/* <Footer/> */}
         </div>
       </BrowserRouter>
     );
