@@ -1,52 +1,52 @@
-.icons{
-    width: 100vw ;
-    /* margin-top: 100px !important; */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-   background-color: black;
-    position: absolute;
-    top: 120;
-    bottom: 0px;
-    padding: 7px;
-    margin-bottom: -40px;
+.icons {
+  width: 100vw;
+  /* margin-top: 100px !important; */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  position: absolute;
+  top: 120;
+  bottom: 0px;
+  padding: 7px;
+  margin-bottom: -40px;
 }
-.socials{
-    color: white;
-    width: 100%;
-    align-content: center;
-    display: flex;
-    flex-wrap: wrap;
+.socials {
+  color: white;
+  width: 100%;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
-.icon, p{
-    padding: 10px;
+.icon,
+p {
+  padding: 10px;
 }
 
-.copy{
-    font-size: 13px;
+.copy {
+  font-size: 13px;
 }
-.right{
-    width: 20%;
-
+.right {
+  width: 20%;
 }
 @media screen and (max-width: 600px) {
-.icons{
+  .icons {
     bottom: 0px;
     flex-wrap: wrap;
-}.socials{
-    width:100%;
-    text-align: center;
-}
-.copy{
+  }
+  .socials {
     width: 100%;
-}
-.icon{
     text-align: center;
-    width:30%;
-    
-}
-.right{
+  }
+  .copy {
+    width: 100%;
+  }
+  .icon {
+    text-align: center;
+    width: 30%;
+  }
+  .right {
     width: 80%;
     margin: 0 auto;
-}
+  }
 }
