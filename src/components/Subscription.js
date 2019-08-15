@@ -34,7 +34,7 @@ class Subscribe extends Component {
         this.props.history.push('/book');
       }
     } else {
-      this.props.history.push('/login');
+      this.props.history.push('/login/subscribe');
     }
   }
 
@@ -61,10 +61,7 @@ class Subscribe extends Component {
   }
 
   setPackage(planDetails) {
-    console.log(planDetails);
     const { pack, type } = this.state;
-    console.log(pack.title, type.title, planDetails);
-
     this.props.setPackage(pack.title, type.title, planDetails);
     this.props.history.push('/book');
   }
@@ -81,7 +78,6 @@ class Subscribe extends Component {
               {
                 pack.index.types.map(
                   (elem, index) => {
-                    console.log(elem);
                     return (
                       <>
                         <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
@@ -99,7 +95,6 @@ class Subscribe extends Component {
               {
                 type.index.plans.map(
                   (elem, index) => {
-                    console.log(elem);
                     return (
                       <div className="plan" key={index}>
                         <h2>{elem.title}</h2>
@@ -144,7 +139,6 @@ class Subscribe extends Component {
   }
 
   render() {
-    console.log(this.props.packages)
     const show = this.renderStep();
     return (
       <>
@@ -163,7 +157,6 @@ const mapStateToProps = (state) => {
   const { packages } = state.Packages;
   const { isLoggedIn, user } = state.Auth;
 
-  console.log(packages);
   return {
     isLoggedIn,
     packages,

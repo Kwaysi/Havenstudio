@@ -14,7 +14,7 @@ import Select from './Common/Select';
 import Button from './Common/Button';
 import Alert from './Common/Alert';
 import Spinner from './Common/Spinner';
-// import Footer from './Common/Footer';
+import Footer from './Common/Footer';
 
 import {
   isValid, reg, validateForm,
@@ -34,7 +34,8 @@ class Booking extends Component {
         name: "",
         email: "",
         phone: "",
-        date: ""
+        date: "",
+        terms: ""
       },
       types: packages[0].types,
       plan_title: packages[0].types[0].plan,
@@ -47,6 +48,7 @@ class Booking extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.packageChange = this.packageChange.bind(this);
     this.typeChange = this.typeChange.bind(this);
+    this.check = this.check.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.timeChange = this.timeChange.bind(this);
     this.errorClose = this.errorClose.bind(this);
@@ -65,6 +67,9 @@ class Booking extends Component {
       case 'date':
         errors.date = moment(date).format('YYYY-MM-DD') < today ? 'Invalid Date' : "";
         break;
+        case 'terms':
+          errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
+          break;
       default:
     }
     this.setState({
@@ -77,7 +82,12 @@ class Booking extends Component {
     }
 
   }
-
+  check(){
+    this.setState({
+      terms: true
+    })
+    console.log(this.state.terms)
+  }
   timeChange(value) {
     this.setState({
       time: value
@@ -99,6 +109,9 @@ class Booking extends Component {
       case 'phone':
         errors.phone = value !== '' && isValid(value) ? "" : 'Phone is not valid!';
         break;
+        case 'terms':
+          errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
+          break;
       default:
     }
     this.setState({
@@ -224,6 +237,7 @@ class Booking extends Component {
       <>
 
         <Header />
+        
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
             {errorMsg ?
@@ -237,12 +251,11 @@ class Booking extends Component {
               : ''
             }
             <div className="white booking">
-
               <div className="booking-information">
                 <div>
                   {details}
                 </div>
-
+                <span className="terms">Note: A session last 2 hours per day.</span>
                 <div>
                   <h1>Booking Information</h1>
                   <div className="form-element">
@@ -316,11 +329,9 @@ class Booking extends Component {
                     <h2>{!plan.price ? price : plan.price}</h2>
                   }
                 </div>
-                <Button onclick={() => this.submit()}>Book session & make payment</Button>
               </div>
 
             </div>
-          </div>
         }
         {/* <Footer /> */}
       </>

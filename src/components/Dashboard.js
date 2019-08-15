@@ -27,7 +27,6 @@ class Dashboard extends Component {
 
   showBookings() {
     const { booking } = this.props.user;
-    console.log(booking);
     if (booking && booking.length > 0) {
       return booking.map(
         elem => {
@@ -62,14 +61,14 @@ class Dashboard extends Component {
     } else if (next !== 'none') {
       return (
         <>
-          <p>You don't have an active subscription, book a single session or start a subscription to proceed</p>
-          <br />
-          <div>
-            <h4>Next session:</h4>
-            <label>{next}</label>
-          </div>
-          <br />
-          <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
+        <p>You don't have an active subscription, start a subscription to proceed</p>
+        <br/>
+        <div>
+          <h4>Next session:</h4>
+          <label>{next}</label>
+        </div>
+        <br/>
+        <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
         </>
       );
     }

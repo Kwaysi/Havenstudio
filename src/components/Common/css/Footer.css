@@ -1,13 +1,15 @@
 .icons{
     width: 100vw ;
-    margin-top: 100px !important;
+    /* margin-top: 100px !important; */
     color: white;
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
    background-color: black;
-   /* margin-bottom: -40px !important; */
-
+    position: absolute;
+    top: 120;
+    bottom: 0px;
+    padding: 7px;
+    margin-bottom: -40px;
 }
 .socials{
     color: white;
@@ -15,7 +17,6 @@
     align-content: center;
     display: flex;
     flex-wrap: wrap;
-    /* margin: 0 auto; */
 }
 .icon, p{
     padding: 10px;
@@ -29,13 +30,23 @@
 
 }
 @media screen and (max-width: 600px) {
-.socials{
+.icons{
+    bottom: 0px;
+    flex-wrap: wrap;
+}.socials{
     width:100%;
+    text-align: center;
 }
 .copy{
     width: 100%;
 }
 .icon{
+    text-align: center;
     width:30%;
+    
+}
+.right{
+    width: 80%;
+    margin: 0 auto;
 }
 }
