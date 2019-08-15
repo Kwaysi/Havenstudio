@@ -21,7 +21,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const {isLoggedIn, token} = this.props;
+    const { isLoggedIn, token } = this.props;
     if (isLoggedIn) this.props.updateUser(token);
   }
 
@@ -50,7 +50,7 @@ class Dashboard extends Component {
     const { subscription } = this.props.user;
     const next = this.nextSession();
 
-    if (subscription && subscription != null) {
+    if (subscription && subscription != null && subscription.status !== 'Expired') {
       const { plan, type } = subscription && subscription;
       const pack = subscription.package.title;
 
@@ -62,14 +62,14 @@ class Dashboard extends Component {
     } else if (next !== 'none') {
       return (
         <>
-        <p>You don't have an active subscription, book a single session or start a subscription to proceed</p>
-        <br/>
-        <div>
-          <h4>Next session:</h4>
-          <label>{next}</label>
-        </div>
-        <br/>
-        <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
+          <p>You don't have an active subscription, book a single session or start a subscription to proceed</p>
+          <br />
+          <div>
+            <h4>Next session:</h4>
+            <label>{next}</label>
+          </div>
+          <br />
+          <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
         </>
       );
     }
@@ -112,7 +112,7 @@ class Dashboard extends Component {
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </>
     );

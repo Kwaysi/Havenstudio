@@ -1,4 +1,4 @@
-import { START, POSTBOOKING, BOOKINGFAILED, CHECK_STATUS, CHECK_FAILED } from "../actions/type";
+import { START, SUBSCRIPTIONSUCCESS, SUBSCRIPTIONFAILED, UPDATESUBSCRIPTION } from "../actions/type";
 
 const INITIAL = {
     isSubmitting: false
@@ -12,33 +12,22 @@ export default (state = INITIAL, action) => {
                 ...state,
                 isSubmitting: payload.isSubmitting
             }
-        case POSTBOOKING:
+        case SUBSCRIPTIONSUCCESS:
             return {
                 ...state,
                 isSubmitting: false,
                 // msg: payload.msg
             }
-        case BOOKINGFAILED:
+        case SUBSCRIPTIONFAILED:
             return {
                 ...state,
                 msg: payload.msg,
-                isSubmitting: false
             }
-        case CHECK_STATUS:
+        case UPDATESUBSCRIPTION:
             return {
                 ...state,
-                checkStatus: action.data,
-                msg: ""
-
-            };
-        case CHECK_FAILED:
-            return {
-                ...state,
-                checkStatus: action.error,
-                msg: 'Session not available',
-
-
-            };
+                isSubmitting: false,
+            }
         default:
             return state
     }
