@@ -13,3 +13,10 @@ export const SETSELECTEDPACKAGE = 'set selected package';
 // Booking Types
 export const POSTBOOKING = 'Submit booking data';
 export const BOOKINGFAILED = 'Booking failed';
+export const CHECK_STATUS = 'Check Status';
+export const CHECK_FAILED = 'Check failed';
+
+// Subscription Types
+export const SUBSCRIPTIONSUCCESS = 'Subscription Successful';
+export const SUBSCRIPTIONFAILED = 'Subscription Failed';
+export const UPDATESUBSCRIPTION = 'Update Successful';

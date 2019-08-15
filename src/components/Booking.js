@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import packages from '../objects/packages.json';
-import { booking } from '../actions/Booking';
+import { booking, bookingSession, checkBooking } from '../actions/Booking';
 
 //Components
 import Input from './Common/Input';
@@ -55,10 +55,17 @@ class Booking extends Component {
   }
 
   handleChange(date) {
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    // console.log(today, moment(date).format('YYYY-MM-DD'))
+
     let errors = this.state.errors;
     switch ('date') {
       case 'date':
-        errors.date = date < new Date() ? 'Invalid Date' : ""
+        errors.date = moment(date).format('YYYY-MM-DD') < today ? 'Invalid Date' : "";
         break;
         case 'terms':
           errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
@@ -69,6 +76,11 @@ class Booking extends Component {
       errors,
       date
     })
+    if (this.state.time !== "") {
+
+      this.props.checkBooking({ date: moment(date).format('YYYY-MM-DD'), timeframe: this.state.time });
+    }
+
   }
   check(){
     this.setState({
@@ -80,6 +92,8 @@ class Booking extends Component {
     this.setState({
       time: value
     })
+
+    this.props.checkBooking({ date: moment(this.state.date).format('YYYY-MM-DD'), timeframe: value });
   }
 
   inputChange(e) {
@@ -156,52 +170,61 @@ class Booking extends Component {
   }
 
   submit() {
-    if (!this.props.isLoggedIn) {
-      const data = {
-        name: this.state.name,
-        email: this.state.email,
-        phone: this.state.phone,
-        date: moment(this.state.date).format('YYYY-MM-DD'),
-        package: this.state.package,
-        timeframe: this.state.time,
-        type: this.state.type,
-        plan: this.state.plan,
-        price: this.state.price,
-        errors: this.state.errors
-      }
-      if (validateForm(data)) {
-        this.errorClose();
-        // console.log(data);
-        // payWithPaystack(data);
-        this.props.booking(data);
+    if (!this.props.msg) {
+      if (!this.props.isLoggedIn) {
+        const data = {
+          name: this.state.name,
+          email: this.state.email,
+          phone: this.state.phone,
+          date: moment(this.state.date).format('YYYY-MM-DD'),
+          package: this.state.package,
+          timeframe: this.state.time,
+          type: this.state.type,
+          plan: this.state.plan,
+          price: this.state.price,
+          errors: this.state.errors
+        }
+        if (validateForm(data)) {
+          this.errorClose();
+          // console.log(data);
+          // payWithPaystack(data);
+          this.props.booking(data);
 
+        } else {
+          this.setState({
+            errorMsg: 'Please ensure that all fields are filled Correctly and a time selected'
+          })
+        }
       } else {
-        this.setState({
-          errorMsg: 'Please ensure that all fields are filled Correctly and a time selected'
-        })
-      }
-    } else {
-      const { user, selectedPackage } = this.props;
-      const { time, date } = this.state;
-      const data = {
-        user: user.id,
-        timeframe: time,
-        date: moment(date).format('YYYY-MM-DD'),
-        package: user.subscription ? user.subscription.package.id : (selectedPackage !== undefined ? selectedPackage.plan.package : this.state.package),
-        type: user.subscription ? user.subscription.type.id : (selectedPackage !== undefined ? selectedPackage.plan.type : this.state.type),
-        plan: user.subscription ? user.subscription.plan.id : (selectedPackage !== undefined ? selectedPackage.plan.id : this.state.plan),
-        price: user.subscription ? user.subscription.plan.price : (selectedPackage !== undefined ? selectedPackage.plan.price : this.state.price),
-        errors: this.state.errors
-      }
-      if (validateForm(data)) {
-        this.errorClose();
-        // console.log(data)
-        this.props.booking(data);
-        // payWithPaystack(data);
-      } else {
-        this.setState({
-          errorMsg: 'Please ensure that all fields are filled Correctly and a time selected'
-        })
+        const { user, selectedPackage } = this.props;
+        const { time, date } = this.state;
+        const data = {
+          user: user.id,
+          timeframe: time,
+          subscription: user.subscription && user.subscription.status !== 'Expired' ? user.subscription.id : 0,
+          date: moment(date).format('YYYY-MM-DD'),
+          package: user.subscription && user.subscription.status !== 'Expired' ? user.subscription.package.id : (selectedPackage !== undefined ? selectedPackage.plan.package : this.state.package),
+          type: user.subscription && user.subscription.status !== 'Expired' ? user.subscription.type.id : (selectedPackage !== undefined ? selectedPackage.plan.type : this.state.type),
+          plan: user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.id : (selectedPackage !== undefined ? selectedPackage.plan.id : this.state.plan),
+          price: user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.price : (selectedPackage !== undefined ? selectedPackage.plan.price : this.state.price),
+          days: user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.days : (selectedPackage !== undefined ? selectedPackage.plan.days : 1),
+          errors: this.state.errors
+        }
+        if (validateForm(data)) {
+          this.errorClose();
+          // console.log(data)
+          if (data.package !== 'Standard Package' && data.package !== 'Premium Package') {
+            this.props.bookingSession(data);
+          } else {
+            this.props.booking(data);
+            // payWithPaystack(data);
+
+          }
+        } else {
+          this.setState({
+            errorMsg: 'Please ensure that all fields are filled Correctly and a time selected'
+          })
+        }
       }
     }
   }
@@ -251,18 +274,18 @@ class Booking extends Component {
               <div className="plan-body">
                 <h1>Package details</h1>
                 <div className="plan-element">
-                  <label htmlFor="package">Choose a Package:</label>
-                  {(user && user.subscription) || selectedPackage ?
-                    <h2>{(user.subscription && user.subscription.package.title) || selectedPackage.pack}</h2>
+                  <label htmlFor="package">Package:</label>
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                    <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.package.title : selectedPackage.pack}</h2>
                     :
                     <Select name="package" children={packages} onchange={this.packageChange} />
                   }
                 </div>
 
                 <div className="plan-element">
-                  <label htmlFor="type">Choose a Package Type:</label>
-                  {(user && user.subscription) || selectedPackage ?
-                    <h2>{(user.subscription && user.subscription.type.title) || selectedPackage.type}</h2>
+                  <label htmlFor="type">Type:</label>
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                    <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.type.title : selectedPackage.type}</h2>
                     :
                     <Select name="type" children={types} onchange={this.typeChange} selectedId={typeid} />
                   }
@@ -270,8 +293,8 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="plan">Plan:</label>
-                  {(user && user.subscription) || selectedPackage ?
-                    <h2>{(user.subscription && user.subscription.plan.title) || selectedPackage.plan.title}</h2>
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                    <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.title : selectedPackage.plan.title}</h2>
                     :
                     <h2>{plan_title}</h2>
                   }
@@ -282,24 +305,24 @@ class Booking extends Component {
                   <h2>{!time ? 0 : time}</h2>
                 </div>
 
-                  <div className="plan-element">
-                    <label htmlFor="total">Total:</label>
-                    {(user && user.subscription) || selectedPackage ?
-                      <h2>{(user.subscription && user.subscription.plan.price) || selectedPackage.plan.price}</h2>
-                      :
-                      <h2>{!plan.price ? price : plan.price}</h2>
-                    }
-                  </div>
-                  <div className="terms">
-                    <input type="checkbox" onChange={this.check} name="terms" value="true"></input><span className="lab"><i>I agree to terms & conditions.</i></span>
-                  </div>
-                  <Button onclick={() => this.submit()}>Book session & make payment</Button>
+                <div className="plan-element">
+                  <label htmlFor="date">Date:</label>
+                  <h2>{!date ? 0 : moment(date).format('LL')}</h2>
+                </div>
+
+                <div className="plan-element">
+                  <label htmlFor="total">Total:</label>
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                    <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.price : selectedPackage.plan.price}</h2>
+                    :
+                    <h2>{!plan.price ? price : plan.price}</h2>
+                  }
                 </div>
               </div>
 
             </div>
         }
-        <Footer/>
+        {/* <Footer /> */}
       </>
     );
   }
@@ -318,4 +341,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { booking })(Booking);
+export default connect(mapStateToProps, { booking, bookingSession, checkBooking })(Booking);

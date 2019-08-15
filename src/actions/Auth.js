@@ -19,7 +19,8 @@ export const loginSuccess = (user, token) => {
   }
 };
 export const conn = Axios.create({
-  baseURL: 'http://192.168.8.100:8080/api'
+  baseURL: 'http://havenstudio.do/api'
+  // baseURL: 'http://192.168.8.100:8080/api'
 });
 
 export const logInFailed = (msg) => {
@@ -80,17 +81,17 @@ export const register = (authData) => {
 
 export const updateUser = (prevToken) => {
   conn.defaults.headers.common['Authorization'] = `Bearer ${prevToken}`;
-	return (dispatch) => {
-		conn.get('/user')
-			.then(
-				res => {
+  return (dispatch) => {
+    conn.get('/user')
+      .then(
+        res => {
           const { user } = res.data;
           localStorage.setItem("user", JSON.stringify(user));
-          dispatch({type: UPDATEUSER, payload: user})
-				}
-			)
-			.catch(
-				error => {
+          dispatch({ type: UPDATEUSER, payload: user })
+        }
+      )
+      .catch(
+        error => {
           if (error.response) {
             console.log(error.response);
             dispatch(logout);
@@ -100,8 +101,8 @@ export const updateUser = (prevToken) => {
             console.log(error.response);
           }
         }
-			)
-	}
+      )
+  }
 }
 
 export const logout = () => {
