@@ -14,7 +14,7 @@ import Select from './Common/Select';
 import Button from './Common/Button';
 import Alert from './Common/Alert';
 import Spinner from './Common/Spinner';
-import Footer from './Common/Footer';
+// import Footer from './Common/Footer';
 
 import {
   isValid, reg, validateForm,
@@ -67,9 +67,9 @@ class Booking extends Component {
       case 'date':
         errors.date = moment(date).format('YYYY-MM-DD') < today ? 'Invalid Date' : "";
         break;
-        case 'terms':
-          errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
-          break;
+      case 'terms':
+        errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
+        break;
       default:
     }
     this.setState({
@@ -82,7 +82,7 @@ class Booking extends Component {
     }
 
   }
-  check(){
+  check() {
     this.setState({
       terms: true
     })
@@ -109,9 +109,9 @@ class Booking extends Component {
       case 'phone':
         errors.phone = value !== '' && isValid(value) ? "" : 'Phone is not valid!';
         break;
-        case 'terms':
-          errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
-          break;
+      case 'terms':
+        errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
+        break;
       default:
     }
     this.setState({
@@ -237,7 +237,7 @@ class Booking extends Component {
       <>
 
         <Header />
-        
+
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
             {errorMsg ?
@@ -255,9 +255,9 @@ class Booking extends Component {
                 <div>
                   {details}
                 </div>
-                <span className="terms">Note: A session last 2 hours per day.</span>
                 <div>
-                  <h1>Booking Information</h1>
+                  <h1 style={{ margin: '0' }}>Booking Information</h1>
+                  <span className="terms">Note: A session last 2 hours per day.</span>
                   <div className="form-element">
                     <label htmlFor="date">When would you like to come in?</label>
                     <DatePicker
@@ -329,9 +329,11 @@ class Booking extends Component {
                     <h2>{!plan.price ? price : plan.price}</h2>
                   }
                 </div>
+                <Button onclick={() => this.submit()}>Book session & make payment</Button>
               </div>
 
             </div>
+          </div>
         }
         {/* <Footer /> */}
       </>
