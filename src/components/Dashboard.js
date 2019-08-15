@@ -100,10 +100,11 @@ class Dashboard extends Component {
   render() {
     const prevBooking = this.showBookings();
     const sub = this.showSubscriptionDetails();
+    const url = this.props.location.pathname;
 
     return (
       <>
-        <Header />
+        <Header location={url}/>
         <div className="main-container">
           <h1>Welcome back, {this.props.user.name} </h1>
           <div className="white">

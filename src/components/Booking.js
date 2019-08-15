@@ -236,11 +236,10 @@ class Booking extends Component {
     const details = this.isLogggedIn();
     const { date, time, errors, errorMsg, plan, price, types, plan_title, typeid } = this.state;
     const { user, selectedPackage, isSubmitting, msg, booked } = this.props;
+    const url = this.props.location.pathname;
     return (
       <>
-
-        <Header />
-
+        <Header location={url}/>
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
             {errorMsg ?
@@ -334,7 +333,6 @@ class Booking extends Component {
                 </div>
                 <Button onclick={() => this.submit()}>Book session & make payment</Button>
               </div>
-
             </div>
           </div>
         }
