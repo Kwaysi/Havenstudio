@@ -107,9 +107,9 @@ class Login extends Component {
               {isLoading ? <Spinner /> : <div className="white">
                 {messages}
                 <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
-                <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.email}</div>
+                <div className="error">{errors.email}</div>
                 <Input label="Password:" placeHolder="Your password" name="password" type="password" handleChange={this.handChange} value={password} />
-                <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
+                <div className="error">{errors.password}</div>
                 <Button onclick={this.handleSubmit}>Login</Button>
               </div>
               }

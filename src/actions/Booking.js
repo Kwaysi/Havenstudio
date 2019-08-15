@@ -39,88 +39,88 @@ export const checkFailed = error => ({
 export const booking = (data) => {
     return (dispatch) => {
         dispatch(start())
-        console.log(data)
+        // console.log(data)
 
-        // conn.post('/booking/create', data)
-        //     .then(res => {
-        //         dispatch(bookingSuccess(res.data))
-        //     }
-        //     )
-        //     .catch(err => {
-        //         dispatch(bookingFailed(err.response.data))
-        //     }
-        //     );
+        conn.post('/booking/create', data)
+            .then(res => {
+                dispatch(bookingSuccess(res.data))
+            }
+            )
+            .catch(err => {
+                dispatch(bookingFailed(err.response.data))
+            }
+            );
     }
 };
 
 export const bookingSession = (data) => {
     return (dispatch) => {
         dispatch(start())
-        console.log(data)
+        // console.log(data)
 
-        // if (data.subscription > 0) {
-        //     console.log('get user subscription')
-        //     conn.get(`/subscription/${data.subscription}`)
-        //         .then(res => {
+        if (data.subscription > 0) {
+            console.log('get user subscription')
+            conn.get(`/subscription/${data.subscription}`)
+                .then(res => {
 
-        //             if (res.data.data.status !== 'Expired') {
-        //                 const uData = {
-        //                     id: res.data.data.id,
-        //                     package: res.data.data.package,
-        //                     type: res.data.data.type,
-        //                     plan: res.data.data.plan
-        //                 }
-        //                 // console.log('update user sub')
-        //                 conn.post('/booking/create', data)
-        //                     .then(res => {
-        //                         dispatch(updateUserSubscriptionRecord(uData))
-        //                         dispatch(bookingSuccess(res.data))
+                    if (res.data.data.status !== 'Expired') {
+                        const uData = {
+                            id: res.data.data.id,
+                            package: res.data.data.package,
+                            type: res.data.data.type,
+                            plan: res.data.data.plan
+                        }
+                        // console.log('update user sub')
+                        conn.post('/booking/create', data)
+                            .then(res => {
+                                dispatch(updateUserSubscriptionRecord(uData))
+                                dispatch(bookingSuccess(res.data))
 
-        //                     }
-        //                     )
-        //                     .catch(err => {
-        //                         dispatch(bookingFailed(err.response.data))
-        //                     }
-        //                     );
-        //             }
-        //             else {
-        //                 console.log('package expired')
-        //                 dispatch(bookingFailed({ 'msg': 'package expired' }))
+                            }
+                            )
+                            .catch(err => {
+                                dispatch(bookingFailed(err.response.data))
+                            }
+                            );
+                    }
+                    else {
+                        console.log('package expired')
+                        dispatch(bookingFailed({ 'msg': 'package expired' }))
 
-        //             }
-        //         })
-        // } else {
-        //     console.log('create user subscription', data)
+                    }
+                })
+        } else {
+            console.log('create user subscription', data)
 
-        //     conn.post('/booking/create', data)
-        //         .then(res => {
-        //             // console.log(data)
-        //             const postData = {
-        //                 user: data.user,
-        //                 package: data.package,
-        //                 type: data.type,
-        //                 plan: data.plan,
-        //                 days: data.days - 1
-        //             }
-        //             conn.post('/subscription/create', postData)
-        //                 .then(res => {
-        //                     // console.log(res.data.data.id)
-        //                     dispatch(updateSubscription(res.data.data.id))
-        //                     dispatch(bookingSuccess(res.data))
-        //                 }
-        //                 )
-        //                 .catch(err => {
-        //                     dispatch(subscriptionFailed(err.response.data))
-        //                     // console.log(err.response)
-        //                 }
-        //                 )
-        //         }
-        //         )
-        //         .catch(err => {
-        //             dispatch(bookingFailed(err.response.data))
-        //         }
-        //         );
-        // }
+            conn.post('/booking/create', data)
+                .then(res => {
+                    // console.log(data)
+                    const postData = {
+                        user: data.user,
+                        package: data.package,
+                        type: data.type,
+                        plan: data.plan,
+                        days: data.days - 1
+                    }
+                    conn.post('/subscription/create', postData)
+                        .then(res => {
+                            // console.log(res.data.data.id)
+                            dispatch(updateSubscription(res.data.data.id))
+                            dispatch(bookingSuccess(res.data))
+                        }
+                        )
+                        .catch(err => {
+                            dispatch(subscriptionFailed(err.response.data))
+                            // console.log(err.response)
+                        }
+                        )
+                }
+                )
+                .catch(err => {
+                    dispatch(bookingFailed(err.response.data))
+                }
+                );
+        }
     }
 };
 

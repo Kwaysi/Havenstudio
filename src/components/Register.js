@@ -34,7 +34,7 @@ class Register extends Component {
     if (validateForm(this.state)) {
       const { name, email, phone, password } = this.state;
       this.props.register({ name, email, phone, password })
-    } 
+    }
     else {
       this.setState({
         errorMsg: 'All fields are required'
@@ -87,18 +87,18 @@ class Register extends Component {
             <div className="white">
               {messages}
               <Input label="Full Name:" name="name" handleChange={this.change} placeHolder="Your full name" value={name} />
-              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.name}</div>
+              <div className="error">{errors.name}</div>
               <Input label="E-mail" name="email" handleChange={this.change} placeHolder="Your email address" value={email} />
-              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.email}</div>
+              <div className="error">{errors.email}</div>
               <Input label="Phone Number" name="phone" handleChange={this.change} placeHolder="Your Phone Number" value={phone} />
-              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.phone}</div>
+              <div className="error">{errors.phone}</div>
               <Input label="Password" type="password" name="password" handleChange={this.change} placeHolder="Your password" value={password} />
-              <div style={{ color: "red", fontSize: "9px", marginTop: "-10px" }}>{errors.password}</div>
+              <div className="error">{errors.password}</div>
               <Button onclick={this.click}>Register</Button>
             </div>
           }
         </div>
-        <Footer/>
+        <Footer />
       </>
     );
   }

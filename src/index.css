@@ -75,7 +75,7 @@ a:hover {
 .main {
   z-index: 1000;
 }
-.link{
+.link {
   color: #666;
   font-size: 13px;
   padding: 8px;
@@ -174,9 +174,10 @@ a:hover {
   border-bottom: 1px solid #6666;
 }
 
-.inline label, .inline h4 {
+.inline label,
+.inline h4 {
   display: inline-block;
-  flex: .5
+  flex: 0.5;
 }
 
 .inline label {
@@ -223,7 +224,7 @@ a:hover {
   justify-content: space-between;
   margin: 10% auto;
 }
-.cards{
+.cards {
   width: 100%;
   padding: 15px;
 }
@@ -235,22 +236,22 @@ a:hover {
   align-items: center;
   border-bottom: 1px solid #bdbdbd;
 }
-.no-color{
+.no-color {
   background-color: transparent !important;
   position: absolute;
   width: 100% !important;
   bottom: 0;
   display: flex;
   justify-content: space-between;
- border-radius: 10px;
- margin: 0 auto;
+  border-radius: 10px;
+  margin: 0 auto;
 }
 .error {
   display: block;
-  color: #e57373;
-  font-size: 16px;
+  color: red;
+  font-size: 15px;
   text-align: center;
-  margin: 10px;
+  margin: 5px;
 }
 
 .react-datepicker-wrapper {

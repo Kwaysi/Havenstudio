@@ -10,34 +10,35 @@ export default (state = INITIAL, action) => {
         case START:
             return {
                 ...state,
-                isSubmitting: payload.isSubmitting
+                isSubmitting: payload.isSubmitting,
+                booked: false
             }
         case POSTBOOKING:
             return {
                 ...state,
                 isSubmitting: false,
-                // msg: payload.msg
+                booked: true
             }
         case BOOKINGFAILED:
             return {
                 ...state,
                 msg: payload.msg,
-                isSubmitting: false
+                isSubmitting: false,
+                booked: false
             }
         case CHECK_STATUS:
             return {
                 ...state,
                 checkStatus: action.data,
-                msg: ""
-
+                msg: "",
+                booked: false
             };
         case CHECK_FAILED:
             return {
                 ...state,
                 checkStatus: action.error,
                 msg: 'Session not available',
-
-
+                booked: false
             };
         default:
             return state

@@ -232,16 +232,24 @@ class Booking extends Component {
   render() {
     const details = this.isLogggedIn();
     const { date, time, errors, errorMsg, plan, price, types, plan_title, typeid } = this.state;
-    const { user, selectedPackage, isSubmitting, msg } = this.props;
+    const { user, selectedPackage, isSubmitting, msg, booked } = this.props;
     return (
       <>
+
         <Header />
         
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
-            {errorMsg || msg ?
-              <Alert classStyle="red" msg={errorMsg || msg} close={() => this.errorClose()} />
-            : ""}
+            {errorMsg ?
+              <Alert classStyle="red" msg={errorMsg} close={() => this.errorClose()} />
+              : ''}
+            {msg ?
+              <Alert classStyle="red" msg={msg} />
+              : ''}
+            {booked ?
+              <Alert classStyle="green" msg={'Booking Succesful'} />
+              : ''
+            }
             <div className="white booking">
               <div className="booking-information">
                 <div>
@@ -266,6 +274,9 @@ class Booking extends Component {
                       <Checkbox classStyle={time === "2:45pm" ? 'label-active' : 'label'} label="2:45pm" name="time" id='2:45pm' onclick={() => this.timeChange('2:45pm')} />
                       <Checkbox classStyle={time === "5:00pm" ? 'label-active' : 'label'} label="5:00pm" name="time" id='5:00pm' onclick={() => this.timeChange('5:00pm')} />
                     </div>
+                    {msg ?
+                      <div className="error">{msg}</div>
+                      : ''}
                   </div>
                 </div>
 
@@ -331,13 +342,14 @@ class Booking extends Component {
 const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.Auth;
   const { selectedPackage } = state.Packages;
-  const { msg, isSubmitting } = state.Booking;
+  const { msg, isSubmitting, booked } = state.Booking;
   return {
     isLoggedIn,
     user,
     selectedPackage,
     msg,
-    isSubmitting
+    isSubmitting,
+    booked
   };
 };
 
