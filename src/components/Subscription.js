@@ -79,9 +79,7 @@ class Subscribe extends Component {
                 pack.index.types.map(
                   (elem, index) => {
                     return (
-                      <>
-                        <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
-                      </>
+                      <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
                     );
                   }
                 )
@@ -146,7 +144,7 @@ class Subscribe extends Component {
         <div className="main-content">
           <h1>Choose a package that suits you.</h1>
           {show}
-          <Footer/>
+          <Footer />
         </div>
       </>
     );
