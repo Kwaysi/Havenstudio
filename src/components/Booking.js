@@ -74,6 +74,7 @@ class Booking extends Component {
     }
     this.setState({
       errors,
+      errorMsg: null,
       date
     })
     if (this.state.time !== "") {
@@ -82,17 +83,19 @@ class Booking extends Component {
     }
 
   }
+
   check() {
     this.setState({
       terms: true
     })
     console.log(this.state.terms)
   }
+
   timeChange(value) {
     this.setState({
-      time: value
+      time: value,
+      errorMsg: null
     })
-
     this.props.checkBooking({ date: moment(this.state.date).format('YYYY-MM-DD'), timeframe: value });
   }
 

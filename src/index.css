@@ -151,6 +151,7 @@ a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: column;
+  z-index: 10;
 }
 
 .booking-information {
@@ -262,7 +263,7 @@ a:hover {
   width: 100% !important;
   text-align: left;
 }
-.terms{
+.terms {
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -271,11 +272,11 @@ a:hover {
   margin: 9px;
   color: #949393;
 }
-.terms input{
-  border:1px solid #575454;  
+.terms input {
+  border: 1px solid #575454;
 }
-.lab{
- margin-left: 4px;
+.lab {
+  margin-left: 4px;
 }
 @media screen and (min-width: 900px) {
   .booking {
@@ -297,7 +298,8 @@ a:hover {
   .select-group {
     width: 100% !important;
   }
-}.prev-bookings {
+}
+.prev-bookings {
   display: flex;
   width: 100%;
   text-align: left;
