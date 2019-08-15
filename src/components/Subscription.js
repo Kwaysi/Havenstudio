@@ -34,7 +34,7 @@ class Subscribe extends Component {
         this.props.history.push('/book');
       }
     } else {
-      this.props.history.push('/login');
+      this.props.history.push('/login/subscribe');
     }
   }
 

@@ -21,11 +21,26 @@ class Login extends Component {
         password: ""
       },
       errorMsg: "",
-      close: false
+      close: false,
+      redirectTo: ""
     }
     this.handChange = this.handChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.err = this.err.bind(this);
+  }
+
+  componentDidMount() {
+    const url = this.props.location.pathname;
+    const path = url.split('/');
+    if(path[2] === 'subscribe') {
+      this.setState({
+        redirectTo: "/subscribe"
+      })
+    } else {
+      this.setState({
+        redirectTo: "/dashboard"
+      })
+    }
   }
 
   handChange = (e) => {
@@ -84,7 +99,7 @@ class Login extends Component {
     const messages = (errorMsg || msg) && close ? <Alert msg={errorMsg || msg} classStyle="red" close={this.err} /> : null;
     return (
       <>
-        {isLoggedIn ? <Redirect to="/dashboard" /> :
+        {isLoggedIn ? <Redirect to={this.state.redirectTo} /> :
           <>
             <Header />
             <div className="main-content">
