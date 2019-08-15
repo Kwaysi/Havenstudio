@@ -6,15 +6,15 @@ const Footer = (props) => {
     <div className={`icons ${background}`}>
       <div className="socials">
         <span className={`icon ${icn}`}>
-          <a href="https://facebook.com" target="_blank"><i className="fab fa-facebook" aria-hidden="true"></i>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook" aria-hidden="true"></i>
           </a>
         </span>
         <span className={`icon ${icn}`}>
-          <a href="https://twitter.com" target="_blank"><i className="fab fa-twitter" aria-hidden="true"></i>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" aria-hidden="true"></i>
           </a>
         </span>
         <span className={`icon ${icn}`}>
-          <a href="https://instagram.com" target="_blank"><i className="fab fa-instagram" aria-hidden="true"></i>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" aria-hidden="true"></i>
           </a>
         </span>
       </div>

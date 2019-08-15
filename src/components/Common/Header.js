@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOutAlt, faUser, faThLarge } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt, faThLarge } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import './css/Header.css';
 import { logout } from '../../actions/Auth'
@@ -32,7 +32,6 @@ class Header extends Component {
   }
 
   showMenu() {
-    const { user } = this.props;
     const nav = (
       <ul className="menu">
         <li className="hvr-pulse-grow"><a href="/login">Login</a></li>
@@ -64,9 +63,9 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn, user } = state.Auth;
+  const { isLoggedIn } = state.Auth;
   return {
-    isLoggedIn, user
+    isLoggedIn
   }
 }
 

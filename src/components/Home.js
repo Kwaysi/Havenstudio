@@ -48,9 +48,9 @@ class Home extends Component {
             </div>
           </div>
           <div className="sidebar">
-            <FontAwesomeIcon icon={faFacebookF} size="24px" />
-            <FontAwesomeIcon icon={faInstagram} size="24px" />
-            <FontAwesomeIcon icon={faTwitter} size="24px" />
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebookF} size="24px" /></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} size="24px" /></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} size="24px" /></a>
           </div>
         </div>
 
@@ -70,7 +70,7 @@ class Home extends Component {
         </Modal>
         <div className="home-footer">
           <p className="foot-left">&copy; Copyrights Haven Studio. All rights reserved.</p>
-          <p className="foot-right">Powered by <img src={creosis} alt="Creosis Logo" height="16px"/></p>
+          <p className="foot-right">Powered by <a href="https://creosis.com" target="_blank" rel="noopener noreferrer"><img src={creosis} alt="Creosis Logo" height="16px"/></a></p>
         </div>
       </div>
     );
