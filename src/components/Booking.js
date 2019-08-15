@@ -239,7 +239,7 @@ class Booking extends Component {
     const url = this.props.location.pathname;
     return (
       <>
-        <Header location={url}/>
+        <Header location={url} />
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
             {errorMsg ?
@@ -288,7 +288,7 @@ class Booking extends Component {
                 <h1>Package details</h1>
                 <div className="plan-element">
                   <label htmlFor="package">Package:</label>
-                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.package.title : selectedPackage.pack}</h2>
                     :
                     <Select name="package" children={packages} onchange={this.packageChange} />
@@ -297,7 +297,7 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="type">Type:</label>
-                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.type.title : selectedPackage.type}</h2>
                     :
                     <Select name="type" children={types} onchange={this.typeChange} selectedId={typeid} />
@@ -306,7 +306,7 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="plan">Plan:</label>
-                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.title : selectedPackage.plan.title}</h2>
                     :
                     <h2>{plan_title}</h2>
@@ -325,7 +325,7 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="total">Total:</label>
-                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.price : selectedPackage.plan.price}</h2>
                     :
                     <h2>{!plan.price ? price : plan.price}</h2>

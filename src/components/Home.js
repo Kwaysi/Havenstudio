@@ -10,7 +10,7 @@ import Header from './Common/Header';
 import './images/hero.jpg';
 import creosis from '../assets/images/logo.svg';
 import subscribe from '../assets/images/subscribe.svg';
-import  book from '../assets/images/book.svg';
+import book from '../assets/images/book.svg';
 
 // Actions
 import { getPackages } from '../actions/Package';
@@ -36,7 +36,7 @@ class Home extends Component {
     const url = this.props.location.pathname;
     return (
       <div className="home">
-        <Header location={url}/>
+        <Header location={url} />
         <div className="filter">
           <div className="main" >
             <div>
@@ -56,13 +56,13 @@ class Home extends Component {
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
           <div className="mod-card">
-            <img src={book} alt="Book Icon" height="50px"/>
+            <img src={book} alt="Book Icon" height="50px" />
             <h2>Book a session</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
             <a href='/book'><Button>Book a session</Button></a>
           </div>
           <div className="mod-card">
-            <img src={subscribe} alt="Subscribe Icon" height="50px"/>
+            <img src={subscribe} alt="Subscribe Icon" height="50px" />
             <h2>Start a subscription</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
             <a href='/subscribe'><Button>Start a subscription</Button></a>

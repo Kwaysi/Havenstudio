@@ -30,7 +30,6 @@ p {
 
 .right {
   width: 20%;
-
 }
 
 @media screen and (max-width: 600px) {
@@ -38,22 +37,18 @@ p {
     bottom: 0px;
     flex-wrap: wrap;
   }
-
+  
   .socials {
     width: 100%;
     text-align: center;
   }
-
   .copy {
     width: 100%;
   }
-
   .icon {
     text-align: center;
     width: 30%;
-
   }
-
   .right {
     width: 80%;
     margin: 0 auto;
