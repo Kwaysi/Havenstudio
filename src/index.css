@@ -143,9 +143,7 @@ a:hover {
 }
 .sub-list li:hover {
   background: lightgrey;
-  cursor: pointer;
 }
-
 .booking {
   display: flex;
   flex-wrap: wrap;
@@ -240,7 +238,7 @@ a:hover {
   background-color: transparent !important;
   position: absolute;
   width: 100% !important;
-  bottom: 0;
+  bottom: 300px;
   display: flex;
   justify-content: space-between;
   border-radius: 10px;
@@ -284,7 +282,14 @@ a:hover {
     justify-content: space-between;
     flex-direction: row !important;
   }
-
+  
+.icnStyle{
+  top: 200px;
+}
+.icnStyl{
+  position: relative;
+  top: 300px;
+}
   .plan-body {
     flex: 50%;
     padding-left: 20px;

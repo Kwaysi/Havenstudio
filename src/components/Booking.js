@@ -332,8 +332,9 @@ class Booking extends Component {
               </div>
 
             </div>
+        </div>
         }
-        {/* <Footer /> */}
+        <Footer  icn="icnStyl" />
       </>
     );
   }
