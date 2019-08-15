@@ -19,8 +19,7 @@ export const loginSuccess = (user, token) => {
   }
 };
 export const conn = Axios.create({
-  baseURL: 'http://havenstudio.do/api'
-  // baseURL: 'http://192.168.8.100:8080/api'
+  baseURL: 'http://192.168.8.105:8080/api'
 });
 
 export const logInFailed = (msg) => {
