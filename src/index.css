@@ -77,8 +77,8 @@ a:hover {
 }
 .link{
   color: #666;
-   font-size: 13px;
-   padding: 8px;
+  font-size: 13px;
+  padding: 8px;
 }
 .main-content {
   width: 100%;
@@ -87,7 +87,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
   top: 60px;
   padding: 20px;
 }
@@ -261,7 +261,21 @@ a:hover {
   width: 100% !important;
   text-align: left;
 }
-
+.terms{
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 9px;
+  color: #949393;
+}
+.terms input{
+  border:1px solid #575454;  
+}
+.lab{
+ margin-left: 4px;
+}
 @media screen and (min-width: 900px) {
   .booking {
     display: flex;
@@ -279,9 +293,10 @@ a:hover {
   .booking-information {
     flex: 50%;
   }
-}
-
-.prev-bookings {
+  .select-group {
+    width: 100% !important;
+  }
+}.prev-bookings {
   display: flex;
   width: 100%;
   text-align: left;
