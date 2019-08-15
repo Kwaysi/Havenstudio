@@ -1,11 +1,20 @@
 .header {
   width: 100%;
-  background: white;
   display: flex;
   padding: 10px;
   z-index: 1000;
   height: 60px;
   justify-content: center;
+}
+
+.bg {
+  background: white;
+  color: black;
+}
+
+.nobg {
+  background: none;
+  color: white;
 }
 
 .header ul {
@@ -16,7 +25,7 @@
 .logo {
   position: absolute;
   top: 20px;
-  left: 50px;
+  left: 20px;
   flex: 0.4;
   text-align: left;
 }
@@ -25,7 +34,7 @@
   position: absolute;
   top: 0;
   height: 60px;
-  right: 50px;
+  right: 20px;
   width: 150px;
   display: flex;
   align-items: center;
@@ -74,7 +83,7 @@
   display: flex;
   top: 0;
   position: absolute;
-  right: 50px;
+  right: 20px;
 }
 
 .menu li {

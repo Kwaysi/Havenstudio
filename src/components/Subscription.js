@@ -138,9 +138,10 @@ class Subscribe extends Component {
 
   render() {
     const show = this.renderStep();
+    const url = this.props.location.pathname;
     return (
       <>
-        <Header />
+        <Header location={url}/>
         <div className="main-content">
           <h1>Choose a package that suits you.</h1>
           {show}

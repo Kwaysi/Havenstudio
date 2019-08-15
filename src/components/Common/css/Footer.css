@@ -1,6 +1,5 @@
 .icons {
   width: 100vw;
-  /* margin-top: 100px !important; */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -11,6 +10,7 @@
   padding: 7px;
   margin-bottom: -40px;
 }
+
 .socials {
   color: white;
   width: 100%;
@@ -18,6 +18,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
 .icon,
 p {
   padding: 10px;
@@ -26,14 +27,17 @@ p {
 .copy {
   font-size: 13px;
 }
+
 .right {
   width: 20%;
 }
+
 @media screen and (max-width: 600px) {
   .icons {
     bottom: 0px;
     flex-wrap: wrap;
   }
+  
   .socials {
     width: 100%;
     text-align: center;
