@@ -21,7 +21,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const {isLoggedIn, token} = this.props;
+    const { isLoggedIn, token } = this.props;
     if (isLoggedIn) this.props.updateUser(token);
   }
 
@@ -49,7 +49,7 @@ class Dashboard extends Component {
     const { subscription } = this.props.user;
     const next = this.nextSession();
 
-    if (subscription && subscription != null) {
+    if (subscription && subscription != null && subscription.status !== 'Expired') {
       const { plan, type } = subscription && subscription;
       const pack = subscription.package.title;
 
@@ -111,7 +111,7 @@ class Dashboard extends Component {
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </>
     );
