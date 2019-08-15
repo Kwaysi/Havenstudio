@@ -97,11 +97,12 @@ class Login extends Component {
     const { email, password, errors, errorMsg, close } = this.state;
     const { isLoggedIn, isLoading, msg } = this.props;
     const messages = (errorMsg || msg) && close ? <Alert msg={errorMsg || msg} classStyle="red" close={this.err} /> : null;
+    const url = this.props.location.pathname;
     return (
       <>
         {isLoggedIn ? <Redirect to={this.state.redirectTo} /> :
           <>
-            <Header />
+            <Header location={url}/>
             <div className="main-content">
               <h1>Login</h1>
               {isLoading ? <Spinner /> : <div className="white">
