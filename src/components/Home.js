@@ -8,8 +8,9 @@ import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-sv
 import Button from './Common/Button';
 import Header from './Common/Header';
 import './images/hero.jpg';
-import Footer from "./Common/Footer"
 import creosis from '../assets/images/logo.svg';
+import subscribe from '../assets/images/subscribe.svg';
+import  book from '../assets/images/book.svg';
 
 // Actions
 import { getPackages } from '../actions/Package';
@@ -55,11 +56,13 @@ class Home extends Component {
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
           <div className="mod-card">
+            <img src={book} alt="Book Icon" height="50px"/>
             <h2>Book a session</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
             <a href='/book'><Button>Book a session</Button></a>
           </div>
           <div className="mod-card">
+            <img src={subscribe} alt="Subscribe Icon" height="50px"/>
             <h2>Start a subscription</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
             <a href='/subscribe'><Button>Start a subscription</Button></a>

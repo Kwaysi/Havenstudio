@@ -335,6 +335,11 @@ a:hover {
   padding: 10px;
 }
 
+.mod-card img {
+  padding: 0 10px;
+  box-sizing: content-box;
+}
+
 .close-mod {
   position: absolute;
   top: 0;
