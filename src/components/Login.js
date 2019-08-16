@@ -125,7 +125,6 @@ class Login extends Component {
                       |
                   <NavLink to="/register"> Create an account ?</NavLink>
                     </div>
-
                   </div>
                 </>
               }
