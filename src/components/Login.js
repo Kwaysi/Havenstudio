@@ -22,11 +22,13 @@ class Login extends Component {
       },
       errorMsg: "",
       close: false,
-      redirectTo: ""
+      redirectTo: "",
+      hidden: true
     }
     this.handChange = this.handChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.err = this.err.bind(this);
+    this.toggleShow = this.toggleShow.bind(this);
   }
 
   componentDidMount() {
@@ -89,10 +91,15 @@ class Login extends Component {
     })
   };
 
+  toggleShow() {
+    this.setState({ hidden: !this.state.hidden });
+  }
+
+
 
 
   render() {
-    const { email, password, errors, errorMsg, close } = this.state;
+    const { email, password, errors, errorMsg, close, hidden } = this.state;
     const { isLoggedIn, isLoading, msg } = this.props;
     const messages = (errorMsg || msg) && close ? <Alert msg={errorMsg || msg} classStyle="red" close={this.err} /> : null;
     const url = this.props.location.pathname;
@@ -107,7 +114,7 @@ class Login extends Component {
                 {messages}
                 <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
                 <div className="error">{errors.email}</div>
-                <Input label="Password:" placeHolder="Your password" name="password" type="password" handleChange={this.handChange} value={password} />
+                <Input label="Password:" placeHolder="Your password" name="password" type={hidden ? 'password' : 'text'} handleChange={this.handChange} value={password} change={this.toggleShow} icon='true' />
                 <div className="error">{errors.password}</div>
                 <Button onclick={this.handleSubmit}>Login</Button>
 

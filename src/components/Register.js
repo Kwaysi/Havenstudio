@@ -23,10 +23,14 @@ class Register extends Component {
         phone: "",
         email: "",
         password: "",
-      }
+      },
+      hidden: true
+
     }
     this.handleChange = this.change.bind(this);
     this.click = this.click.bind(this);
+    this.toggleShow = this.toggleShow.bind(this);
+
   };
 
   click = (e) => {
@@ -47,6 +51,10 @@ class Register extends Component {
       errorMsg: null
     })
   };
+
+  toggleShow() {
+    this.setState({ hidden: !this.state.hidden });
+  }
 
   change = (e) => {
     let { name, value } = e.target;
@@ -73,7 +81,7 @@ class Register extends Component {
   };
 
   render() {
-    const { errors, errorMsg, name, email, phone, password } = this.state;
+    const { errors, errorMsg, name, email, phone, password, hidden } = this.state;
     const { msg, isLoggedIn, isLoading } = this.props;
     const messages = errorMsg || msg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err} /> : null;
     const url = this.props.location.pathname;
@@ -93,7 +101,7 @@ class Register extends Component {
               <div className="error">{errors.email}</div>
               <Input label="Phone Number" name="phone" handleChange={this.change} placeHolder="Your Phone Number" value={phone} />
               <div className="error">{errors.phone}</div>
-              <Input label="Password" type="password" name="password" handleChange={this.change} placeHolder="Your password" value={password} />
+              <Input label="Password" type={hidden ? 'password' : 'text'} name="password" handleChange={this.change} placeHolder="Your password" value={password} change={this.toggleShow} icon='true' />
               <div className="error">{errors.password}</div>
               <Button onclick={this.click}>Register</Button>
               <div className="form-other">

@@ -3,6 +3,7 @@
   max-width: 600px;
   text-align: center;
   margin: 10px auto 10px auto;
+  position: relative;
 }
 
 .form-element input {
@@ -17,4 +18,13 @@
 
 .form-element label {
   font-size: 16px;
+}
+
+.show-password {
+  width: 5%;
+  position: absolute;
+  top: 33px;
+  bottom: 15px;
+  right: 0;
+  color: black;
 }
