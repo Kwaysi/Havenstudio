@@ -123,10 +123,10 @@ class Login extends Component {
                     <div className="form-other">
                       <NavLink to='#'>Forgot password? </NavLink>
                       |
-                  <NavLink to="/register"> Create an account ?</NavLink>
-                </div>
-
-              </div>
+                      <NavLink to="/register"> Create an account ?</NavLink>
+                    </div>
+                  </div>
+                </>
               }
             </div>
             <Footer background="lo"/>
