@@ -109,7 +109,7 @@ class Login extends Component {
           <>
             <Header location={url}/>
             <div className="main-content">
-              <h1>Login</h1>
+              <h1 className="head">Login</h1>
               {isLoading ? <Spinner /> : <div className="white">
                 {messages}
                 <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />

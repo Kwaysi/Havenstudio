@@ -1,13 +1,12 @@
-.icons {
+.footer {
   width: 100vw;
   color: white;
   display: flex;
   justify-content: space-between;
-  background-color: black;
-  position: absolute;
-  top: 120;
+  background-color: #222;
+  position: fixed;
   bottom: 0px;
-  padding: 7px;
+  align-items: center;
 }
 
 .socials {
