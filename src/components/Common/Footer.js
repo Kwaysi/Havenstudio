@@ -14,6 +14,7 @@ const Footer = (props) => {
           </a>
         </span>
         <span className="icon">
+
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" aria-hidden="true"></i>
           </a>
         </span>

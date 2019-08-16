@@ -160,7 +160,7 @@ height: 100%;
 
 .heading {
   color: #fff;
-  font-family: 'fontrust';
+  font-family: "fontrust";
   font-size: 122px;
   font-weight: lighter;
 }
@@ -229,32 +229,32 @@ height: 100%;
  * animation pulsate-bck
  * ----------------------------------------
  */
- @-webkit-keyframes pulsate-bck {
+@-webkit-keyframes pulsate-bck {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
     -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    transform: scale(0.9);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 @keyframes pulsate-bck {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
     -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    transform: scale(0.9);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -277,7 +277,10 @@ height: 100%;
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-.hvr-pulse-grow:hover, .hvr-pulse-grow:focus, .hvr-pulse-grow:active {
+
+.hvr-pulse-grow:hover,
+.hvr-pulse-grow:focus,
+.hvr-pulse-grow:active {
   -webkit-animation-name: hvr-pulse-grow;
   animation-name: hvr-pulse-grow;
   -webkit-animation-duration: 0.3s;
@@ -315,13 +318,13 @@ height: 100%;
 }
 
 .modal-main {
-  position:fixed;
+  position: fixed;
   background: white;
   width: 85%;
   height: 70vh;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -522,15 +525,29 @@ height: 100%;
 .terms input {
   border: 1px solid #575454;
 }
+
 .lab {
   margin-left: 4px;
 }
+
+.form-other {
+  margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  color: #bdbdbd;
+}
+
 @media screen and (max-width: 900px) {
   .subt{
     margin-bottom: -20px !important;
     position: absolute;
   }
+  
+  .form-other {
+    flex-direction: column;
+  }
 }
+
 @media screen and (min-width: 900px) {
   .booking {
     display: flex;
@@ -538,20 +555,24 @@ height: 100%;
     justify-content: space-between;
     flex-direction: row !important;
   }
+  
   .subt{
     margin-bottom: -20px !important;
   }
 
-.main-container{
-  height: 100%;
-}
-.new{
-  position: fixed !important;
-}
-.icnStyl{
-  /* position: relative; */
-  top: 300px;
-}
+  .main-container{
+    height: 100%;
+  }
+  
+  .new{
+    position: fixed !important;
+  }
+  
+  .icnStyl{
+    /* position: relative; */
+    top: 300px;
+  }
+  
   .plan-body {
     flex: 50%;
     padding-left: 20px;
@@ -565,6 +586,7 @@ height: 100%;
     width: 100% !important;
   }
 }
+
 .prev-bookings {
   display: flex;
   width: 100%;
