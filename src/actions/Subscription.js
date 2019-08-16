@@ -61,7 +61,7 @@ export const getSubscription = (id) => {
             )
             .catch(err => {
                 // dispatch(subscriptionFailed(err.response.data))
-                console.log(err.response.data);
+                // console.log(err.response.data);
             }
             );
     }

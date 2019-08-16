@@ -90,7 +90,7 @@ class Booking extends Component {
     this.setState({
       terms: true
     })
-    console.log(this.state.terms)
+    // console.log(this.state.terms)
   }
 
   timeChange(value) {
@@ -222,8 +222,8 @@ class Booking extends Component {
           errors: this.state.errors
         }
         if (validateForm(data)) {
+          this.errorClose();
           if (this.state.checked) {
-            this.errorClose();
             // console.log(data)
             if (data.package !== 'Standard Package' && data.package !== 'Premium Package') {
               this.props.bookingSession(data);

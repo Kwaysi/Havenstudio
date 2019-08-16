@@ -65,7 +65,7 @@ export const bookingSession = (data) => {
         // console.log(data)
 
         if (data.subscription > 0) {
-            console.log('get user subscription')
+            // console.log('get user subscription')
             conn.get(`/subscription/${data.subscription}`)
                 .then(res => {
 
@@ -90,13 +90,13 @@ export const bookingSession = (data) => {
                             );
                     }
                     else {
-                        console.log('package expired')
+                        // console.log('package expired')
                         dispatch(bookingFailed({ 'msg': 'package expired' }))
 
                     }
                 })
         } else {
-            console.log('create user subscription', data)
+            // console.log('create user subscription', data)
 
             conn.post('/booking/create', data)
                 .then(res => {
