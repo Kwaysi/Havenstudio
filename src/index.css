@@ -361,7 +361,6 @@ a:hover {
 .mod-card img {
   padding: 0 10px;
   box-sizing: content-box;
-  filter: invert();
 }
 
 .close-mod {
