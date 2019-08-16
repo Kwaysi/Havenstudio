@@ -3,12 +3,25 @@
   margin: 10px;
   border-radius: 20px;
   min-width: 150px;
-  border: 1px solid black;
   background: none;
+}
+
+.btn-blk {
+  border: 1px solid black;
   color: black;
 }
 
-.button:hover {
+.btn-blk:hover {
   background: black;
   color: white;
+}
+
+.btn-wht {
+  border: 1px solid white;
+  color: white;
+}
+
+.btn-blk:hover {
+  background: white;
+  color: black;
 }

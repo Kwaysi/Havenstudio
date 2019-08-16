@@ -69,7 +69,7 @@ class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     const { msg } = this.props
-    if (validateForm(this.state) || (email && password)) {
+    if (validateForm(this.state) && (email && password)) {
       this.props.logIn({ email, password });
       this.setState({
         errorMsg: msg,
@@ -107,7 +107,7 @@ class Login extends Component {
       <>
         {isLoggedIn ? <Redirect to={this.state.redirectTo} /> :
           <>
-            <Header location={url} />
+            <Header location={url}/>
             <div className="main-content">
               {isLoading ? <Spinner /> :
                 <>
@@ -124,13 +124,12 @@ class Login extends Component {
                       <NavLink to='#'>Forgot password? </NavLink>
                       |
                   <NavLink to="/register"> Create an account ?</NavLink>
-                    </div>
+                </div>
 
-                  </div>
-                </>
+              </div>
               }
-              <Footer />
             </div>
+            <Footer background="lo"/>
           </>
         }
       </>
