@@ -147,7 +147,7 @@ class Subscribe extends Component {
           <div className="sub-step1">
             {show}
           </div>
-        <Footer background="subt" />
+        <Footer/>
         </div>
       </>
     );

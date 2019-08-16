@@ -12,6 +12,7 @@
 body {
   background-color: #000000;
   overflow-x: hidden;
+  height: 100%;
 }
 
 @font-face {
@@ -118,22 +119,15 @@ a:hover {
   font-size: 13px;
   padding: 8px;
 }
-.main-container{
-  height: 100%;
-}
-.new{
-  margin-bottom: -20px;
-}
+
 .main-content {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* position: relative; */
-  top: 60px;
-  padding: 20px;
+  position: relative;
 }
 
 .head {
@@ -143,7 +137,7 @@ a:hover {
 .white {
   background-color: white;
   width: 90%;
-  margin: auto auto;
+  margin: 80px auto;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
@@ -229,8 +223,10 @@ a:hover {
 }
 
 .pulsate-bck {
-	-webkit-animation: pulsate-bck 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) infinite forwards;
-	animation: pulsate-bck 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) infinite forwards;
+  -webkit-animation: pulsate-bck 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+    infinite forwards;
+  animation: pulsate-bck 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite
+    forwards;
 }
 
 /* ----------------------------------------------
@@ -325,14 +321,14 @@ a:hover {
   position: fixed;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1600 !important;
 }
 
 .modal-main {
-  position:fixed;
+  position: fixed;
   background: black;
   width: 85%;
   height: 70vh;
@@ -564,11 +560,6 @@ a:hover {
 }
 
 @media screen and (max-width: 900px) {
-  .subt{
-    margin-bottom: -20px !important;
-    position: absolute;
-  }
-  
   .form-other {
     flex-direction: column;
   }
@@ -581,24 +572,16 @@ a:hover {
     justify-content: space-between;
     flex-direction: row !important;
   }
-  
-  .subt{
-    margin-bottom: -20px !important;
-  }
 
-  .main-container{
+  .main-container {
     height: 100%;
   }
-  
-  .new{
-    position: fixed !important;
-  }
-  
-  .icnStyl{
+
+  .icnStyl {
     /* position: relative; */
     top: 300px;
   }
-  
+
   .plan-body {
     flex: 50%;
     padding-left: 20px;

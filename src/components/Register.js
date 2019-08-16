@@ -88,29 +88,31 @@ class Register extends Component {
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> : ""}
-        <Header location={url}/>
+        <Header location={url} />
         <div className="main-content">
 
           <h1 className="head">Register</h1>
           {isLoading ? <Spinner /> :
-            <div className="white">
+            <>
               {messages}
-              <Input label="Full Name:" name="name" handleChange={this.change} placeHolder="Your full name" value={name} />
-              <div className="error">{errors.name}</div>
-              <Input label="E-mail" name="email" handleChange={this.change} placeHolder="Your email address" value={email} />
-              <div className="error">{errors.email}</div>
-              <Input label="Phone Number" name="phone" handleChange={this.change} placeHolder="Your Phone Number" value={phone} />
-              <div className="error">{errors.phone}</div>
-              <Input label="Password" type={hidden ? 'password' : 'text'} name="password" handleChange={this.change} placeHolder="Your password" value={password} change={this.toggleShow} icon='true' />
-              <div className="error">{errors.password}</div>
-              <Button onclick={this.click}>Register</Button>
-              <div className="form-other">
-                <NavLink to="/login"> Already have an account ?</NavLink>
+              <div className="white">
+                <Input label="Full Name:" name="name" handleChange={this.change} placeHolder="Your full name" value={name} />
+                <div className="error">{errors.name}</div>
+                <Input label="E-mail" name="email" handleChange={this.change} placeHolder="Your email address" value={email} />
+                <div className="error">{errors.email}</div>
+                <Input label="Phone Number" name="phone" handleChange={this.change} placeHolder="Your Phone Number" value={phone} />
+                <div className="error">{errors.phone}</div>
+                <Input label="Password" type={hidden ? 'password' : 'text'} name="password" handleChange={this.change} placeHolder="Your password" value={password} change={this.toggleShow} icon='true' />
+                <div className="error">{errors.password}</div>
+                <Button onclick={this.click}>Register</Button>
+                <div className="form-other">
+                  <NavLink to="/login"> Already have an account ?</NavLink>
+                </div>
               </div>
-            </div>
+            </>
           }
+          <Footer />
         </div>
-        <Footer background="lo"/>
       </>
     );
   }

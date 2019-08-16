@@ -334,9 +334,9 @@ class Booking extends Component {
                 <Button onclick={() => this.submit()}>Book session & make payment</Button>
               </div>
             </div>
+            <Footer />
           </div>
         }
-        <Footer background="icn" />
       </>
     );
   }
