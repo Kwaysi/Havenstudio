@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from "react-router-dom"
+import { Redirect, NavLink } from "react-router-dom"
 import { logIn } from '../actions/Auth'
 import Input from './Common/Input';
 import Header from './Common/Header';
@@ -32,7 +32,7 @@ class Login extends Component {
   componentDidMount() {
     const url = this.props.location.pathname;
     const path = url.split('/');
-    if(path[2] === 'subscribe') {
+    if (path[2] === 'subscribe') {
       this.setState({
         redirectTo: "/subscribe"
       })
@@ -67,17 +67,15 @@ class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     const { msg } = this.props
-    if (email && password) {
-      if (validateForm(this.state)) {
-        this.props.logIn({ email, password });
-      }
+    if (validateForm(this.state) && (email && password)) {
+      this.props.logIn({ email, password });
       this.setState({
         errorMsg: msg,
         close: true
       })
     } else {
       this.setState({
-        errorMsg: "All fields are required",
+        errorMsg: "All fields are to be filled correctly and are required",
         close: true
       });
     }
@@ -102,7 +100,7 @@ class Login extends Component {
       <>
         {isLoggedIn ? <Redirect to={this.state.redirectTo} /> :
           <>
-            <Header location={url}/>
+            <Header location={url} />
             <div className="main-content">
               <h1>Login</h1>
               {isLoading ? <Spinner /> : <div className="white">
@@ -112,10 +110,17 @@ class Login extends Component {
                 <Input label="Password:" placeHolder="Your password" name="password" type="password" handleChange={this.handChange} value={password} />
                 <div className="error">{errors.password}</div>
                 <Button onclick={this.handleSubmit}>Login</Button>
+
+                <div className="form-other">
+                  <NavLink to='#'>Forgot password? </NavLink>
+                  |
+                  <NavLink to="/register"> Create an account ?</NavLink>
+                </div>
+
               </div>
               }
             </div>
-            <Footer/>
+            <Footer />
           </>
         }
       </>
