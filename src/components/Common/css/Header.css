@@ -9,7 +9,7 @@
 }
 
 .bg {
-  background: #191919;
+  background: #222222;
   color: white;
 }
 
@@ -92,7 +92,11 @@
   margin: 10px;
 }
 
+.menu li:hover {
+  background: #444;
+  padding: 20px 10px;
+}
+
 .svg-inline--fa {
   margin: 0 10px;
-  color: darkgrey;
 }

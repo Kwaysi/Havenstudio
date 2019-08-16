@@ -15,7 +15,6 @@ class Header extends Component {
   componentDidMount () {
     const url = this.props.location;
     const path = url.split('/');
-    console.log(path);
     if(path[1] === '') {
       this.setState({
         class: "nobg"

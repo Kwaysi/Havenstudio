@@ -122,7 +122,7 @@ class Subscribe extends Component {
             (elem, index) => {
               return (
                 <div className="sub" key={index}>
-                  <h1>{elem.title}</h1>
+                  <h2>{elem.title}</h2>
                   <p>{elem.description}</p>
                   <Button onclick={() => this.setPack(elem.title, elem)}>Choose</Button>
                 </div>
@@ -141,11 +141,13 @@ class Subscribe extends Component {
     const url = this.props.location.pathname;
     return (
       <>
-        <Header location={url} />
-        <div className="main-content">
-          <h1>Choose a package that suits you.</h1>
-          {show}
-          <Footer />
+        <Header location={url}/>
+        <div className="main-content ">
+          <h1 className="head">Choose a package that suits you.</h1>
+          <div className="sub-step1">
+            {show}
+          </div>
+        <Footer/>
         </div>
       </>
     );

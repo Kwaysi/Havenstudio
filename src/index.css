@@ -69,6 +69,7 @@ body {
 
 h1 {
   margin: 20px;
+  color: #222;
 }
 label {
   margin: 10px 0 10px 0;
@@ -128,6 +129,11 @@ a:hover {
   align-items: center;
   position: relative;
 }
+
+.head {
+  color: white;
+}
+
 .white {
   background-color: white;
   width: 90%;
@@ -142,14 +148,20 @@ a:hover {
   justify-self: center;
 }
 
+.sub-step1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+}
+
 .sub {
   width: 90%;
-  max-width: 600px;
+  max-width: 500px;
   padding: 10px;
-  border-radius: 20px;
   margin: 10px;
-
-  background-color: white;
+  display: inline-block;
 }
 
 .heading {
