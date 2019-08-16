@@ -14,7 +14,7 @@ import Select from './Common/Select';
 import Button from './Common/Button';
 import Alert from './Common/Alert';
 import Spinner from './Common/Spinner';
-// import Footer from './Common/Footer';
+import Footer from './Common/Footer';
 
 import {
   isValid, reg, validateForm,
@@ -336,7 +336,7 @@ class Booking extends Component {
             </div>
           </div>
         }
-        <Footer background="icn"/>
+        <Footer background="icn" />
       </>
     );
   }

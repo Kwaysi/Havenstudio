@@ -32,17 +32,17 @@ p {
 }
 
 @media screen and (max-width: 600px) {
-  .lo{
+  .lo {
     position: absolute !important;
     bottom: 0;
   }
   .icons {
     bottom: 0px;
     flex-wrap: wrap;
-  position: relative;
+    position: relative;
     z-index: 10000px;
   }
-  
+
   .socials {
     width: 100%;
     text-align: center;
@@ -53,12 +53,12 @@ p {
   .new {
     margin-bottom: -20px;
     position: fixed !important;
-}
+  }
   .icon {
     text-align: center;
     width: 30%;
   }
-  .subt{
+  .subt {
     margin-bottom: -20px !important;
     position: absolute;
   }
@@ -70,19 +70,19 @@ p {
 @media screen and (min-width: 600px) and (max-width: 900px) {
   .icons {
     bottom: 0px;
-  position: relative;
+    position: relative;
     z-index: 10000px;
   }
-  .lo{
+  .lo {
     position: absolute !important;
     bottom: 0;
   }
-  .subt{
+  .subt {
     margin-bottom: -20px;
     position: absolute;
-
   }
   .new {
     margin-bottom: -20px;
     position: fixed !important;
+  }
 }
