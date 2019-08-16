@@ -63,13 +63,13 @@ class Home extends Component {
             <img src={book} alt="Book Icon" height="50px" />
             <h2>Book a session</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            <a href='/book'><Button>Book a session</Button></a>
+            <a href='/book'><Button white>Book a session</Button></a>
           </div>
           <div className="mod-card">
             <img src={subscribe} alt="Subscribe Icon" height="50px" />
             <h2>Start a subscription</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            <a href='/subscribe'><Button>Start a subscription</Button></a>
+            <a href='/subscribe'><Button white>Start a subscription</Button></a>
           </div>
         </Modal>
         
@@ -105,7 +105,7 @@ const Modal = ({ handleClose, show, children }) => {
       <section className='modal-main'>
         {children}
         <button onClick={handleClose} className="close-mod" >
-          <FontAwesomeIcon icon={faTimes} color="white" />
+          <FontAwesomeIcon icon={faTimes} color="black" />
         </button>
 
       </section>

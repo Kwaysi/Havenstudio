@@ -69,7 +69,7 @@ class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     const { msg } = this.props
-    if (validateForm(this.state) || (email && password)) {
+    if (validateForm(this.state) && (email && password)) {
       this.props.logIn({ email, password });
       this.setState({
         errorMsg: msg,
@@ -107,9 +107,9 @@ class Login extends Component {
       <>
         {isLoggedIn ? <Redirect to={this.state.redirectTo} /> :
           <>
-            <Header location={url} />
+            <Header location={url}/>
             <div className="main-content">
-              <h1 className="head">Login</h1>
+              <h1>Login</h1>
               {isLoading ? <Spinner /> : <div className="white">
                 {messages}
                 <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
@@ -117,17 +117,17 @@ class Login extends Component {
                 <Input label="Password:" placeHolder="Your password" name="password" type={hidden ? 'password' : 'text'} handleChange={this.handChange} value={password} change={this.toggleShow} icon='true' />
                 <div className="error">{errors.password}</div>
                 <Button onclick={this.handleSubmit}>Login</Button>
-                    <div className="form-other">
-                      <NavLink to='#'>Forgot password? </NavLink>
-                      |
-                  <NavLink to="/register"> Create an account ?</NavLink>
-                    </div>
 
-                  </div>
-                </>
+                <div className="form-other">
+                  <NavLink to='#'>Forgot password? </NavLink>
+                  |
+                  <NavLink to="/register"> Create an account ?</NavLink>
+                </div>
+
+              </div>
               }
-              <Footer />
             </div>
+            <Footer background="lo"/>
           </>
         }
       </>
