@@ -110,13 +110,16 @@ class Login extends Component {
             <Header location={url} />
             <div className="main-content">
               <h1 className="head">Login</h1>
-              {isLoading ? <Spinner /> : <div className="white">
-                {messages}
-                <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
-                <div className="error">{errors.email}</div>
-                <Input label="Password:" placeHolder="Your password" name="password" type={hidden ? 'password' : 'text'} handleChange={this.handChange} value={password} change={this.toggleShow} icon='true' />
-                <div className="error">{errors.password}</div>
-                <Button onclick={this.handleSubmit}>Login</Button>
+              {isLoading ? <Spinner /> :
+
+                <>
+                  {messages}
+                  <div className="white">
+                    <Input label="E-mail:" placeHolder="Your email" name="email" handleChange={this.handChange} value={email} />
+                    <div className="error">{errors.email}</div>
+                    <Input label="Password:" placeHolder="Your password" name="password" type={hidden ? 'password' : 'text'} handleChange={this.handChange} value={password} change={this.toggleShow} icon='true' />
+                    <div className="error">{errors.password}</div>
+                    <Button onclick={this.handleSubmit}>Login</Button>
                     <div className="form-other">
                       <NavLink to='#'>Forgot password? </NavLink>
                       |
