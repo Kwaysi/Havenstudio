@@ -2,14 +2,14 @@
   width: 100%;
   display: flex;
   padding: 10px;
-  z-index: 1000;
+  z-index: 1500;
   height: 60px;
   justify-content: center;
 }
 
 .bg {
-  background: white;
-  color: black;
+  background: #191919;
+  color: white;
 }
 
 .nobg {
