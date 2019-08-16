@@ -100,7 +100,7 @@ class Login extends Component {
       <>
         {isLoggedIn ? <Redirect to={this.state.redirectTo} /> :
           <>
-            <Header location={url} />
+            <Header location={url}/>
             <div className="main-content">
               <h1>Login</h1>
               {isLoading ? <Spinner /> : <div className="white">
@@ -120,7 +120,7 @@ class Login extends Component {
               </div>
               }
             </div>
-            <Footer />
+            <Footer background="lo"/>
           </>
         }
       </>

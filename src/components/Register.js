@@ -80,7 +80,7 @@ class Register extends Component {
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> : ""}
-        <Header location={url} />
+        <Header location={url}/>
         <div className="main-content">
 
           <h1>Register</h1>
@@ -102,7 +102,7 @@ class Register extends Component {
             </div>
           }
         </div>
-        <Footer />
+        <Footer background="lo"/>
       </>
     );
   }

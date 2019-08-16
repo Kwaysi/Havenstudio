@@ -11,12 +11,12 @@ class Header extends Component {
       class: 'nobg'
     }
   }
-
-  componentDidMount() {
+  
+  componentDidMount () {
     const url = this.props.location;
     const path = url.split('/');
     console.log(path);
-    if (path[1] === '') {
+    if(path[1] === '') {
       this.setState({
         class: "nobg"
       })

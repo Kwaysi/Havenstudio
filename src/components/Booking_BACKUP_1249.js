@@ -14,7 +14,7 @@ import Select from './Common/Select';
 import Button from './Common/Button';
 import Alert from './Common/Alert';
 import Spinner from './Common/Spinner';
-// import Footer from './Common/Footer';
+import Footer from './Common/Footer';
 
 import {
   isValid, reg, validateForm,
@@ -74,7 +74,6 @@ class Booking extends Component {
     }
     this.setState({
       errors,
-      errorMsg: null,
       date
     })
     if (this.state.time !== "") {
@@ -83,19 +82,17 @@ class Booking extends Component {
     }
 
   }
-
   check() {
     this.setState({
       terms: true
     })
     console.log(this.state.terms)
   }
-
   timeChange(value) {
     this.setState({
-      time: value,
-      errorMsg: null
+      time: value
     })
+
     this.props.checkBooking({ date: moment(this.state.date).format('YYYY-MM-DD'), timeframe: value });
   }
 
@@ -236,10 +233,11 @@ class Booking extends Component {
     const details = this.isLogggedIn();
     const { date, time, errors, errorMsg, plan, price, types, plan_title, typeid } = this.state;
     const { user, selectedPackage, isSubmitting, msg, booked } = this.props;
-    const url = this.props.location.pathname;
     return (
       <>
-        <Header location={url} />
+
+        <Header />
+
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
             {errorMsg ?
@@ -288,7 +286,7 @@ class Booking extends Component {
                 <h1>Package details</h1>
                 <div className="plan-element">
                   <label htmlFor="package">Package:</label>
-                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.package.title : selectedPackage.pack}</h2>
                     :
                     <Select name="package" children={packages} onchange={this.packageChange} />
@@ -297,7 +295,7 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="type">Type:</label>
-                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.type.title : selectedPackage.type}</h2>
                     :
                     <Select name="type" children={types} onchange={this.typeChange} selectedId={typeid} />
@@ -306,7 +304,7 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="plan">Plan:</label>
-                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.title : selectedPackage.plan.title}</h2>
                     :
                     <h2>{plan_title}</h2>
@@ -325,7 +323,7 @@ class Booking extends Component {
 
                 <div className="plan-element">
                   <label htmlFor="total">Total:</label>
-                  {((user && user.subscription) && user.subscription.status !== 'Expired') || selectedPackage ?
+                  {(user && user.subscription.status !== 'Expired') || selectedPackage ?
                     <h2>{user.subscription && user.subscription.status !== 'Expired' ? user.subscription.plan.price : selectedPackage.plan.price}</h2>
                     :
                     <h2>{!plan.price ? price : plan.price}</h2>
@@ -333,10 +331,11 @@ class Booking extends Component {
                 </div>
                 <Button onclick={() => this.submit()}>Book session & make payment</Button>
               </div>
+
             </div>
           </div>
         }
-        <Footer background="icn"/>
+        <Footer  icn="icnStyl" />
       </>
     );
   }
