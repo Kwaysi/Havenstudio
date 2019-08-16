@@ -1,9 +1,8 @@
 import React from "react";
 import "./css/Footer.css"
-const Footer = (props) => {
-  const { background, icn } = props;
+const Footer = () => {
   return (
-    <div className={`icons ${background}`}>
+    <div className="icons">
       <div className="socials">
         <span className="icon">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook" aria-hidden="true"></i>

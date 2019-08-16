@@ -1,13 +1,13 @@
 .icons {
-  width: 100vw;
+  width: 100%;
   color: white;
   display: flex;
   justify-content: space-between;
   background-color: black;
   position: absolute;
-  top: 120;
-  bottom: 0px;
   padding: 7px;
+  align-items: center;
+  bottom: 0;
 }
 
 .socials {
@@ -28,61 +28,6 @@ p {
 }
 
 .right {
-  width: 20%;
-}
-
-@media screen and (max-width: 600px) {
-  .lo {
-    position: absolute !important;
-    bottom: 0;
-  }
-  .icons {
-    bottom: 0px;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 10000px;
-  }
-
-  .socials {
-    width: 100%;
-    text-align: center;
-  }
-  .copy {
-    width: 100%;
-  }
-  .new {
-    margin-bottom: -20px;
-    position: fixed !important;
-  }
-  .icon {
-    text-align: center;
-    width: 30%;
-  }
-  .subt {
-    margin-bottom: -20px !important;
-    position: absolute;
-  }
-  .right {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-@media screen and (min-width: 600px) and (max-width: 900px) {
-  .icons {
-    bottom: 0px;
-    position: relative;
-    z-index: 10000px;
-  }
-  .lo {
-    position: absolute !important;
-    bottom: 0;
-  }
-  .subt {
-    margin-bottom: -20px;
-    position: absolute;
-  }
-  .new {
-    margin-bottom: -20px;
-    position: fixed !important;
-  }
+  text-align: right;
+  width: 100%;
 }

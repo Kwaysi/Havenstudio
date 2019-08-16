@@ -104,15 +104,15 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Header location={url}/>
-        <div className="main-container">
+        <Header location={url} />
+        <div className="main-content">
           <h1>Welcome back, {this.props.user.name} </h1>
           <div className="white">
             {sub}
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
-          <Footer background="new"/>
+          <Footer />
         </div>
       </>
     );

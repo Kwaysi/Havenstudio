@@ -141,11 +141,11 @@ class Subscribe extends Component {
     const url = this.props.location.pathname;
     return (
       <>
-        <Header location={url}/>
+        <Header location={url} />
         <div className="main-content">
           <h1>Choose a package that suits you.</h1>
           {show}
-        <Footer background="subt" />
+          <Footer />
         </div>
       </>
     );
