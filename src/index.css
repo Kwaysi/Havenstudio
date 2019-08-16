@@ -156,6 +156,7 @@ a:hover {
   align-items: center;
   width: 100%;
   flex-direction: row;
+  margin: 40px auto 80px auto;
 }
 
 .sub {
@@ -488,8 +489,13 @@ a:hover {
 
 .muted {
   color: lightgrey;
-  font-size: 14px;
+  font-size: 16px;
   margin: 10px 0;
+  cursor: pointer;
+}
+
+.muted span {
+  border-bottom: 1px lightgray solid;
 }
 
 .box {
@@ -561,8 +567,23 @@ a:hover {
   color: #bdbdbd;
 }
 
+.term-checkbox + label {
+  color: #ccc;
+}
+
+.term-checkbox:checked {
+  background: black;
+  color: white;
+}
+.term-checkbox:checked + label {
+  color: black;
+}
+
 @media screen and (max-width: 900px) {
   .form-other {
+    flex-direction: column;
+  }
+  .sub-step1 {
     flex-direction: column;
   }
 }

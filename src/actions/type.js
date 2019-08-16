@@ -14,6 +14,7 @@ export const SETSELECTEDPACKAGE = 'set selected package';
 export const POSTBOOKING = 'Submit booking data';
 export const BOOKINGFAILED = 'Booking failed';
 export const CHECK_STATUS = 'Check Status';
+export const CHECK_START = 'Check Starting';
 export const CHECK_FAILED = 'Check failed';
 
 // Subscription Types
