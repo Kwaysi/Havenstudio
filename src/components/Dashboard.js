@@ -29,9 +29,9 @@ class Dashboard extends Component {
     const { booking } = this.props.user;
     if (booking && booking.length > 0) {
       return booking.map(
-        elem => {
+        (elem, index) => {
           return (
-            <div className="prev-bookings">
+            <div className="prev-bookings" key={index}>
               <FontAwesomeIcon icon={faHistory} size="2x" className="falg" />
               <div>
                 <h4>{elem.planName.title}</h4>
@@ -61,14 +61,14 @@ class Dashboard extends Component {
     } else if (next !== 'none') {
       return (
         <>
-        <p>You don't have an active subscription, start a subscription to proceed</p>
-        <br/>
-        <div>
-          <h4>Next session:</h4>
-          <label>{next}</label>
-        </div>
-        <br/>
-        <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
+          <p>You don't have an active subscription, start a subscription to proceed</p>
+          <br />
+          <div>
+            <h4>Next session:</h4>
+            <label>{next}</label>
+          </div>
+          <br />
+          <NavLink to="/subscribe"><Button>Start a subscription</Button></NavLink>
         </>
       );
     }
@@ -100,10 +100,11 @@ class Dashboard extends Component {
   render() {
     const prevBooking = this.showBookings();
     const sub = this.showSubscriptionDetails();
+    const url = this.props.location.pathname;
 
     return (
       <>
-        <Header />
+        <Header location={url}/>
         <div className="main-container">
           <h1>Welcome back, {this.props.user.name} </h1>
           <div className="white">
@@ -111,7 +112,7 @@ class Dashboard extends Component {
             <h1>Previous Bookings</h1>
             {prevBooking}
           </div>
-          <Footer />
+          <Footer background="new"/>
         </div>
       </>
     );

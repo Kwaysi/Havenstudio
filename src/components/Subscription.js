@@ -79,9 +79,7 @@ class Subscribe extends Component {
                 pack.index.types.map(
                   (elem, index) => {
                     return (
-                      <>
-                        <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
-                      </>
+                      <li key={index} onClick={() => this.setType(elem.title, elem)}>{elem.title} <FontAwesomeIcon icon={faChevronRight} /></li>
                     );
                   }
                 )
@@ -140,13 +138,14 @@ class Subscribe extends Component {
 
   render() {
     const show = this.renderStep();
+    const url = this.props.location.pathname;
     return (
       <>
-        <Header />
+        <Header location={url}/>
         <div className="main-content">
           <h1>Choose a package that suits you.</h1>
           {show}
-          <Footer icn="icnStyle"/>
+        <Footer background="subt" />
         </div>
       </>
     );

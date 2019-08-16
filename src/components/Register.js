@@ -76,10 +76,11 @@ class Register extends Component {
     const { errors, errorMsg, name, email, phone, password } = this.state;
     const { msg, isLoggedIn, isLoading } = this.props;
     const messages = errorMsg || msg ? <Alert msg={msg ? msg : errorMsg} classStyle="red" close={this.err} /> : null;
+    const url = this.props.location.pathname;
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> : ""}
-        <Header />
+        <Header location={url}/>
         <div className="main-content">
 
           <h1>Register</h1>
@@ -98,7 +99,7 @@ class Register extends Component {
             </div>
           }
         </div>
-        <Footer />
+        <Footer background="lo"/>
       </>
     );
   }

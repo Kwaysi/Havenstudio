@@ -1,33 +1,49 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOutAlt, faUser, faThLarge } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt, faThLarge } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import './css/Header.css';
 import { logout } from '../../actions/Auth'
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      class: 'nobg'
+    }
+  }
+  
+  componentDidMount () {
+    const url = this.props.location;
+    const path = url.split('/');
+    console.log(path);
+    if(path[1] === '') {
+      this.setState({
+        class: "nobg"
+      })
+    } else {
+      this.setState({
+        class: "bg"
+      })
+    }
+  }
+
   logout() {
     this.props.logout();
   }
 
   showMenu() {
-    const { user } = this.props;
     const nav = (
       <ul className="menu">
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
+        <li className="hvr-pulse-grow"><a href="/login">Login</a></li>
+        <li className="hvr-pulse-grow"><a href="/register">Register</a></li>
       </ul>
     );
 
     const userMenu = (
-      <>
-        <div className="user">
-          <p><FontAwesomeIcon icon={faUser} />{user && user.name}</p>
-          <ul>
-            <a href="/dashboard"><li><FontAwesomeIcon icon={faThLarge} />Dashboard</li></a>
-            <a href="/" onClick={() => this.logout()}><li><FontAwesomeIcon icon={faSignOutAlt} />Logout</li></a>
-          </ul>
-        </div>
-      </>
+      <ul className="menu">
+        <a href="/dashboard"><li className="hvr-pulse-grow"><FontAwesomeIcon icon={faThLarge} />Dashboard</li></a>
+        <a href="/" onClick={() => this.logout()}><li className="hvr-pulse-grow"><FontAwesomeIcon icon={faSignOutAlt} />Logout</li></a>
+      </ul>
     );
 
     return this.props.isLoggedIn ? userMenu : nav;
@@ -36,7 +52,7 @@ class Header extends Component {
   render() {
     const show = this.showMenu();
     return (
-      <nav className="header">
+      <nav className={`header ${this.state.class}`}>
         <div className="logo">
           <a href="/">Haven</a>
         </div>
@@ -47,9 +63,9 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn, user } = state.Auth;
+  const { isLoggedIn } = state.Auth;
   return {
-    isLoggedIn, user
+    isLoggedIn
   }
 }
 

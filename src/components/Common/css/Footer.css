@@ -1,52 +1,89 @@
-.icons{
-    width: 100vw ;
-    /* margin-top: 100px !important; */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-   background-color: black;
-    position: absolute;
-    top: 120;
-    bottom: 0px;
-    padding: 3px;
-    margin-bottom: -40px;
-}
-.socials{
-    color: white;
-    width: 100%;
-    align-content: center;
-    display: flex;
-    flex-wrap: wrap;
-}
-.icon, p{
-    padding: 10px;
+.icons {
+  width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  position: absolute;
+  top: 120;
+  bottom: 0px;
+  padding: 7px;
 }
 
-.copy{
-    font-size: 13px;
+.socials {
+  color: white;
+  width: 100%;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
-.right{
-    width: 20%;
 
+.icon,
+p {
+  padding: 10px;
 }
+
+.copy {
+  font-size: 13px;
+}
+
+.right {
+  width: 20%;
+}
+
 @media screen and (max-width: 600px) {
-.icons{
+  .lo{
+    position: absolute !important;
+    bottom: 0;
+  }
+  .icons {
     bottom: 0px;
     flex-wrap: wrap;
-}.socials{
-    width:100%;
-    text-align: center;
-}
-.copy{
+  position: relative;
+    z-index: 10000px;
+  }
+  
+  .socials {
     width: 100%;
-}
-.icon{
     text-align: center;
-    width:30%;
-    
+  }
+  .copy {
+    width: 100%;
+  }
+  .new {
+    margin-bottom: -20px;
+    position: fixed !important;
 }
-.right{
+  .icon {
+    text-align: center;
+    width: 30%;
+  }
+  .subt{
+    margin-bottom: -20px !important;
+    position: absolute;
+  }
+  .right {
     width: 80%;
     margin: 0 auto;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .icons {
+    bottom: 0px;
+  position: relative;
+    z-index: 10000px;
+  }
+  .lo{
+    position: absolute !important;
+    bottom: 0;
+  }
+  .subt{
+    margin-bottom: -20px;
+    position: absolute;
+
+  }
+  .new {
+    margin-bottom: -20px;
+    position: fixed !important;
 }
 }
