@@ -117,14 +117,20 @@ a:hover {
   font-size: 13px;
   padding: 8px;
 }
+.main-container{
+  height: 100%;
+}
+.new{
+  margin-bottom: -20px;
+}
 .main-content {
   width: 100%;
-  /* height: 130vh; */
+height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
+  /* position: relative; */
   top: 60px;
   padding: 20px;
 }
@@ -154,7 +160,7 @@ a:hover {
 
 .heading {
   color: #fff;
-  font-family: 'fontrust';
+  font-family: "fontrust";
   font-size: 122px;
   font-weight: lighter;
   margin: 0;
@@ -225,32 +231,32 @@ a:hover {
  * animation pulsate-bck
  * ----------------------------------------
  */
- @-webkit-keyframes pulsate-bck {
+@-webkit-keyframes pulsate-bck {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
     -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    transform: scale(0.9);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 @keyframes pulsate-bck {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
     -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    transform: scale(0.9);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -273,7 +279,10 @@ a:hover {
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-.hvr-pulse-grow:hover, .hvr-pulse-grow:focus, .hvr-pulse-grow:active {
+
+.hvr-pulse-grow:hover,
+.hvr-pulse-grow:focus,
+.hvr-pulse-grow:active {
   -webkit-animation-name: hvr-pulse-grow;
   animation-name: hvr-pulse-grow;
   -webkit-animation-duration: 0.3s;
@@ -315,9 +324,9 @@ a:hover {
   background: black;
   width: 85%;
   height: 70vh;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -400,9 +409,7 @@ a:hover {
 }
 .sub-list li:hover {
   background: lightgrey;
-  cursor: pointer;
 }
-
 .booking {
   display: flex;
   flex-wrap: wrap;
@@ -498,7 +505,7 @@ a:hover {
   background-color: transparent !important;
   position: absolute;
   width: 100% !important;
-  bottom: 0;
+  bottom: 300px;
   display: flex;
   justify-content: space-between;
   border-radius: 10px;
@@ -532,9 +539,29 @@ a:hover {
 .terms input {
   border: 1px solid #575454;
 }
+
 .lab {
   margin-left: 4px;
 }
+
+.form-other {
+  margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  color: #bdbdbd;
+}
+
+@media screen and (max-width: 900px) {
+  .subt{
+    margin-bottom: -20px !important;
+    position: absolute;
+  }
+  
+  .form-other {
+    flex-direction: column;
+  }
+}
+
 @media screen and (min-width: 900px) {
   .booking {
     display: flex;
@@ -542,7 +569,24 @@ a:hover {
     justify-content: space-between;
     flex-direction: row !important;
   }
+  
+  .subt{
+    margin-bottom: -20px !important;
+  }
 
+  .main-container{
+    height: 100%;
+  }
+  
+  .new{
+    position: fixed !important;
+  }
+  
+  .icnStyl{
+    /* position: relative; */
+    top: 300px;
+  }
+  
   .plan-body {
     flex: 50%;
     padding-left: 20px;
@@ -595,6 +639,7 @@ a:hover {
     margin: 10px 10px;
   }
 }
+
 .prev-bookings {
   display: flex;
   width: 100%;

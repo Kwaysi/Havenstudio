@@ -145,7 +145,7 @@ class Subscribe extends Component {
         <div className="main-content">
           <h1>Choose a package that suits you.</h1>
           {show}
-          <Footer />
+        <Footer background="subt" />
         </div>
       </>
     );
