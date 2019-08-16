@@ -91,7 +91,7 @@ class Register extends Component {
         <Header location={url}/>
         <div className="main-content">
 
-          <h1>Register</h1>
+          <h1 className="head">Register</h1>
           {isLoading ? <Spinner /> :
             <div className="white">
               {messages}
