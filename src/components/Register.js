@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Input from './Common/Input';
 import Header from './Common/Header';
 import Button from './Common/Button';
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import Alert from "./Common/Alert";
 import { register } from "../actions/Auth";
 import Footer from "./Common/Footer"
@@ -80,7 +80,7 @@ class Register extends Component {
     return (
       <>
         {isLoggedIn ? <Redirect to="/dashboard" /> : ""}
-        <Header location={url}/>
+        <Header location={url} />
         <div className="main-content">
 
           <h1>Register</h1>
@@ -96,6 +96,9 @@ class Register extends Component {
               <Input label="Password" type="password" name="password" handleChange={this.change} placeHolder="Your password" value={password} />
               <div className="error">{errors.password}</div>
               <Button onclick={this.click}>Register</Button>
+              <div className="form-other">
+                <NavLink to="/login"> Already have an account ?</NavLink>
+              </div>
             </div>
           }
         </div>
