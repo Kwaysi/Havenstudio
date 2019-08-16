@@ -89,7 +89,10 @@ class Subscribe extends Component {
         case 3: {
           return (
             <div className="plan-container">
-              <p className="muted">{pack.title} / {type.title}</p>
+              <p className="muted">
+                <span onClick={() => { this.setState({ step: 1 }) }}>{pack.title} </span>
+                /
+                <span onClick={() => { this.setState({ step: 2 }) }}>{type.title} </span></p>
               {
                 type.index.plans.map(
                   (elem, index) => {
@@ -141,13 +144,13 @@ class Subscribe extends Component {
     const url = this.props.location.pathname;
     return (
       <>
-        <Header location={url}/>
+        <Header location={url} />
         <div className="main-content ">
           <h1 className="head">Choose a package that suits you.</h1>
           <div className="sub-step1">
             {show}
           </div>
-        <Footer/>
+          <Footer />
         </div>
       </>
     );
