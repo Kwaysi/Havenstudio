@@ -91,9 +91,9 @@ class Register extends Component {
         <Header location={url} />
         <div className="main-content">
 
-          <h1 className="head">Register</h1>
           {isLoading ? <Spinner /> :
             <>
+              <h1 className="head">Register</h1>
               {messages}
               <div className="white">
                 <Input label="Full Name:" name="name" handleChange={this.change} placeHolder="Your full name" value={name} />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ReactTypingEffect from 'react-typing-effect';
 import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Tilt from './Common/Tilt';
@@ -43,11 +43,11 @@ class Home extends Component {
             <Tilt style={styles}>
               <div>
                 <h1 className="heading">Welcome to<br />Haven Studio</h1>
-                <ReactTypingEffect text={text} speed={50} className="home-quotes" eraseDelay={3000} /><br/>
+                <ReactTypingEffect text={text} speed={50} className="home-quotes" eraseDelay={3000} /><br />
                 <div onClick={this.showModal.bind(this)} className="home-btn">
                   Get started
                 </div>
-              </div> 
+              </div>
             </Tilt>
           </div>
 
@@ -72,10 +72,10 @@ class Home extends Component {
             <a href='/subscribe'><Button white>Start a subscription</Button></a>
           </div>
         </Modal>
-        
+
         <div className="home-footer">
           <p className="foot-left">&copy; Copyrights Haven Studio. All rights reserved.</p>
-          <p className="foot-right">Powered by <a href="https://creosis.com" target="_blank" rel="noopener noreferrer"><img src={creosis} alt="Creosis Logo" height="16px"/></a></p>
+          <p className="foot-right">Powered by <a href="https://creosis.com" target="_blank" rel="noopener noreferrer"><img src={creosis} alt="Creosis Logo" height="16px" /></a></p>
         </div>
       </div>
     );

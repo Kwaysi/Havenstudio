@@ -242,6 +242,7 @@ class Booking extends Component {
         <Header location={url} />
         {isSubmitting ? <Spinner /> :
           <div className="main-content">
+            <h1 className="head"> </h1>
             {errorMsg ?
               <Alert classStyle="red" msg={errorMsg} close={() => this.errorClose()} />
               : ''}

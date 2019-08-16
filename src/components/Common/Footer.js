@@ -2,7 +2,7 @@ import React from "react";
 import "./css/Footer.css"
 const Footer = () => {
   return (
-    <div className="icons">
+    <div className="footer">
       <div className="socials">
         <span className="icon">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook" aria-hidden="true"></i>
