@@ -36,8 +36,7 @@ class Booking extends Component {
         name: "",
         email: "",
         phone: "",
-        date: "",
-        terms: ""
+        date: ""
       },
       types: packages[0].types,
       plan_title: packages[0].types[0].plan,
@@ -50,7 +49,6 @@ class Booking extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.packageChange = this.packageChange.bind(this);
     this.typeChange = this.typeChange.bind(this);
-    this.check = this.check.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.timeChange = this.timeChange.bind(this);
     this.errorClose = this.errorClose.bind(this);
@@ -69,9 +67,6 @@ class Booking extends Component {
       case 'date':
         errors.date = moment(date).format('YYYY-MM-DD') < today ? 'Invalid Date' : "";
         break;
-      case 'terms':
-        errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
-        break;
       default:
     }
     this.setState({
@@ -84,13 +79,6 @@ class Booking extends Component {
       this.props.checkBooking({ date: moment(date).format('YYYY-MM-DD'), timeframe: this.state.time });
     }
 
-  }
-
-  check() {
-    this.setState({
-      terms: true
-    })
-    // console.log(this.state.terms)
   }
 
   timeChange(value) {
@@ -113,9 +101,6 @@ class Booking extends Component {
         break;
       case 'phone':
         errors.phone = value !== '' && isValid(value) ? "" : 'Phone is not valid!';
-        break;
-      case 'terms':
-        errors.terms = this.state.terms === false ? 'Must agree to terms and conditions' : "";
         break;
       default:
     }
@@ -248,7 +233,7 @@ class Booking extends Component {
 
   render() {
     const details = this.isLogggedIn();
-    const { date, time, errors, errorMsg, plan, price, types, plan_title, typeid } = this.state;
+    const { checked, date, time, errors, errorMsg, plan, price, types, plan_title, typeid } = this.state;
     const { user, selectedPackage, isSubmitting, msg, booked, isChecking } = this.props;
     const url = this.props.location.pathname;
     return (
@@ -266,7 +251,7 @@ class Booking extends Component {
               {msg ?
                 <Alert classStyle="red" msg={msg} />
                 : ''}
-              {booked ?
+              {booked && !errorMsg ?
                 <Alert classStyle="green" msg={'Booking Succesful'} />
                 : ''
               }
@@ -356,7 +341,7 @@ class Booking extends Component {
                     }
                   </div>
                   <div style={{ margin: '10px' }}>
-                    <input type="checkbox" className="term-checkbox" name="check" value="true" onClick={() => { this.setState({ checked: true, errorMsg: null }) }} />
+                    <input type="checkbox" className="term-checkbox" name="check" defaultChecked={checked ? true : false} value={checked} onClick={() => { this.setState({ checked: !checked, errorMsg: null }) }} />
                     <label htmlFor="term" className="term-checkbox"> I agree to the terms and conditions</label>
                   </div>
                   <div className="error">{errorMsg}</div>
