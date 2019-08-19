@@ -37,13 +37,13 @@ export const signupFailed = (msg) => {
 };
 
 export const logIn = (data) => {
-  console.log(data);
+  // console.log(data);
   return (dispatch) => {
     dispatch(start())
     conn.post('/login', data)
       .then(
         res => {
-          console.log(res.data);
+          // console.log(res.data);
           const { user, token } = res.data;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
@@ -53,19 +53,19 @@ export const logIn = (data) => {
       .catch(
         err => {
           dispatch(logInFailed(err.response.data))
-          console.log(err.response.data);
+          // console.log(err.response.data);
         }
       );
   }
 };
 
 export const register = (authData) => {
-  console.log(authData)
+  // console.log(authData)
   return (dispatch) => {
     dispatch(start())
     conn.post("/register", authData)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         const { user, token } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
@@ -73,7 +73,7 @@ export const register = (authData) => {
       })
       .catch(err => {
         dispatch(signupFailed(err.response.data))
-        console.log(err.response)
+        // console.log(err.response)
       })
   }
 };
@@ -92,12 +92,12 @@ export const updateUser = (prevToken) => {
       .catch(
         error => {
           if (error.response) {
-            console.log(error.response);
+            // console.log(error.response);
             dispatch(logout);
           } else if (error.request) {
-            console.log(error.response);
+            // console.log(error.response);
           } else {
-            console.log(error.response);
+            // console.log(error.response);
           }
         }
       )

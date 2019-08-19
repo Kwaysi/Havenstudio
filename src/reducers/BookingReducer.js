@@ -1,4 +1,4 @@
-import { START, POSTBOOKING, BOOKINGFAILED, CHECK_STATUS, CHECK_FAILED } from "../actions/type";
+import { START, POSTBOOKING, BOOKINGFAILED, CHECK_STATUS, CHECK_FAILED, CHECK_START } from "../actions/type";
 
 const INITIAL = {
     isSubmitting: false
@@ -11,7 +11,8 @@ export default (state = INITIAL, action) => {
             return {
                 ...state,
                 isSubmitting: payload.isSubmitting,
-                booked: false
+                booked: false,
+                isChecking: false
             }
         case POSTBOOKING:
             return {
@@ -26,19 +27,28 @@ export default (state = INITIAL, action) => {
                 isSubmitting: false,
                 booked: false
             }
+        case CHECK_START:
+            return {
+                ...state,
+                isChecking: true,
+                msg: null
+            }
         case CHECK_STATUS:
             return {
                 ...state,
                 checkStatus: action.data,
                 msg: "",
-                booked: false
+                booked: false,
+                isChecking: false
             };
         case CHECK_FAILED:
             return {
                 ...state,
                 checkStatus: action.error,
                 msg: 'Session not available',
-                booked: false
+                booked: false,
+                isChecking: false
+
             };
         default:
             return state

@@ -1,5 +1,5 @@
 import { conn } from "./Auth";
-import { START, POSTBOOKING, BOOKINGFAILED, CHECK_STATUS, CHECK_FAILED } from "./type";
+import { START, CHECK_START, POSTBOOKING, BOOKINGFAILED, CHECK_STATUS, CHECK_FAILED } from "./type";
 import { updateUserSubscriptionRecord, updateSubscription, subscriptionFailed } from './Subscription';
 
 export const start = () => {
@@ -8,6 +8,12 @@ export const start = () => {
         payload: {
             isSubmitting: true
         }
+    }
+};
+
+export const checkStart = () => {
+    return {
+        type: CHECK_START
     }
 };
 
@@ -59,7 +65,7 @@ export const bookingSession = (data) => {
         // console.log(data)
 
         if (data.subscription > 0) {
-            console.log('get user subscription')
+            // console.log('get user subscription')
             conn.get(`/subscription/${data.subscription}`)
                 .then(res => {
 
@@ -84,13 +90,13 @@ export const bookingSession = (data) => {
                             );
                     }
                     else {
-                        console.log('package expired')
+                        // console.log('package expired')
                         dispatch(bookingFailed({ 'msg': 'package expired' }))
 
                     }
                 })
         } else {
-            console.log('create user subscription', data)
+            // console.log('create user subscription', data)
 
             conn.post('/booking/create', data)
                 .then(res => {
@@ -128,6 +134,7 @@ export const bookingSession = (data) => {
 export const checkBooking = (data) => {
     return (dispatch) => {
         // console.log(data)
+        dispatch(checkStart())
         conn.get(`/booking/check/${data.date}/${data.timeframe}`)
             .then(res => {
                 // console.log(res.data, data)

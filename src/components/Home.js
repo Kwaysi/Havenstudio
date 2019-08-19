@@ -52,9 +52,9 @@ class Home extends Component {
           </div>
 
           <div className="sidebar">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebookF} size="24px" /></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} size="24px" /></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} size="24px" /></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebookF} size="1x" /></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} size="1x" /></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} size="1x" /></a>
           </div>
         </div>
 
