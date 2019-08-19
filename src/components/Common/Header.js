@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faThLarge } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import './css/Header.css';
+import logo from '../../assets/images/logo.png';
 import { logout } from '../../actions/Auth'
 class Header extends Component {
   constructor(props) {
@@ -49,11 +50,12 @@ class Header extends Component {
   }
 
   render() {
+
     const show = this.showMenu();
     return (
       <nav className={`header ${this.state.class}`}>
         <div className="logo">
-          <a href="/">Haven</a>
+          <a href="/"><img src={logo} alt="Haven studio logo" width={120}/></a>
         </div>
         {show}
       </nav>
