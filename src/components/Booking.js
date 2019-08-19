@@ -148,7 +148,7 @@ class Booking extends Component {
       </>
     );
 
-    const showUSerDetails = <h1>Welcome back {this.props.user && this.props.user.name}</h1>;
+    const showUSerDetails = <h1>Hi, {this.props.user && this.props.user.name}</h1>;
 
     return this.props.isLoggedIn ? showUSerDetails : collectUserDetails;
   }
@@ -261,7 +261,7 @@ class Booking extends Component {
                     {details}
                   </div>
                   <div>
-                    <h1 style={{ margin: '0' }}>Booking Information</h1>
+                    <h1 style={{ margin: '0' }}>{selectedPackage ? 'Book your first session' : 'Book a session'}</h1>
                     <span className="terms">Note: A session last 2 hours per day.</span>
                     <div className="form-element">
                       <label htmlFor="date">When would you like to come in?</label>
@@ -341,7 +341,7 @@ class Booking extends Component {
                     }
                   </div>
                   <div style={{ margin: '10px' }}>
-                    <input type="checkbox" className="term-checkbox" name="check" defaultChecked={checked ? true : false} value={checked} onClick={() => { this.setState({ checked: !checked, errorMsg: null }) }} />
+                    <input type="checkbox" id="term" className="term-checkbox" name="check" defaultChecked={checked ? true : false} value={checked} onClick={() => { this.setState({ checked: !checked, errorMsg: null }) }} />
                     <label htmlFor="term" className="term-checkbox"> I agree to the terms and conditions</label>
                   </div>
                   <div className="error">{errorMsg}</div>
